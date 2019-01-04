@@ -1,0 +1,73 @@
+<!-- ============================================================== -->
+<!-- Simple four boxes Row -->
+<!-- ============================================================== -->
+
+  <div id=res >
+    <p id="message"></p>
+    <div id="Store">
+      Tienda de destino:
+      <select name="store_origin" id="store" (change)="Search($event)">
+        <option value=" "> </option>
+        <option *ngFor="let tiendas of store" value={{tiendas}}>{{tiendas}}</option>
+      </select> 
+      </div>
+    <div id="Ref">
+      <p>REFERENCIA:</p>
+      <p>{{ref}}</p>
+    </div>
+    <div id="product">
+      Cantidad de producto:
+      <input type="number" id="count" min="1" (blur)="Show($event)">
+    </div>
+  </div>
+
+    <div id="Register" style="overflow-x:auto;">
+        <table id="myTable">
+          <tr>
+            <th><input type="checkbox"> </th>
+            <th>Codigo de barras</th>
+            <th>Unidad</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td  contenteditable='true' id="info" (keyup)="Validate()"></td>
+            <td></td>
+          </tr>
+        </table>
+        <button id="delete" (click)="Delete()">Eliminar</button>
+        <button id="close_box" (click)="Save_box()">Cerrar Caja</button>
+        <button id="create_box" (click)="Create_box()">Crear Caja</button>
+        <button id="finish" (click)="finalize()">Cerrar Despacho</button>
+  </div>
+
+  <div id="summary" style="overflow-x:auto;">
+      <table id="description">
+          <tr>
+            <th>Referencia</th>
+            <th>Unidades</th>
+          </tr>
+          <tr *ngFor="let tem of refUser">
+            <td normal style="border: 1px solid #dddddd; padding: 8px">{{tem[1]}} </td>
+            <td normal style="border: 1px solid #dddddd; padding: 8px">{{tem[2]}} </td>
+          </tr>
+          <tr>
+              <td normal style="border: 1px solid #dddddd; padding: 8px; font-weight:bold">TOTAL </td>
+              <td normal style="border: 1px solid #dddddd; padding: 8px; font-weight:bold">{{num_product[num_product.length-1]}} </td>
+          </tr>
+        </table>
+  </div>
+  <div class="form-popup" id="myForm">
+    <form class="form-container">
+      <h1>TRANSPORTE</h1>
+  
+      <label><b>Numero de guia</b></label>
+      <input type="text" id="guide" required/>
+  
+      <label><b>Empresa</b></label>
+      <select required>
+        <option *ngFor="let company of transport" value={{company}}>{{company}}</option>
+      </select> 
+  
+      <button type="submit" (click)="Send()">Confirmar</button>
+    </form>
+  </div>
