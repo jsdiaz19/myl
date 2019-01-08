@@ -1,4 +1,3 @@
-import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -18,6 +17,7 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 
+import {MatTableDataSource,MatTableModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { SpinnerComponent } from './shared/spinner.component';
     FlexLayoutModule,
     HttpClientModule,
     SharedModule,
+    MatTableModule,
     RouterModule.forRoot(AppRoutes)
   ],
   providers: [

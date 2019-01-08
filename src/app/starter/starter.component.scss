@@ -149,20 +149,19 @@ tr:hover {
     display: none;
     position: fixed;
     bottom: 0;
-    right: 250px;
+    right: 500px;
     top: 200px;
-    height: 500px;
-    width: 600px;
-    border: 3px solid #f1f1f1;
+    height: 420px;
+    width: 500px;
+    border: 1px solid black;
     z-index: 9;
 }
 
 .form-container {
     max-width: 500px;
-    max-height: 200px;
+    max-height: 500px;
     padding: 50px;
-    background-color: white;
-  }
+}
 
   .form-container input[type=text], .form-container select {
     width: 90%;

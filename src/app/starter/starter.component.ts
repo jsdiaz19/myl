@@ -38,7 +38,6 @@ export class StarterComponent implements OnInit {
   Store(){
     this.HttpBD.Store().subscribe(result => {
       this.store = result;
-      
     })
   }
 

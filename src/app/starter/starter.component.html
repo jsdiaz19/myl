@@ -3,6 +3,7 @@
 <!-- ============================================================== -->
 
   <div id=res >
+    
     <p id="message"></p>
     <div id="Store">
       Tienda de destino:
@@ -10,7 +11,8 @@
         <option value=" "> </option>
         <option *ngFor="let tiendas of store" value={{tiendas}}>{{tiendas}}</option>
       </select> 
-      </div>
+    </div>
+    
     <div id="Ref">
       <p>REFERENCIA:</p>
       <p>{{ref}}</p>

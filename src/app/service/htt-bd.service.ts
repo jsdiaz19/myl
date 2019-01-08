@@ -25,6 +25,10 @@ export class HttBDService {
     return this.http.get('/php/Listar_tiendas.php');
   }
 
+  Cod_Store(){
+    return this.http.get('/php/Cod_Store.php');
+  }
+
   Changeid(){
     return this.http.get('/php/Ref_despacho.php');
   }
@@ -39,11 +43,12 @@ export class HttBDService {
   }
   
   Save_box(id,num,product){
-    return this.http.post('/php/Save_box.php',{id: id, box: num, content: JSON.stringify(product.toString() )})
+    return this.http.post('/php/Save_box.php',{id: id, box: num, content: JSON.stringify(product.toString() )}).subscribe(result =>{
+      console.log(result);
+    })
   }
 
   Send_email(ref,num,summary,product,guide,company){
-    console.log("entro");
     return this.http.post('/php/Send.php',{ Ref: ref, product: num, abstract: summary, despacho: product, guide: guide, company: company }).subscribe(result => {
       console.log(result)
     })
@@ -51,6 +56,10 @@ export class HttBDService {
 
   Get_transport(){
     return this.http.get('/php/Get_transport.php');
+  }
+
+  Get_Despacho(){
+    return this.http.get('/php/Get_despacho.php');
   }
 }
 
