@@ -1,0 +1,10 @@
+
+table {
+  width: 40%;
+  margin-top: 30px;
+}
+
+#summary{
+  position: fixed;
+  right: 80px;
+}

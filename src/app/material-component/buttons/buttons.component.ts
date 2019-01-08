@@ -21,8 +21,9 @@ export interface Despacho {
 
 export class ButtonsComponent implements OnInit{
   displayedColumns: string[] = ['Id', 'Origen', 'Destino', 'Estado','Cajas','Unidades','Verificar'];
-  Source;
-  Store;
+  Source=null;
+  Store=null;
+  
   constructor(private HttpBD: HttBDService) { }
   ngOnInit(){
     this.HttpBD.Get_Despacho().subscribe(result =>{
