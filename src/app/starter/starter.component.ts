@@ -278,6 +278,7 @@ export class StarterComponent implements OnInit {
       var company= document.getElementsByTagName('select')[1].value
       this.HttpBD.Send_email(this.ref,this.Numproduct,abstract,product,guide.toString(),company.toString());
       pdfMake.createPdf({content:this.content}).print();
+      this.HttpBD.Update_state(this.ref,2);
       location.reload(true); 
     }
   }

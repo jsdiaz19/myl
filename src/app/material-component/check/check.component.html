@@ -1,8 +1,27 @@
 <mat-card>
     <mat-card-content>
       <mat-card-title>Verificacion de despacho</mat-card-title>
-      <mat-card-subtitle>Aqui se validara el numero de productos recibidos</mat-card-subtitle> 
-        <table mat-table [dataSource]="Source" class="mat-elevation-z8" style="overflow-x:auto; float: left;">
+      <mat-card-subtitle>Aqui se validara el numero de productos recibidos</mat-card-subtitle>
+      <mat-card-subtitle>Caja 1</mat-card-subtitle>
+        <div class="card-container">
+
+          <!--Table of products register -->          
+          <table mat-table [dataSource]="Source" class="mat-elevation-z8" >
+            
+              <ng-container matColumnDef="Select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
 
             <ng-container matColumnDef="Codigo de barras">
               <th mat-header-cell *matHeaderCellDef> Codigo de barras </th>
@@ -26,13 +45,41 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        </table> 
+        
+        <div>
+          <mat-button-toggle id="delete" (click)="Delete()">Eliminar</mat-button-toggle>
+          <mat-button-toggle id="close_box" >Cerrar caja</mat-button-toggle>
+          <mat-button-toggle id="finish" >Cerrar despacho</mat-button-toggle>
+        </div>
 
+        <!--Table of description of products register -->
+        <table mat-table [dataSource]="Data" class="mat-elevation-z8" >
 
+          <ng-container matColumnDef="Referencia">
+            <th mat-header-cell *matHeaderCellDef> Referencia </th>
+            <td mat-cell *matCellDef="let element">
+                <ng-container *ngIf="element.ref!='empty'">
+                    {{element.ref}}
+                </ng-container> 
+            </td>
+          </ng-container>
 
+          <ng-container matColumnDef="Unidades">
+            <th mat-header-cell *matHeaderCellDef> Unidades </th>
+            <td mat-cell *matCellDef="let element" > 
+              <ng-container *ngIf="element.ref!='empty'">
+                  {{element.und}}
+              </ng-container> 
+            </td>
+          </ng-container>
 
+          <tr mat-header-row *matHeaderRowDef="labelColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: labelColumns;"></tr>
+      </table> 
+        </div> 
         
     </mat-card-content>
 </mat-card>
-  
+

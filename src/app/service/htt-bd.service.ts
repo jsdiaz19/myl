@@ -61,5 +61,11 @@ export class HttBDService {
   Get_Despacho(){
     return this.http.get('/php/Get_despacho.php');
   }
+
+  Update_state(id, state){
+    return this.http.post('/php/Update.php',{id: id,state: state}).subscribe(result =>{
+      console.log('actualizo');
+    })
+  }
 }
 
