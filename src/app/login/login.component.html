@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <form>    
+    <div>
+      <img src="../../assets/images/Logo.png">
+    </div>
+    <div id="container" class="container">
+      <input type="text" placeholder="Usuario" name="uname" [(ngModel)]="usr.usuario"required>
+  
+      <input type="password" placeholder="Contraseña" name="psw" [(ngModel)]="usr.password" required>
+          
+      <button (click)="SearchUser()" >Login</button>
+    
+    </div>
+  
+  </form>
+    
+    </body>
+    </html>
+    

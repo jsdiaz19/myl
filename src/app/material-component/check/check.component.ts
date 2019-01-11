@@ -24,6 +24,8 @@ export class CheckComponent implements OnInit {
   displayedColumns: string[] = ['Select','Codigo de barras', 'Cantidad'];
   labelColumns: string[]= ['Referencia', 'Unidades'];
   despacho=null;
+  numBox=null;
+  numProduct=null;
   Source=null;
   Data=null;
   miMapa = new Map();
@@ -31,9 +33,7 @@ export class CheckComponent implements OnInit {
   initial: Product[]=[
     {cod: 'empty'}
   ];
-  init: Description[]=[
-    
-  ];
+  init: Description[]=[  ];
   constructor(private _route: ActivatedRoute, private HttpBD: HttBDService) { this.despacho=this._route.snapshot.paramMap.get('id')}
 
 
@@ -41,7 +41,6 @@ export class CheckComponent implements OnInit {
     this.Source= new MatTableDataSource(this.initial);
     this.Data= new MatTableDataSource(this.init);
     this.selection = new SelectionModel<Product>(true, []);
-    
   }
 
   test(){

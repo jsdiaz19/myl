@@ -50,7 +50,11 @@
 
     <ng-container matColumnDef="Verificar">
       <th mat-header-cell *matHeaderCellDef> Verificar </th>
-      <td mat-cell *matCellDef="let element"> <a routerLink="/check/hola">Verificar</a></td>
+      <td mat-cell *matCellDef="let element"> 
+        <ng-container *ngIf="element[3]=='TRANSPORTE'">
+          <a routerLink="/check/{{element[0]}}">Verificar</a>
+        </ng-container>
+      </td>
     </ng-container>
     
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

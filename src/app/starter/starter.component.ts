@@ -1,9 +1,24 @@
 import { Component,OnInit } from '@angular/core';
 import { HttBDService} from '../service/htt-bd.service'
-
+import {ActivatedRoute} from '@angular/router';
+import {MatTableDataSource} from '@angular/material'
+import {SelectionModel} from '@angular/cdk/collections';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
+import {ReactiveFormsModule} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import { environment } from '../../environments/environment';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+export interface Product {
+  cod: string;
+  cantidad?: string;
+}
+
+export interface Description {
+  ref: string;
+  und?: number;
+}
 
 @Component({
   selector: 'app-starter',
@@ -11,32 +26,50 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   styleUrls: ['./starter.component.scss']
 })
 export class StarterComponent implements OnInit {
-  store_usr=null;
-  num_product=[0];
-  count=null;
   store=null;
-  transport=null;
   ref=null;
   id=null;
-  refUser=[];
+  store_usr=null;
+  today = new Date();
+  usr=null;
+  selection=null;
+  Source=null;
+  Data=null;
+  displayedColumns: string[] = ['Select','Codigo de barras', 'Cantidad'];
+  labelColumns: string[]= ['Referencia', 'Unidades'];
+  miMapa = new Map();
+  initial: Product[]=[{cod: 'empty'}];
+  init: Description[]=[  ];
+  //num_product=[0];
+  //count=null;
+  
+  //transport=null;
+  
+
+  /*refUser=[];
   checkButton=[];
   cod=null;
   numBox=1;
   Add_box=false;
-  today = new Date();
+  
   Numproduct=0;
   Product_box=[];
   summary=[0,0,0];
   content=[];
-  summary_ant=[0,0,0];
-  constructor(private HttpBD: HttBDService) { }
+  summary_ant=[0,0,0];*/
+  constructor(private HttpBD: HttBDService,private _route: ActivatedRoute) {this._route.queryParams.subscribe(params =>{
+    this.usr=params['id'];
+  })}
   ngOnInit() {
+    this.Source= new MatTableDataSource(this.initial);
+    this.Data= new MatTableDataSource(this.init);
+    this.selection = new SelectionModel<Product>(true, []);
     this.Store();
     this.Changeid();
   }
 
   Store(){
-    this.HttpBD.Store().subscribe(result => {
+    this.HttpBD.Store(this.usr).subscribe(result => {
       this.store = result;
     })
   }
@@ -52,9 +85,14 @@ export class StarterComponent implements OnInit {
     })
   }
 
-  Search(event: any){
-    var store=event.target.value;
-    store= store.toString().substring(13,store.length);
+  onKey(event: any) { 
+    if (!parseInt(event.target.value[event.target.value.length-1],10)){
+      var temp=event.target.value.slice(0,-1);
+      event.target.value=temp;
+    }
+  }
+  Reference(value){
+    var store= value.toString().substring(13,value.length);
     this.store_usr=store;
     if (store.length>0){
       this.HttpBD.Search(store).subscribe(result => {
@@ -72,6 +110,88 @@ export class StarterComponent implements OnInit {
     
   }
 
+  equal(obj1,obj2){
+    return JSON.stringify(obj1)==JSON.stringify(obj2);
+  }
+
+  indexof(obj1,element){
+    for (var index=0; index<element.length;index++){
+      if (this.equal(obj1,element[index])){ return index}
+    }
+    return -1;
+  }
+
+  Add_product(){
+    if (document.getElementById('edit').textContent.length==12){
+      var content=document.getElementById('edit').textContent; 
+      document.getElementById('edit').textContent='';
+      this.HttpBD.Get_reference(content).subscribe(result =>{
+        if (result!=null){
+          if (this.initial.length>=1){
+            document.getElementById('delete').style.display="block";
+            document.getElementById('close_box').style.display="block";
+          }
+          else{
+            document.getElementById('delete').style.display="none";
+            document.getElementById('close_box').style.display="none";
+          }
+          this.initial.push({cod: content, cantidad: '1'})
+          this.Source= new MatTableDataSource(this.initial);
+
+
+          if (this.miMapa.get(content)== undefined){
+            this.miMapa.set(content,[result['referencia'],1]);
+            this.init.push({ref: result['referencia'],und: 1 });
+            console.log(this.init);
+          }
+          else{
+            console.log(this.init,'g');
+            this.init.splice(this.indexof({ref: result['referencia'], und: this.miMapa.get(content)[1]},this.init),1);
+            this.miMapa.set(content,[result['referencia'],this.miMapa.get(content)[1]+1]);
+            this.init.push({ref: result['referencia'],und: this.miMapa.get(content)[1] });
+            
+          }
+          this.Data= new MatTableDataSource(this.init);
+        }
+      })
+    }
+    if (document.getElementById('edit').textContent.length>15){
+      document.getElementById('edit').textContent='';
+    } 
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.Source.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    //console.log(this.isAllSelected(),'aqui'  );
+    if(this.isAllSelected()==true){
+      //console.log('entro');
+      this.selection.clear()
+      this.Source.data.forEach(row => this.selection.select(row));
+    
+    }  
+  }
+
+  Delete_product(){
+    for (var index=0; index<this.selection.selected.length;index++){
+      var ant=this.selection.selected[index];
+      this.initial.splice(this.indexof(ant,this.initial),1);
+      this.Source=new MatTableDataSource(this.initial);
+      var del= this.miMapa.get(ant['cod']);
+      this.miMapa.set(ant['cod'],[del[0],del[1]-1]);
+      this.init.splice(this.indexof({ref: del[0], und: del[1]},this.init),1);
+      if (del[1]-1>=1){
+        this.init.push({ref: del[0],und: del[1]-1 });
+      }
+    }
+    this.Data= new MatTableDataSource(this.init);
+    this.selection.selected=[];
+  }
+/*
   Show(event: any){
     this.count=event.target.value;
     if (this.count.length>0){
@@ -227,6 +347,7 @@ export class StarterComponent implements OnInit {
       this.refUser=[];
       this.download(this.numBox,temp);
       this.summary_ant=this.summary.slice();
+      
     }
   }
 
@@ -264,6 +385,7 @@ export class StarterComponent implements OnInit {
   }
 
   Send(){
+    this.HttpBD.Update_state(this.ref,2);
     var abstract='';
     for (var i=0; i<this.num_product.length;i++){
       abstract=abstract+'   - Caja'+(i+1).toString()+': '+ this.num_product[i].toString()+' Unidades \n\n'
@@ -278,8 +400,9 @@ export class StarterComponent implements OnInit {
       var company= document.getElementsByTagName('select')[1].value
       this.HttpBD.Send_email(this.ref,this.Numproduct,abstract,product,guide.toString(),company.toString());
       pdfMake.createPdf({content:this.content}).print();
-      this.HttpBD.Update_state(this.ref,2);
       location.reload(true); 
+      
+      
     }
   }
 
@@ -378,6 +501,6 @@ export class StarterComponent implements OnInit {
     this.content.push({text: 'Descripcion caja '+numBox.toString(), fontSize: 14, bold: true, pageBreak: 'before', margin: [0, 0, 0, 8]});
     this.content.push({table: {body: temp}});
     this.content.push({text: '  ', fontSize: 14, bold: true, pageBreak: 'before', margin: [0, 0, 0, 8]});  
-   } 
+   }*/ 
 
 }

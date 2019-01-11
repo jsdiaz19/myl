@@ -11,8 +11,8 @@ export class HttBDService {
   SearchUser(user){
     return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password })
     .subscribe(result => {
-      if (result=="Administrador"){
-        this.router.navigate(['section-aux']);
+      if (result!="Incorrect"){
+        this.router.navigate(['/starter'],{queryParams:{id: result}});
       }
   });
   }
@@ -21,8 +21,8 @@ export class HttBDService {
     return this.http.post('/php/SearchId.php',{op: 'store', name: nom})
   }
 
-  Store(){
-    return this.http.get('/php/Listar_tiendas.php');
+  Store(id){
+    return this.http.post('/php/Listar_tiendas.php',{id: id});
   }
 
   Cod_Store(){
@@ -64,7 +64,7 @@ export class HttBDService {
 
   Update_state(id, state){
     return this.http.post('/php/Update.php',{id: id,state: state}).subscribe(result =>{
-      console.log('actualizo');
+      console.log(result);
     })
   }
 }
