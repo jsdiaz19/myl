@@ -19,7 +19,7 @@ export const MaterialRoutes: Routes = [
     component: ListsComponent
   },
   {
-    path: 'check/:id',
+    path: 'check/:id/:num',
     component: CheckComponent
   },
   

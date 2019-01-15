@@ -3,10 +3,10 @@
     <mat-card-title>Creacion De Despachos</mat-card-title>
     <mat-card-subtitle>Aqui se registrara los productos a transportar</mat-card-subtitle>
     <div class="card-container">
-      <div>
+      <div id="Form">
           <h4>Tienda de destino:</h4>
           <mat-form-field>
-            <mat-select placeholder="Escoge la Tienda de destino" (selectionChange)="Reference($event.value)">
+            <mat-select placeholder="Escoge la Tienda de destino" (selectionChange)="Reference($event.value)" [disabled]="DisableSelect">
               <mat-option *ngFor="let temp of store" [value]="temp">
                 {{temp}}
               </mat-option>
@@ -15,10 +15,13 @@
           <h4>Cantidad de producto en la caja:</h4>
           
           <mat-form-field class="example-full-width">
-            <input matInput id="CountProduct" min="1" (keyup)="onKey($event)">
+            <input matInput  min="1" (keyup)="onKey($event)" >
           </mat-form-field>
-          <button mat-button>Confirmar</button>
+          <button mat-button (click)="Display()">Confirmar</button>
 
+      </div>
+      <div id="Message">
+        <h4>Despacho de {{CountProduct}} unidades a la tienda {{store_usr[1] }}</h4> 
       </div>
       <div>
         <mat-card>
@@ -29,76 +32,81 @@
     </div>
 
     
-          <div class="card-container">
-            <table mat-table [dataSource]="Source" class="mat-elevation-z8" >         
-              <ng-container matColumnDef="Select">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                                  [checked]="selection.hasValue() && isAllSelected()"
-                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
-                    </mat-checkbox>
-                  </th>
-                  <td mat-cell *matCellDef="let row">
-                    <mat-checkbox (click)="$event.stopPropagation()"
-                                  (change)="$event ? selection.toggle(row) : null"
-                                  [checked]="selection.isSelected(row)">
-                    </mat-checkbox>
-                  </td>
+    <div class="card-container" id="Tables" >
+      <table mat-table [dataSource]="Source" class="mat-elevation-z8" >         
+        <ng-container matColumnDef="Select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Codigo de barras">
+          <th mat-header-cell *matHeaderCellDef> Codigo de barras </th>
+          <td mat-cell *matCellDef="let element" contenteditable="true" (keyup)="Add_product()" id="edit">
+            <ng-container *ngIf="element.cod=='empty' || element.cod!='empty'"> </ng-container>
+            <ng-container *ngIf="element.cod!='empty'">
+                {{element.cod}}
               </ng-container>
+          </td>
+        </ng-container>
 
-              <ng-container matColumnDef="Codigo de barras">
-                <th mat-header-cell *matHeaderCellDef> Codigo de barras </th>
-                <td mat-cell *matCellDef="let element" (keyup)="Add_product()" contenteditable="true" id="edit"> 
-                  <ng-container *ngIf="element.cod!='empty'">
-                      {{element.cod}}
-                  </ng-container>
-                </td>
-              </ng-container>
+        <ng-container matColumnDef="Cantidad">
+          <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+          <td mat-cell *matCellDef="let element" > 
+            <ng-container *ngIf="element.cod!='empty'">
+              {{element.cantidad}}
+            </ng-container>
+            <ng-container *ngIf="element.cod=='empty'">
+                0
+            </ng-container>
+          </td>
+        </ng-container>
 
-              <ng-container matColumnDef="Cantidad">
-                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                <td mat-cell *matCellDef="let element" > 
-                  <ng-container *ngIf="element.cod!='empty'">
-                    {{element.cantidad}}
-                  </ng-container>
-                  <ng-container *ngIf="element.cod=='empty'">
-                      0
-                  </ng-container>
-                </td>
-              </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+      </table> 
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
-            </table> 
+      <div>
+        <mat-button-toggle id="delete" (click)="Delete_product()">Eliminar</mat-button-toggle>
+        <mat-button-toggle id="close_box" (click)="SaveBox()" >Cerrar caja</mat-button-toggle>
+        <mat-button-toggle id="Close" (click)="Close()">Cerrar despacho</mat-button-toggle>
+        <mat-button-toggle id="CreateBox" (click)="NewBox()">Crear Caja</mat-button-toggle>
+      </div>
+      <table mat-table [dataSource]="Data" class="mat-elevation-z8" >
 
-            <div>
-              <mat-button-toggle id="delete" (click)="Delete_product()">Eliminar</mat-button-toggle>
-              <mat-button-toggle id="close_box" >Cerrar caja</mat-button-toggle>
-              <mat-button-toggle id="finish" >Cerrar despacho</mat-button-toggle>
-            </div>
-            <table mat-table [dataSource]="Data" class="mat-elevation-z8" >
+        <ng-container matColumnDef="Referencia">
+          <th mat-header-cell *matHeaderCellDef> Referencia </th>
+          <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.ref!='empty'">
+                  {{element.ref}}
+              </ng-container> 
+          </td>
+          <td mat-footer-cell *matFooterCellDef> Total </td>
+        </ng-container>
 
-              <ng-container matColumnDef="Referencia">
-                <th mat-header-cell *matHeaderCellDef> Referencia </th>
-                <td mat-cell *matCellDef="let element">
-                    <ng-container *ngIf="element.ref!='empty'">
-                        {{element.ref}}
-                    </ng-container> 
-                </td>
-              </ng-container>
-    
-              <ng-container matColumnDef="Unidades">
-                <th mat-header-cell *matHeaderCellDef> Unidades </th>
-                <td mat-cell *matCellDef="let element" > 
-                  <ng-container *ngIf="element.ref!='empty'">
-                      {{element.und}}
-                  </ng-container> 
-                </td>
-              </ng-container>      
-              <tr mat-header-row *matHeaderRowDef="labelColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: labelColumns;"></tr>
-            </table> 
-          </div>
+        <ng-container matColumnDef="Unidades">
+          <th mat-header-cell *matHeaderCellDef> Unidades </th>
+          <td mat-cell *matCellDef="let element" > 
+            <ng-container *ngIf="element.ref!='empty'">
+                {{element.und}}
+            </ng-container> 
+          </td>
+          <td mat-footer-cell *matFooterCellDef> {{element}}</td>
+        </ng-container>      
+        <tr mat-header-row *matHeaderRowDef="labelColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: labelColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="labelColumns"></tr>
+      </table> 
+    </div>
         
   </mat-card-content>
 </mat-card>

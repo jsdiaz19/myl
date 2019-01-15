@@ -19,7 +19,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/starter/:id',
+        redirectTo: '/starter',
         pathMatch: 'full'
       },
       {

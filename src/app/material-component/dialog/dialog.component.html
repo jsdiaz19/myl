@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-content>
+      <mat-card-title>TRANSPORTE</mat-card-title>
+      <mat-card-subtitle>Aqui llenara la informacion del transporte </mat-card-subtitle>
+      <mat-form-field>
+        <mat-select placeholder="Escoge la empresa de transporte" (selectionChange)="Company($event.value)">
+          <mat-option *ngFor="let temp of transport" [value]="temp">
+            {{temp[0]}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput  placeholder="Diga el numero de guia" (keyup)="onKey($event)">
+      </mat-form-field>
+      <button mat-button id="Send" (click)="SendInfo()">Confirmar</button>
+  </mat-card-content>
+</mat-card>

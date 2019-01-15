@@ -5,14 +5,18 @@ import { DemoMaterialModule } from '../demo-material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StarterComponent } from './starter.component';
 import { StarterRoutes } from './starter.routing';
-
+import { DialogComponent } from '../material-component/dialog/dialog.component';
 @NgModule({
   imports: [
     CommonModule,
     DemoMaterialModule,
     FlexLayoutModule,
+
     RouterModule.forChild(StarterRoutes)
   ],
-  declarations: [StarterComponent]
+  declarations: [StarterComponent,DialogComponent],
+  entryComponents: [
+    DialogComponent,
+  ]
 })
 export class StarterModule {}

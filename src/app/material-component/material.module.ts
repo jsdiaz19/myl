@@ -18,6 +18,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { CheckComponent } from './check/check.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -36,6 +37,8 @@ import { CheckComponent } from './check/check.component';
     ListsComponent,
     MenuComponent,
     CheckComponent,
-  ]
+    
+  ],
+ 
 })
 export class MaterialComponentsModule {}

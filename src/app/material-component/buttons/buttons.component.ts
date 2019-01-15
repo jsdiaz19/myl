@@ -20,13 +20,14 @@ export interface Despacho {
 
 
 export class ButtonsComponent implements OnInit{
-  displayedColumns: string[] = ['Id', 'Origen', 'Destino', 'Estado','Cajas','Unidades','Verificar'];
+  displayedColumns: string[] = ['Id', 'Destino', 'Estado','Cajas','Unidades','Verificar'];
   Source=null;
   Store=null;
   
   constructor(private HttpBD: HttBDService) { }
   ngOnInit(){
     this.HttpBD.Get_Despacho().subscribe(result =>{
+      console.log(result);
       this.Source= new MatTableDataSource(Object.values(result));
     })
     this.HttpBD.Cod_Store().subscribe(result => {

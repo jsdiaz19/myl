@@ -2,7 +2,7 @@
     <mat-card-content>
       <mat-card-title>Verificacion de despacho</mat-card-title>
       <mat-card-subtitle>Aqui se validara el numero de productos recibidos</mat-card-subtitle>
-      <mat-card-subtitle>Caja 1</mat-card-subtitle>
+      <mat-card-subtitle>Caja {{numBox+1}}</mat-card-subtitle>
         <div class="card-container">
 
           <!--Table of products register -->          
@@ -50,7 +50,7 @@
         
         <div>
           <mat-button-toggle id="delete" (click)="Delete()">Eliminar</mat-button-toggle>
-          <mat-button-toggle id="close_box" >Cerrar caja</mat-button-toggle>
+          <mat-button-toggle id="close_box" (click)="ValidateBox()" >Cerrar caja</mat-button-toggle>
           <mat-button-toggle id="finish" >Cerrar despacho</mat-button-toggle>
         </div>
 
