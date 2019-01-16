@@ -8,13 +8,16 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
 export class HttBDService {
   url='http://localhost/php/'
   idUsr=null;
+  nom=null;
   constructor(private http: HttpClient, private router: Router) {}
   
   SearchUser(user){
     return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password })
     .subscribe(result => {
       if (result!="Incorrect"){
-        this.idUsr=result;
+        this.idUsr=result[0];
+        this.nom=result[1];
+        localStorage.setItem('id',this.idUsr);
         this.router.navigate(['/starter']);
       }
   });
@@ -38,6 +41,7 @@ export class HttBDService {
 
   Save(id,store){
     return this.http.post('/php/register.php',{id: id, store: store}).subscribe(result =>{
+      console.log(result);
     })
   }
 
@@ -61,8 +65,8 @@ export class HttBDService {
     return this.http.get('/php/Get_transport.php');
   }
 
-  Get_Despacho(){
-    return this.http.get('/php/Get_despacho.php');
+  Get_Despacho(store){
+    return this.http.post('/php/Get_despacho.php',{store:store});
   }
 
   Update_state(id, state,company,guide){
@@ -75,8 +79,8 @@ export class HttBDService {
     return this.http.post('/php/UnidadCaja.php',{ref: ref, caja: caja});
   }
 
-  UpdateBox(ref,caja){
-    return this.http.post('/php/UpdateBox.php',{ref: ref, caja: caja}).subscribe(result =>{
+  UpdateBox(ref){
+    return this.http.post('/php/UpdateBox.php',{ref: ref}).subscribe(result =>{
       console.log(result);
     });
   }

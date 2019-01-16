@@ -17,6 +17,7 @@ import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { CheckComponent } from './check/check.component';
+import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { CheckComponent } from './check/check.component';
     ListsComponent,
     MenuComponent,
     CheckComponent,
+    DescriptionDespachoComponent,
     
   ],
  

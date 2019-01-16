@@ -3,7 +3,10 @@ import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material'
 import { HttBDService} from '../../service/htt-bd.service'
 import {SelectionModel} from '@angular/cdk/collections';
+import { Router } from '@angular/router'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { equal } from 'assert';
+import { DescriptionDespachoComponent } from '../description-despacho/description-despacho.component';
 
 export interface Product {
   cod: string;
@@ -35,9 +38,14 @@ export class CheckComponent implements OnInit {
     {cod: 'empty'}
   ];
   init: Description[]=[  ];
-  constructor(private _route: ActivatedRoute, private HttpBD: HttBDService) { 
+  refUnd=null; 
+  Attempts=3;
+  constructor(private _route: ActivatedRoute, private HttpBD: HttBDService,private router: Router,public dialog: MatDialog) { 
     this.despacho=this._route.snapshot.paramMap.get('id');
     this.Box=this._route.snapshot.paramMap.get('num');
+    this.HttpBD.UnidadBox(this.despacho,this.numBox+1).subscribe(result => {
+      this.refUnd=result;
+    })
   }
 
 
@@ -59,7 +67,7 @@ export class CheckComponent implements OnInit {
   }
 
 
-  test(){
+  Add_product(){
     if (document.getElementById('edit').textContent.length==12){
       var content=document.getElementById('edit').textContent; 
       document.getElementById('edit').textContent='';
@@ -107,9 +115,7 @@ export class CheckComponent implements OnInit {
   }
 
   masterToggle() {
-    //console.log(this.isAllSelected(),'aqui'  );
     if(this.isAllSelected()==true){
-      //console.log('entro');
       this.selection.clear()
       this.Source.data.forEach(row => this.selection.select(row));
     
@@ -137,24 +143,66 @@ export class CheckComponent implements OnInit {
     this.selection.clear();
   }
 
-  ValidateBox(){
-    this.HttpBD.UnidadBox(this.despacho,this.numBox+1).subscribe(result =>{
-      if(this.numProduct==result){
-        this.numBox+=1;
-        this.HttpBD.UpdateBox(this.despacho,this.numBox); 
-        if (this.numBox==this.Box){
-          console.log('termino');
-        }
 
-      }
-      else{
+  ValidateBox(){
+    if(this.refUnd.length==this.init.length){
+      var temp=Array.from(this.miMapa.values());
+      if(JSON.stringify(Array.from(this.miMapa.values()).sort())===JSON.stringify(Array.from(this.refUnd).sort())){
+        window.alert("El numero de productos registrados coinciden\n\n                            CAJA VALIDADA");
+        this.initial=[{cod: 'empty'}];
+        this.init=[];
+        this.Data= new MatTableDataSource(this.init);
+        this.Source=new MatTableDataSource(this.initial);
+        this.numBox+=1;
+        this.miMapa.clear();
+        if (this.numBox+1<=this.Box){
+          this.HttpBD.UnidadBox(this.despacho,this.numBox+1).subscribe(result => {
+            this.refUnd=result;          
+          })
+        }
+        else{
+          this.HttpBD.UpdateBox(this.despacho);
+          this.router.navigate(['/button']);
+        }
+        
+      }else{
         window.alert("El numero de productos registrados no coinciden con el numero de productos enviados, por favor intenta de nuevo");
         this.initial=[{cod: 'empty'}];
         this.init=[];
         this.Data= new MatTableDataSource(this.init);
         this.Source=new MatTableDataSource(this.initial);
-        this.numProduct=0;
+        
+        this.Attempts-=1;
+        console.log('entro');
+        if(this.Attempts==0){
+          const dialogRef = this.dialog.open(DescriptionDespachoComponent, {
+            width: '1000px',
+            data: {inv: Array.from(this.miMapa.values())}
+          });
+        }
+        else{
+          this.miMapa.clear();
+        }
+      }   
+    }
+    else{
+      window.alert("El numero de productos registrados no coinciden con el numero de productos enviados, por favor intenta de nuevo");
+      this.initial=[{cod: 'empty'}];
+      this.init=[];
+      this.Data= new MatTableDataSource(this.init);
+      this.Source=new MatTableDataSource(this.initial);
+      
+      this.Attempts-=1;
+      console.log('entro');
+      if(this.Attempts==0){
+        const dialogRef = this.dialog.open(DescriptionDespachoComponent, {
+          width: '1000px',
+          data: {inv: Array.from(this.miMapa.values())}
+        });
       }
-    })
+      else{
+        this.miMapa.clear();
+      }
+    }
   }
 }
