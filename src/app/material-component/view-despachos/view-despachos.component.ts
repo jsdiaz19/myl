@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttBDService} from '../../service/htt-bd.service'
+import { HttBDService} from '../../service/Http/htt-bd.service'
 import {MatTableDataSource} from '@angular/material'
 
 export interface Despacho {
@@ -13,19 +13,20 @@ export interface Despacho {
 
 @Component({
   selector: 'app-buttons',
-  templateUrl: './buttons.component.html',
-  styleUrls: ['./buttons.component.scss']
+  templateUrl: './view-despachos.component.html',
+  styleUrls: ['./view-despachos.component.scss']
 })
 
 
 
-export class ButtonsComponent implements OnInit{
+export class ViewdespachosComponent implements OnInit{
   displayedColumns: string[] = ['Id', 'Origen', 'Estado','Cajas','Unidades','Verificar'];
   Source=null;
   Store=null;
   idStore=null;
   constructor(private HttpBD: HttBDService) { }
   ngOnInit(){
+    
     this.idStore=this.HttpBD.idUsr;
     if(this.idStore==null){this.idStore=localStorage.getItem('id');}
     console.log(this.idStore);

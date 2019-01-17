@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItems } from '../../../shared/menu-items/menu-items';
-import { HttBDService} from '../../../service/htt-bd.service'
+import { HttBDService} from '../../../service/Http/htt-bd.service'
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

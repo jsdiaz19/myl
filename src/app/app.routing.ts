@@ -29,7 +29,7 @@ export const AppRoutes: Routes = [
       },
       {
         path: 'starter',
-        loadChildren: './starter/starter.module#StarterModule'
+        loadChildren: './create-despachos/create-despachos.module#StarterModule'
       }
     ]
   }  

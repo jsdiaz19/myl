@@ -1,5 +1,5 @@
 import { Component,OnInit} from '@angular/core';
-import { HttBDService} from '../service/htt-bd.service'
+import { HttBDService} from '../service/Http/htt-bd.service'
 import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material'
 import {SelectionModel} from '@angular/cdk/collections';
@@ -22,10 +22,10 @@ export interface Description {
 
 @Component({
   selector: 'app-starter',
-  templateUrl: './starter.component.html',
-  styleUrls: ['./starter.component.scss']
+  templateUrl: './create-despachos.component.html',
+  styleUrls: ['./create-despachos.component.scss']
 })
-export class StarterComponent implements OnInit {
+export class CreateDespachoComponent implements OnInit {
   store=null;
   ref=null;
   id=null;

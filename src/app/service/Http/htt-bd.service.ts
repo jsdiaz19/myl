@@ -84,5 +84,11 @@ export class HttBDService {
       console.log(result);
     });
   }
+
+  Anomaly(ref,inv,descript){
+    return this.http.post('/php/Anomaly.php',{ref: ref, inv: inv,descript: descript}).subscribe(result =>{
+      console.log(result);
+    })
+  }
 }
 

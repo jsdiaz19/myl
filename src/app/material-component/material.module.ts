@@ -11,12 +11,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialRoutes } from './material.routing';
-import { ButtonsComponent } from './buttons/buttons.component';
+import { ViewdespachosComponent } from './view-despachos/view-despachos.component';
 
 import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
-import { CheckComponent } from './check/check.component';
+import { CheckDespachoComponent } from './check-despachos/check-despachos.component';
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
 
 
@@ -33,11 +33,11 @@ import { DescriptionDespachoComponent } from './description-despacho/description
   ],
   providers: [],
   declarations: [
-    ButtonsComponent,
+    ViewdespachosComponent,
     GridComponent,
     ListsComponent,
     MenuComponent,
-    CheckComponent,
+    CheckDespachoComponent,
     DescriptionDespachoComponent,
     
   ],

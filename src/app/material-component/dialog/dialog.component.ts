@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MAT_DIALOG_DATA,MatDialogRef} from '@angular/material';
-import { HttBDService} from '../../service/htt-bd.service'
+import { HttBDService} from '../../service/Http/htt-bd.service'
 
 @Component({
   selector: 'app-dialog',

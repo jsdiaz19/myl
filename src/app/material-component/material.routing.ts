@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
 
-import { ButtonsComponent } from './buttons/buttons.component';
+import { ViewdespachosComponent } from './view-despachos/view-despachos.component';
 import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
-import { CheckComponent} from './check/check.component';
+import { CheckDespachoComponent} from './check-despachos/check-despachos.component';
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
 
 export const MaterialRoutes: Routes = [
   {
-    path: 'button',
-    component: ButtonsComponent
+    path: 'view',
+    component: ViewdespachosComponent
   },
   {
     path: 'Description',
@@ -25,7 +25,7 @@ export const MaterialRoutes: Routes = [
   },
   {
     path: 'check/:id/:num',
-    component: CheckComponent
+    component: CheckDespachoComponent
   },
   
 

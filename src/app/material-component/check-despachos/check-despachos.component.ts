@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material'
-import { HttBDService} from '../../service/htt-bd.service'
+import { HttBDService} from '../../service/Http/htt-bd.service'
 import {SelectionModel} from '@angular/cdk/collections';
 import { Router } from '@angular/router'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -20,10 +20,10 @@ export interface Description {
 
 @Component({
   selector: 'app-check',
-  templateUrl: './check.component.html',
-  styleUrls: ['./check.component.css']
+  templateUrl: './check-despachos.component.html',
+  styleUrls: ['./check-despachos.component.css']
 })
-export class CheckComponent implements OnInit {
+export class CheckDespachoComponent implements OnInit {
   displayedColumns: string[] = ['Select','Codigo de barras', 'Cantidad'];
   labelColumns: string[]= ['Referencia', 'Unidades'];
   despacho=null;
@@ -39,13 +39,14 @@ export class CheckComponent implements OnInit {
   ];
   init: Description[]=[  ];
   refUnd=null; 
-  Attempts=3;
+  Attempts=2;
   constructor(private _route: ActivatedRoute, private HttpBD: HttBDService,private router: Router,public dialog: MatDialog) { 
     this.despacho=this._route.snapshot.paramMap.get('id');
     this.Box=this._route.snapshot.paramMap.get('num');
     this.HttpBD.UnidadBox(this.despacho,this.numBox+1).subscribe(result => {
       this.refUnd=result;
     })
+    
   }
 
 
@@ -173,12 +174,14 @@ export class CheckComponent implements OnInit {
         this.Source=new MatTableDataSource(this.initial);
         
         this.Attempts-=1;
-        console.log('entro');
         if(this.Attempts==0){
           const dialogRef = this.dialog.open(DescriptionDespachoComponent, {
             width: '1000px',
-            data: {inv: Array.from(this.miMapa.values())}
+            data: {ref: this.despacho,inv: Array.from(this.miMapa.values())}
           });
+          dialogRef.afterClosed().subscribe(result =>{
+            this.router.navigate(['/button']);
+          })
         }
         else{
           this.miMapa.clear();
@@ -190,15 +193,17 @@ export class CheckComponent implements OnInit {
       this.initial=[{cod: 'empty'}];
       this.init=[];
       this.Data= new MatTableDataSource(this.init);
-      this.Source=new MatTableDataSource(this.initial);
-      
+      this.Source=new MatTableDataSource(this.initial);    
       this.Attempts-=1;
-      console.log('entro');
       if(this.Attempts==0){
         const dialogRef = this.dialog.open(DescriptionDespachoComponent, {
           width: '1000px',
-          data: {inv: Array.from(this.miMapa.values())}
+          data: {ref: this.despacho,inv: Array.from(this.miMapa.values())}
         });
+        dialogRef.afterClosed().subscribe(result =>{
+          this.router.navigate(['/button']);
+      
+        })
       }
       else{
         this.miMapa.clear();

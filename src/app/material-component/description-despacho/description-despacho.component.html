@@ -3,15 +3,17 @@
     <mat-card-title>DESCRIPCION DE ANOMALIA</mat-card-title>
     <mat-card-subtitle>Debido a una diferencia de numero de producto, se realizara un informe acerca de esta anomalia </mat-card-subtitle>
     <mat-form-field>
-      <textarea matInput placeholder="Describa aqui la anomalia">
-
+      <textarea matInput placeholder="Describa aqui la anomalia" (blur)=Get($event)>
       </textarea>
     </mat-form-field>
-    <br>
-    RESULTADO DEL ULTIMO CONTEO <br>
-    <li *ngFor="let product of inv">
-      {{ product[0]}}: {{product[1]}} Unidades
-    </li>
+    
+    <h4>RESULTADO DEL ULTIMO CONTEO</h4>
+    
+    <mat-list *ngFor="let product of inv" role="list">
+        {{ product[0]}}: {{product[1]}} Unidades
+    </mat-list>
+    
+    
     <button mat-button id="Send" (click)="SendInfo()">Confirmar</button>
 </mat-card-content>
 </mat-card>

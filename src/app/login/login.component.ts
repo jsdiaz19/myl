@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttBDService} from '../service/htt-bd.service'
+import { HttBDService} from '../service/Http/htt-bd.service'
 
 @Component({
   selector: 'app-login',
