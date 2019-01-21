@@ -1,13 +1,14 @@
 import { Component,OnInit} from '@angular/core';
 import { HttBDService} from '../service/Http/htt-bd.service'
-import {ActivatedRoute} from '@angular/router';
 import {MatTableDataSource} from '@angular/material'
 import {SelectionModel} from '@angular/cdk/collections';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 import { DialogComponent } from '../material-component/dialog/dialog.component';
 import { Router } from '@angular/router'
+import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export interface Product {
@@ -20,6 +21,11 @@ export interface Description {
   und?: number;
 }
 
+export class str{
+  public str: FormGroup = new FormGroup({
+    stre:  new FormControl('')
+  })
+}
 @Component({
   selector: 'app-starter',
   templateUrl: './create-despachos.component.html',
@@ -49,9 +55,14 @@ export class CreateDespachoComponent implements OnInit {
   Guide=null;
   Company=null;
   content=[];
+  form: FormGroup;
+  constructor(private HttpBD: HttBDService,private router: Router, public dialog: MatDialog,private formBuilder: FormBuilder) {
+    this.form=this.formBuilder.group({
+      stor: ['',Validators.required],
+      st: ['',Validators.required],
+    }); 
+  }
 
-
-  constructor(private HttpBD: HttBDService,private router: Router, public dialog: MatDialog) { }
   ngOnInit() {
     this.usr=this.HttpBD.idUsr;
     if(this.usr==null){this.usr=localStorage.getItem('id');}
@@ -91,6 +102,7 @@ export class CreateDespachoComponent implements OnInit {
       event.target.value=temp;
     }
     this.CountProduct= parseInt(temp,10);
+    
   }
   Reference(value){
     this.store_usr=value.toString().split('-');
@@ -194,16 +206,23 @@ export class CreateDespachoComponent implements OnInit {
     
   }
 
+  test(){
+    
+    
+  }
+
   Display(){
-    if(this.CountProduct!=null){
+    if(this.form.invalid){
+      window.alert('Datos invalidos');
+      this.form.reset();
+    }
+    else{
       document.getElementById('Tables').style.display='flex';
       document.getElementById('Message').style.display='flex';
       document.getElementById('Form').style.display='none';
       if(this.numBox==1){this.HttpBD.Save(this.ref,this.store_usr[0]);}
     }
-    else{
-      window.alert("El numero de productos en caja no es valido");
-    }
+    this.form.reset();
   }
 
   SaveBox(){

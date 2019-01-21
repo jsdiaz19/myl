@@ -15,8 +15,9 @@ import { DemoMaterialModule } from './demo-material-module';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatTableDataSource,MatTableModule} from '@angular/material';
+import {MatTableModule} from '@angular/material';
 import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import { LoginComponent } from './login/login.component';
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
