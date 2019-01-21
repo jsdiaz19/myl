@@ -163,7 +163,7 @@ export class CheckDespachoComponent implements OnInit {
         }
         else{
           this.HttpBD.UpdateBox(this.despacho);
-          this.router.navigate(['/button']);
+          this.router.navigate(['/view']);
         }
         
       }else{
@@ -180,7 +180,7 @@ export class CheckDespachoComponent implements OnInit {
             data: {ref: this.despacho,inv: Array.from(this.miMapa.values())}
           });
           dialogRef.afterClosed().subscribe(result =>{
-            this.router.navigate(['/button']);
+            this.router.navigate(['/view']);
           })
         }
         else{
@@ -200,8 +200,8 @@ export class CheckDespachoComponent implements OnInit {
           width: '1000px',
           data: {ref: this.despacho,inv: Array.from(this.miMapa.values())}
         });
-        dialogRef.afterClosed().subscribe(result =>{
-          this.router.navigate(['/button']);
+        dialogRef.afterClosed().subscribe(result  =>{
+          this.router.navigate(['/view']);
       
         })
       }

@@ -21,8 +21,12 @@ export class DescriptionDespachoComponent implements OnInit {
     this.descript=event.target.value;
   }
   SendInfo(){
-    this.HttpBD.Anomaly(this.data.ref,this.inv,this.descript);
-    this.dialogRef.close();
+    this.HttpBD.Anomaly(this.data.ref,this.inv,this.descript).subscribe(result =>{
+      if(result!=null){
+        this.dialogRef.close();
+      }
+    })
+    
     
   }
 

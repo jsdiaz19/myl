@@ -26,7 +26,7 @@ export class ViewdespachosComponent implements OnInit{
   idStore=null;
   constructor(private HttpBD: HttBDService) { }
   ngOnInit(){
-    
+    console.log('entro al init');
     this.idStore=this.HttpBD.idUsr;
     if(this.idStore==null){this.idStore=localStorage.getItem('id');}
     console.log(this.idStore);
