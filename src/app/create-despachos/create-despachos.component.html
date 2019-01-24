@@ -7,7 +7,7 @@
           <form [formGroup]="form" (ngSubmit)="Display()">
             <h4>Tienda de destino:</h4>
             <mat-form-field >
-              <mat-select placeholder="Escoge la Tienda de destino" (selectionChange)="Reference($event.value)" formControlName="st" [disabled]="DisableSelect">
+              <mat-select placeholder="Escoge la Tienda de destino" (selectionChange)="Reference($event.value)" formControlName="store">
                 <mat-option *ngFor="let temp of store" [value]="temp">
                   {{temp}}
                 </mat-option>
@@ -16,8 +16,13 @@
           
             <h4>Cantidad de producto en la caja:</h4>
           
+            <ng-container *ngIf="usr=='001       '">
+              <mat-checkbox formControlName="textil" (click)="Disable()">Textil</mat-checkbox>
+            </ng-container>
+                      
+
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Numero de productos" formControlName="stor" (keyup)="onKey($event)">
+              <input matInput placeholder="Numero de productos" formControlName="cant" (keyup)="onKey($event)">
             </mat-form-field>
             <button mat-button type="submit">CREAR</button>
           </form>

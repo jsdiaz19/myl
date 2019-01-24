@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+import { Component,OnInit,} from '@angular/core';
+import { HttBDService} from '../../service/Http/htt-bd.service'
+import {MatTableDataSource} from '@angular/material'
+import {DataService} from '../../service/Data/data.service'
+
+export interface Budget{
+  CO: string;
+  Meta: number;
+  Ds: number;
+  Semana: number
+}
 
 @Component({
   selector: 'app-lists',
@@ -6,50 +16,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./lists.component.scss']
 })
 export class ListsComponent {
-  typesOfShoes = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  messages: any[] = [
-    {
-      from: 'Nirav joshi (nbj@gmail.com)',
-      image: 'assets/images/users/1.jpg',
-      subject: 'Material angular',
-      content: 'This is the material angular template'
-    },
-    {
-      from: 'Sunil joshi (sbj@gmail.com)',
-      image: 'assets/images/users/2.jpg',
-      subject: 'Wrappixel',
-      content: 'We have wrappixel launched'
-    },
-    {
-      from: 'Vishal Bhatt (bht@gmail.com)',
-      image: 'assets/images/users/3.jpg',
-      subject: 'Task list',
-      content: 'This is the latest task hasbeen done'
-    }
-  ];
+  displayedColumns: string[] = ['CO','Meta', 'DS','Fecha','Semana'];
+  Source=null;
+  Store=null;
+  id=null;
+  constructor(private HttpBD: HttBDService, private Data: DataService) { }
 
-  folders = [
-    {
-      name: 'Photos',
-      updated: new Date('1/1/16')
-    },
-    {
-      name: 'Recipes',
-      updated: new Date('1/17/16')
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16')
+
+  ngOnInit(){
+    this.id=this.Data.Get_usr().trim();
+    var param='all';
+    if(this.id!="001"){
+      param=this.HttpBD.idUsr; 
     }
-  ];
-  notes = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16')
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16')
-    }
-  ];
+    this.HttpBD.Budget(param).subscribe(result =>{
+      this.Source= new MatTableDataSource(Object.values(result) );
+      this.Source.filterPredicate = (data, filter) => {
+        const dataStr = data[0];
+        return dataStr.indexOf(filter) != -1; 
+      } 
+    })
+
+    this.HttpBD.Cod_Store().subscribe(result => {
+      this.Store=result;
+    })
+    
+  }
+
+  applyFilter(FilterValue){
+    this.Source.filter=FilterValue.target.value.toString().trim();
+  }
 }

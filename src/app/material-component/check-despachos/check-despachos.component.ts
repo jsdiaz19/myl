@@ -197,7 +197,7 @@ export class CheckDespachoComponent implements OnInit {
       this.Attempts-=1;
       if(this.Attempts==0){
         const dialogRef = this.dialog.open(DescriptionDespachoComponent, {
-          width: '1000px',
+          width: '1500px',
           data: {ref: this.despacho,inv: Array.from(this.miMapa.values())}
         });
         dialogRef.afterClosed().subscribe(result  =>{

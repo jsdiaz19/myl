@@ -12,7 +12,10 @@
     <mat-list *ngFor="let product of inv" role="list">
         {{ product[0]}}: {{product[1]}} Unidades
     </mat-list>
-    
+    <div id="spinner" style="display:none">
+      <mat-spinner [diameter]="30"></mat-spinner>
+
+    </div>
     
     <button mat-button id="Send" (click)="SendInfo()">Confirmar</button>
 </mat-card-content>

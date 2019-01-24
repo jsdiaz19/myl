@@ -9,12 +9,19 @@
       <img src="../../assets/images/Logo.png">
     </div>
     <div id="container" class="container">
-      <input type="text" placeholder="Usuario" name="uname" [(ngModel)]="usr.usuario"required>
-  
-      <input type="password" placeholder="Contraseña" name="psw" [(ngModel)]="usr.password" required>
-          
-      <button (click)="SearchUser()" >Login</button>
-    
+        <form [formGroup]="log" (ngSubmit)="SearchUser()">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Usuario" formControlName="user">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Contraseña" type="password" formControlName="password">
+          </mat-form-field>
+
+          <button type="submit" >Login</button>
+
+          <p id="error" style="color:red; display:none">El Usuario o Contraseña son incorrectos, por favor intenta de nuevo</p>
+        </form>
     </div>
   
   </form>

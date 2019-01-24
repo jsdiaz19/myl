@@ -21,11 +21,8 @@ export interface Description {
   und?: number;
 }
 
-export class str{
-  public str: FormGroup = new FormGroup({
-    stre:  new FormControl('')
-  })
-}
+
+
 @Component({
   selector: 'app-starter',
   templateUrl: './create-despachos.component.html',
@@ -58,8 +55,9 @@ export class CreateDespachoComponent implements OnInit {
   form: FormGroup;
   constructor(private HttpBD: HttBDService,private router: Router, public dialog: MatDialog,private formBuilder: FormBuilder) {
     this.form=this.formBuilder.group({
-      stor: ['',Validators.required],
-      st: ['',Validators.required],
+      cant: [''],
+      store: ['',Validators.required],
+      textil: [''],
     }); 
   }
 
@@ -77,8 +75,10 @@ export class CreateDespachoComponent implements OnInit {
     
   }
 
+  Disable(){
+    this.form.controls['cant'].disable();
+  }
   Store(){
-    
     this.HttpBD.Store(this.usr).subscribe(result => {
       this.store = result;
     })
@@ -90,7 +90,7 @@ export class CreateDespachoComponent implements OnInit {
         var temp= result.toString();
         while(temp.length<=3){temp="0"+temp;}
         this.id=temp
-        this.ref=temp+"-001";       // consecutive
+        this.ref=temp+"-"+this.usr.toString();       // consecutive
       }      
     })
   }
@@ -111,9 +111,9 @@ export class CreateDespachoComponent implements OnInit {
       var dd = this.today.getDate();
       var mm = this.today.getMonth()+1;
       var yyyy = this.today.getFullYear();
-      this.ref=this.id+"-001"+"-"+this.store_usr[0]+"-"+dd+mm+yyyy;
+      this.ref=this.id+"-"+this.usr.toString()+"-"+this.store_usr[0]+"-"+dd+mm+yyyy;
     }else{
-      this.ref= this.id+"-001";
+      this.ref= this.id+"-"+this.usr.toString();
     }
     
   }
@@ -152,17 +152,17 @@ export class CreateDespachoComponent implements OnInit {
 
 
           if (this.miMapa.get(content)== undefined){
-            this.miMapa.set(content,[result['referencia'],1]);
+            this.miMapa.set(content,[result['referencia'],1,result['tipo']]);
             this.init.push({ref: result['referencia'],und: 1 });
           }
           else{
             this.init.splice(this.indexof({ref: result['referencia'], und: this.miMapa.get(content)[1]},this.init),1);
-            this.miMapa.set(content,[result['referencia'],this.miMapa.get(content)[1]+1]);
+            this.miMapa.set(content,[result['referencia'],this.miMapa.get(content)[1]+1,result['tipo']]);
             this.init.push({ref: result['referencia'],und: this.miMapa.get(content)[1] });
-            
           }
           this.Data= new MatTableDataSource(this.init);
         }
+
       })
     }
     if (document.getElementById('edit').textContent.length>15){
@@ -191,14 +191,17 @@ export class CreateDespachoComponent implements OnInit {
       this.initial.splice(this.indexof(ant,this.initial),1);
       this.Source=new MatTableDataSource(this.initial);
       var del= this.miMapa.get(ant['cod']);
+      console.log(ant,del,this.miMapa);
+      this.TypeProduct.set(del[2],this.TypeProduct.get(del[2])-1);
       if(del[1]-1>0){
-        this.miMapa.set(ant['cod'],[del[0],del[1]-1]);
+        this.miMapa.set(ant['cod'],[del[0],del[1]-1,del[2]]);
         this.init.splice(this.indexof({ref: del[0], und: del[1]},this.init),1);
         this.init.push({ref: del[0],und: del[1]-1 });
       }else{
         this.miMapa.delete(ant['cod']);
         this.init.splice(this.indexof({ref: del[0], und: del[1]},this.init),1);
       }
+      
       this.Data= new MatTableDataSource(this.init);
       this.element-=1;
     }
@@ -206,13 +209,9 @@ export class CreateDespachoComponent implements OnInit {
     
   }
 
-  test(){
-    
-    
-  }
 
   Display(){
-    if(this.form.invalid){
+    if(this.form.invalid==true || (this.form.controls['textil'].value!=true && this.form.controls['cant'].value=='')) {
       window.alert('Datos invalidos');
       this.form.reset();
     }
@@ -222,11 +221,11 @@ export class CreateDespachoComponent implements OnInit {
       document.getElementById('Form').style.display='none';
       if(this.numBox==1){this.HttpBD.Save(this.ref,this.store_usr[0]);}
     }
-    this.form.reset();
+
   }
 
   SaveBox(){
-    if(this.element!=this.CountProduct){
+    if(this.element!=this.CountProduct && this.form.controls['textil'].value!=true){
       window.alert("El numero de productos registrado no coincide con el numero esperado");
     }
     else{
@@ -243,8 +242,8 @@ export class CreateDespachoComponent implements OnInit {
       this.Numproduct+=this.CountProduct;
       this.element=0;
       this.miMapa.clear(); 
-      temp.unshift(['REFERENCIA','UNIDADES']);
-      this.download(this.numBox,temp);
+      temp.unshift(['REFERENCIA','UNIDADES','TIPO']);
+      this.download(temp);
       this.TypeProduct.clear();
       this.TypeProduct.set('TEXTIL',0);
       this.TypeProduct.set('CALZADO',0);
@@ -253,6 +252,7 @@ export class CreateDespachoComponent implements OnInit {
   }
 
   NewBox(){
+    this.form.controls['store'].disable();
     document.getElementById("Message").style.display="none";
     document.getElementById('Tables').style.display="none";
     document.getElementById("Form").style.display="inline";
@@ -279,6 +279,7 @@ export class CreateDespachoComponent implements OnInit {
       document.getElementById("Form").style.display="inline";
       document.getElementById("Close").style.display="none";
       document.getElementById("CreateBox").style.display="none";
+      this.content=[];
       this.Changeid()
     }) 
   }
@@ -288,10 +289,12 @@ export class CreateDespachoComponent implements OnInit {
     document.getElementById("Close").style.display="none";
     document.getElementById("CreateBox").style.display="none";
     document.getElementById("Close").style.display="none";
+    this.DisableSelect=false;
+    this.form.reset();
     this.openDialog();
   }
 
-  download(numBox,temp) { 
+  download(temp) { 
     this.content.push(
       {
         table: {

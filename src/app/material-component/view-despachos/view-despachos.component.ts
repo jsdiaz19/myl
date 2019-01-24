@@ -29,7 +29,6 @@ export class ViewdespachosComponent implements OnInit{
     console.log('entro al init');
     this.idStore=this.HttpBD.idUsr;
     if(this.idStore==null){this.idStore=localStorage.getItem('id');}
-    console.log(this.idStore);
     this.HttpBD.Get_Despacho(this.idStore).subscribe(result =>{
       if(result!=null){
         this.Source= new MatTableDataSource(Object.values(result));

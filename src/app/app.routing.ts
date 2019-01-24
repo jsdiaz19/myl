@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 
 import {LoginComponent} from './login/login.component';
+
 export const AppRoutes: Routes = [
   {
     path: '',

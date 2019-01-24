@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
+import {DataService} from '../Data/data.service'
 import { Router } from '@angular/router'
 import { compileBaseDefFromMetadata } from '@angular/compiler';
 @Injectable({
@@ -9,19 +10,19 @@ export class HttBDService {
   url='http://localhost/php/'
   idUsr=null;
   nom=null;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private Data: DataService, private router: Router) {}
   
   SearchUser(user){
-    return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password })
-    .subscribe(result => {
+    return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password }).subscribe(result => {
       if (result!="Incorrect"){
         this.idUsr=result[0];
+        this.Data.Set_usr(this.idUsr);
         this.nom=result[1];
         localStorage.setItem('id',this.idUsr);
         this.router.navigate(['/starter']);
       }
-  });
-  }
+    });
+  } 
 
   Search(nom){
     return this.http.post('/php/SearchId.php',{op: 'store', name: nom})
@@ -87,6 +88,10 @@ export class HttBDService {
 
   Anomaly(ref,inv,descript){
     return this.http.post('/php/Anomaly.php',{ref: ref, inv: inv,descript: descript});
+  }
+
+  Budget(store){
+    return this.http.post('/php/Get-budget.php',{id: store});
   }
 }
 

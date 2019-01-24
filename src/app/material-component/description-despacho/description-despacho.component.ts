@@ -21,6 +21,7 @@ export class DescriptionDespachoComponent implements OnInit {
     this.descript=event.target.value;
   }
   SendInfo(){
+    document.getElementById('spinner').style.display="block";
     this.HttpBD.Anomaly(this.data.ref,this.inv,this.descript).subscribe(result =>{
       if(result!=null){
         this.dialogRef.close();

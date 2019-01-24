@@ -12,13 +12,8 @@ input[type=text], input[type=password] {
   border-bottom: 2px solid  #e5e8e8 ;
 }
 
-input[type=text]:focus {
-  border-bottom: 2px solid  #13f12e ;
-}
 
-input[type=password]:focus {
-  border-bottom: 2px solid  #13f12e ;
-}
+
 
 .container {
   width: 500px;
