@@ -5,6 +5,7 @@ import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { CheckDespachoComponent} from './check-despachos/check-despachos.component';
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
+import { UploadCsvComponent} from './upload-csv/upload-csv.component';
 
 export const MaterialRoutes: Routes = [
   {
@@ -27,6 +28,10 @@ export const MaterialRoutes: Routes = [
     path: 'check/:id/:num',
     component: CheckDespachoComponent
   },
+  {
+    path: 'upload',
+    component: UploadCsvComponent
+  }
   
 
 ];

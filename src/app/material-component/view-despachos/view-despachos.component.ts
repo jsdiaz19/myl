@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttBDService} from '../../service/Http/htt-bd.service'
 import {MatTableDataSource} from '@angular/material'
+import {DataService} from '../../service/Data/data.service';
 
 export interface Despacho {
   Id: string;
@@ -24,11 +25,10 @@ export class ViewdespachosComponent implements OnInit{
   Source=null;
   Store=null;
   idStore=null;
-  constructor(private HttpBD: HttBDService) { }
+  constructor(private HttpBD: HttBDService, private Data: DataService) { }
   ngOnInit(){
-    console.log('entro al init');
-    this.idStore=this.HttpBD.idUsr;
-    if(this.idStore==null){this.idStore=localStorage.getItem('id');}
+    this.idStore=this.Data.Get_usr();
+    console.log(this.idStore);
     this.HttpBD.Get_Despacho(this.idStore).subscribe(result =>{
       if(result!=null){
         this.Source= new MatTableDataSource(Object.values(result));

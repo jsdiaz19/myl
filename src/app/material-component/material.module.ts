@@ -18,6 +18,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { CheckDespachoComponent } from './check-despachos/check-despachos.component';
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
+import { UploadCsvComponent } from './upload-csv/upload-csv.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { DescriptionDespachoComponent } from './description-despacho/description
     MenuComponent,
     CheckDespachoComponent,
     DescriptionDespachoComponent,
+    UploadCsvComponent,
     
   ],
  

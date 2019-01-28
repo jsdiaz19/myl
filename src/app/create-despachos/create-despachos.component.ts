@@ -1,5 +1,6 @@
 import { Component,OnInit} from '@angular/core';
-import { HttBDService} from '../service/Http/htt-bd.service'
+import { HttBDService} from '../service/Http/htt-bd.service';
+import { DataService} from '../service/Data/data.service';
 import {MatTableDataSource} from '@angular/material'
 import {SelectionModel} from '@angular/cdk/collections';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
@@ -53,7 +54,7 @@ export class CreateDespachoComponent implements OnInit {
   Company=null;
   content=[];
   form: FormGroup;
-  constructor(private HttpBD: HttBDService,private router: Router, public dialog: MatDialog,private formBuilder: FormBuilder) {
+  constructor(private HttpBD: HttBDService,private router: Router, public dialog: MatDialog,private formBuilder: FormBuilder, private data: DataService) {
     this.form=this.formBuilder.group({
       cant: [''],
       store: ['',Validators.required],
@@ -62,8 +63,8 @@ export class CreateDespachoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usr=this.HttpBD.idUsr;
-    if(this.usr==null){this.usr=localStorage.getItem('id');}
+    this.usr=this.data.Get_usr();
+    console.log(this.usr);
     this.Source= new MatTableDataSource(this.initial);
     this.Data= new MatTableDataSource(this.init);
     this.selection = new SelectionModel<Product>(true, []);

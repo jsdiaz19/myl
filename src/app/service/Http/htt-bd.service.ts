@@ -19,6 +19,7 @@ export class HttBDService {
         this.Data.Set_usr(this.idUsr);
         this.nom=result[1];
         localStorage.setItem('id',this.idUsr);
+        console.log(this.Data.idUsr)
         this.router.navigate(['/starter']);
       }
     });
@@ -92,6 +93,10 @@ export class HttBDService {
 
   Budget(store){
     return this.http.post('/php/Get-budget.php',{id: store});
+  }
+
+  UpdateBudget(budget){
+    return this.http.post('/php/UpdateBudget.php',budget);
   }
 }
 

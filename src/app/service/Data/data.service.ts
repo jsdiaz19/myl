@@ -13,6 +13,6 @@ export class DataService {
   }
 
   Get_usr(){
-    return this.idUsr;
+    return localStorage.getItem('id');
   }
 }
