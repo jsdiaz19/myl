@@ -192,7 +192,6 @@ export class CreateDespachoComponent implements OnInit {
       this.initial.splice(this.indexof(ant,this.initial),1);
       this.Source=new MatTableDataSource(this.initial);
       var del= this.miMapa.get(ant['cod']);
-      console.log(ant,del,this.miMapa);
       this.TypeProduct.set(del[2],this.TypeProduct.get(del[2])-1);
       if(del[1]-1>0){
         this.miMapa.set(ant['cod'],[del[0],del[1]-1,del[2]]);

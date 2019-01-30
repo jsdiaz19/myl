@@ -4,6 +4,8 @@ import {MatTableDataSource} from '@angular/material'
 import {DataService} from '../../service/Data/data.service'
 import {MatDialog} from '@angular/material';
 import {UploadCsvComponent} from '../upload-csv/upload-csv.component'
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router'
 
 export interface Budget{
   CO: string;
@@ -23,28 +25,34 @@ export class ListsComponent {
   Source=null;
   Store=null;
   id=null;
-  constructor(private HttpBD: HttBDService, private Data: DataService,public dialog: MatDialog) { }
+  isNull=true;
+  CoFilter = new FormControl('');
+  DateFilter = new FormControl('');
+  constructor(private HttpBD: HttBDService, private Data: DataService,public dialog: MatDialog, private router: Router) { }
 
 
   ngOnInit(){
-    this.id=this.Data.Get_usr().toString().trim();
-    console.log(this.id.trim());    
+    this.id=this.Data.Get_usr().toString().trim();  
     this.HttpBD.Budget(this.id).subscribe(result =>{
-      this.Source= new MatTableDataSource(Object.values(result) );
-      this.Source.filterPredicate = (data, filter) => {
-        const dataStr = data[0];
-        return dataStr.indexOf(filter) != -1; 
-      } 
+      if(result!=null){
+        this.isNull=false;
+        this.Source= new MatTableDataSource(Object.values(result) );
+        this.Source.filterPredicate = (data, filter) => {
+          const dataStr = data[0];
+          const dataSrc = data[3];
+          return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
+        } 
+      }
     })
 
     this.HttpBD.Cod_Store().subscribe(result => {
       this.Store=result;
     })
     
-  }
+  } 
 
-  applyFilter(FilterValue){
-    this.Source.filter=FilterValue.target.value.toString().trim();
+  applyFilter(){
+    this.Source.filter=[this.CoFilter.value.toString().trim(),this.DateFilter.value.toString().trim()];
   }
 
   upload(){
@@ -58,5 +66,11 @@ export class ListsComponent {
         this.ngOnInit();
       }
     })
+  }
+
+  Detail(){
+    this.Data.Set_Co(this.CoFilter.value);
+    this.Data.Set_month(this.DateFilter.value);
+    this.router.navigate(['/detail']);
   }
 }

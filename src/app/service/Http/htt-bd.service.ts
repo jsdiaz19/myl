@@ -98,5 +98,9 @@ export class HttBDService {
   UpdateBudget(budget){
     return this.http.post('/php/UpdateBudget.php',budget);
   }
+
+  BudgetSale(co,month){
+    return this.http.post('/php/BudgetSale.php',{co: co, month: month});
+  }
 }
 

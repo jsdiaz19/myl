@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
   idUsr=null;
+  month=null;
+  co=null;
   constructor() { }
   
   Set_usr(id){
@@ -14,5 +16,23 @@ export class DataService {
 
   Get_usr(){
     return localStorage.getItem('id');
+  }
+
+  Set_month(month){
+    localStorage.setItem('month',month);
+    this.month=month;
+  }
+
+  Get_month(){
+    return localStorage.getItem('month');
+  }
+
+  Set_Co(co){
+    localStorage.setItem('co',co);
+    this.co=co;
+  }
+
+  Get_Co(){
+    return localStorage.getItem('co');
   }
 }

@@ -6,15 +6,34 @@
     <div id="Filtering">
       <ng-container *ngIf="id=='001'">
           CO:
-        <select id="store" (change)="applyFilter($event)">
-          <option value=" "> </option>
+        <select  [formControl]="CoFilter">
+          <option value=" ">None </option>
           <option *ngFor="let tiendas of Store" value={{tiendas}}>{{tiendas}}</option>
         </select> 
-      </ng-container>   
+      </ng-container>  
+      <ng-container *ngIf="id=='001'">
+        Periodo:
+      <select [formControl]="DateFilter" (change)="applyFilter()">
+        <option value=" "> None</option>
+        <option value="01"> Enero </option>
+        <option value="02"> Febrero</option>
+        <option value="03"> Marzo </option>
+        <option value="04"> Abril</option>
+        <option value="05"> Mayo</option>
+        <option value="06"> Junio</option>
+        <option value="07"> Julio</option>
+        <option value="08"> Agosto</option>
+        <option value="09"> Septiembre</option>
+        <option value="10"> Octubre</option>
+        <option value="11"> Noviembre</option>
+        <option value="12"> Diciembre</option>
+      </select> 
+    </ng-container>   
       <button mat-button type="file" (click)="upload()">Actualizar meta</button>   
+      <button mat-button (click)="Detail()">Ver en detalle</button>   
     </div>
 
-    <div class="card-container">             
+    <div class="card-container" *ngIf="!isNull">             
       <table mat-table [dataSource]="Source" class="mat-elevation-z8" >
 
         <ng-container matColumnDef="CO" >
