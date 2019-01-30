@@ -13,15 +13,24 @@ export class BudgetDetailComponent implements OnInit {
   month=null;
   Co=null;
   Source=null;
-  displayedColumns: string[] = ['Co','Venta','Presupuesto','Cumplimiento'];
+  DataSource=null;
+  InfoSource=null;
+  displayedColumns: string[] = ['Co','Venta','Presupuesto','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte'];
+  Columns: string[] = ['Co','Lapso','Cantidad','Venta','Semana','Meta','Cumplimiento'];
+  Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta'];
   constructor(private Data: DataService,private HttpBD: HttBDService) { }
 
   ngOnInit() {
     this.month=this.Data.Get_month();
     this.Co=this.Data.Get_Co();
     this.HttpBD.BudgetSale(this.Co,this.month).subscribe(result =>{
-      console.log(result);
       this.Source= new MatTableDataSource(Object.values(result));
+    })
+    this.HttpBD.BudgetSale_Week(this.Co,this.month).subscribe(result =>{
+      this.DataSource= new MatTableDataSource(Object.values(result));
+    })
+    this.HttpBD.BudgetSeller(this.Co,this.month).subscribe(result =>{
+      this.InfoSource= new MatTableDataSource(Object.values(result));
     })
   }
 

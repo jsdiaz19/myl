@@ -102,5 +102,13 @@ export class HttBDService {
   BudgetSale(co,month){
     return this.http.post('/php/BudgetSale.php',{co: co, month: month});
   }
+
+  BudgetSale_Week(co,month){
+    return this.http.post('/php/BudgetSale_Week.php',{co: co, month: month});
+  }
+  
+  BudgetSeller(co,month){
+    return this.http.post('/php/BudgetSeller.php',{co: co, month: month});
+  }
 }
 
