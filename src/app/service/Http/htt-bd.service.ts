@@ -19,7 +19,6 @@ export class HttBDService {
         this.Data.Set_usr(this.idUsr);
         this.nom=result[1];
         localStorage.setItem('id',this.idUsr);
-        console.log(this.Data.idUsr)
         this.router.navigate(['/starter']);
       }
     });
@@ -112,7 +111,7 @@ export class HttBDService {
   }
 
   BudgetSeller(co,month){
-    return this.http.post('php/BudgetSeller.php',{co: co, month: month});
+    return this.http.post('/php/BudgetSeller.php',{co: co, month: month});
   }
 }
 

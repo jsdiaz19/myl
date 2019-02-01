@@ -9,7 +9,6 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 import { DialogComponent } from '../material-component/dialog/dialog.component';
 import { Router } from '@angular/router'
 import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
-
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export interface Product {
@@ -64,7 +63,7 @@ export class CreateDespachoComponent implements OnInit {
 
   ngOnInit() {
     this.usr=this.data.Get_usr();
-    console.log(this.usr);
+
     this.Source= new MatTableDataSource(this.initial);
     this.Data= new MatTableDataSource(this.init);
     this.selection = new SelectionModel<Product>(true, []);
@@ -77,7 +76,12 @@ export class CreateDespachoComponent implements OnInit {
   }
 
   Disable(){
-    this.form.controls['cant'].disable();
+    if(this.form.controls['textil'].value){
+      this.form.controls['cant'].enable();
+    }
+    else{
+      this.form.controls['cant'].disable();
+    }
   }
   Store(){
     this.HttpBD.Store(this.usr).subscribe(result => {

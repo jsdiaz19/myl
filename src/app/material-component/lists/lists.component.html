@@ -13,7 +13,7 @@
       </ng-container>  
       <ng-container *ngIf="id=='001'">
         Periodo:
-      <select [formControl]="DateFilter" (change)="applyFilter()">
+      <select [formControl]="DateFilter" (click)="applyFilter()">
         <option value=" "> None</option>
         <option value="01"> Enero </option>
         <option value="02"> Febrero</option>

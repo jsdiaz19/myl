@@ -69,8 +69,14 @@ export class ListsComponent {
   }
 
   Detail(){
-    this.Data.Set_Co(this.CoFilter.value);
-    this.Data.Set_month(this.DateFilter.value);
-    this.router.navigate(['/detail']);
+    if(this.CoFilter.value!='' && this.DateFilter.value!=''){
+      this.Data.Set_Co(this.CoFilter.value);
+      this.Data.Set_month(this.DateFilter.value);
+      this.router.navigate(['/detail']);
+    }
+    else{
+      alert('Co y periodo incorrecto, intentalo de nuevo');
+    }
+    
   }
 }
