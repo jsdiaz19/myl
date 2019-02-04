@@ -10,11 +10,13 @@ export class HttBDService {
   url='http://localhost/php/'
   idUsr=null;
   nom=null;
+  auth=false;
   constructor(private http: HttpClient, private Data: DataService, private router: Router) {}
   
   SearchUser(user){
     return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password }).subscribe(result => {
       if (result!="Incorrect"){
+        this.auth=true;
         this.idUsr=result[0];
         this.Data.Set_usr(this.idUsr);
         this.nom=result[1];
@@ -22,7 +24,11 @@ export class HttBDService {
         this.router.navigate(['/starter']);
       }
     });
-  } 
+  }
+  
+  AuthLogin(){
+    return this.auth;
+  }
 
   Search(nom){
     return this.http.post('/php/SearchId.php',{op: 'store', name: nom})

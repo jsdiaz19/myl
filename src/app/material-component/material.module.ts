@@ -20,6 +20,7 @@ import { CheckDespachoComponent } from './check-despachos/check-despachos.compon
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
 import { UploadCsvComponent } from './upload-csv/upload-csv.component';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
+import { LowSalesProductComponent } from './low-sales-product/low-sales-product.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
     DescriptionDespachoComponent,
     UploadCsvComponent,
     BudgetDetailComponent,
+    LowSalesProductComponent,
     
   ],
  
