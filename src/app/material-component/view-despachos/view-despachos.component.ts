@@ -32,6 +32,7 @@ export class ViewdespachosComponent implements OnInit{
     this.HttpBD.Get_Despacho(this.idStore).subscribe(result =>{
       if(result!=null){
         this.Source= new MatTableDataSource(Object.values(result));
+        
       }
       
     })

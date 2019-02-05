@@ -11,7 +11,7 @@ export class DataService {
   
   Set_usr(id){
     localStorage.setItem('idStore',id);
-    this.idUsr=id;
+
   }
 
   Get_usr(){

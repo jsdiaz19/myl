@@ -35,6 +35,7 @@
     "pdfmake": "^0.1.40",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "xlsx": "^0.14.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
