@@ -32,7 +32,10 @@ export class ListsComponent {
 
 
   ngOnInit(){
-    this.id=this.Data.Get_usr().toString().trim();  
+    this.id=this.Data.Get_usr().toString().trim(); 
+    this.HttpBD.BudgetStore().subscribe(result =>{
+      console.log(result);
+    }) 
     this.HttpBD.Budget(this.id).subscribe(result =>{
       if(result!=null){
         this.isNull=false;

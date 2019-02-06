@@ -11,3 +11,8 @@ button{
   margin-left: 30px;
   display: none;
 }
+
+#Marca{
+  margin-left: 30px;
+  display: inline;
+}

@@ -122,5 +122,10 @@ export class HttBDService {
   LowSales(co){
     return this.http.post('/php/LowSales.php',{co: co});
   }
+
+  BudgetStore(){
+    return this.http.get('/php/BudgetStore.php');
+  }
+
 }
 

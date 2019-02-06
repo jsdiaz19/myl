@@ -12,22 +12,24 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class LowSalesProductComponent implements OnInit {
   Store=null;
-  Header: string[]= ['PRODUCTO','HACE 2 MESES','HACE 1 MES','MES ACTUAL','ROTAR'];
+  Header: string[]= ['PRODUCTO','MARCA','HACE 2 MESES','HACE 1 MES','MES ACTUAL','ROTAR'];
   Co=null;
   Source=null;
   hidden=false;
-
+  Marca=null;
   constructor(private HttpBD: HttBDService,private Data: DataService) { }
 
   ngOnInit() {
     this.Co=this.Data.Get_usr();
     this.HttpBD.Cod_Store().subscribe(result => {
       this.Store=result;
-    })
+    });
+
     if(this.Co.trim()!="001"){
       this.HttpBD.LowSales(this.Co).subscribe(result =>{
         this.Source=null;
         this.Source= new MatTableDataSource(Object.values(result));
+        document.getElementById('Download').style.display='inline'; 
       })
     }
     else{
@@ -37,19 +39,27 @@ export class LowSalesProductComponent implements OnInit {
   }
 
   loading(value){
+    console.log(value.target.value.trim());
     this.HttpBD.LowSales(value.target.value.trim()).subscribe(result =>{
       this.Source=null;
+      console.log(result);
       this.Source= new MatTableDataSource(Object.values(result)); 
       document.getElementById('Download').style.display='inline'; 
     })
   }
 
-  exportAsExcel()
-    {
-      const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(document.getElementById('Table'));//converts a DOM TABLE element to a worksheet
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-      XLSX.writeFile(wb, 'SheetJS.xlsx');
+  exportAsExcel(){
+    const ws: XLSX.WorkSheet=XLSX.utils.table_to_sheet(document.getElementById('Table'));
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'SheetJS.xlsx');
+  }
 
-    }
+  applyFilter(FilterValue){
+    this.HttpBD.LowSales(FilterValue.target.value.toString().trim()).subscribe(result =>{
+      this.Source=null;
+      this.Source= new MatTableDataSource(Object.values(result)); 
+      document.getElementById('Download').style.display='inline'; 
+    })
+  }
 }
