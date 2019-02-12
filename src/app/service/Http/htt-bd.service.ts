@@ -119,13 +119,16 @@ export class HttBDService {
     return this.http.post('/php/BudgetSeller.php',{co: co, month: month});
   }
 
-  LowSales(co){
-    return this.http.post('/php/LowSales.php',{co: co});
+  LowSales(){
+    return this.http.get('/php/LowSales.php');
   }
 
   BudgetStore(){
     return this.http.get('/php/BudgetStore.php');
   }
 
+  ProducBrand(){
+    return this.http.get('/php/Brand.php');
+  }
 }
 

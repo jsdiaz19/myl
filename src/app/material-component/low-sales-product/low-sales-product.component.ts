@@ -3,7 +3,8 @@ import { HttBDService} from '../../service/Http/htt-bd.service'
 import { DataService} from '../../service/Data/data.service';
 import {MatTableDataSource} from '@angular/material'
 import * as XLSX from 'xlsx';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-low-sales-product',
@@ -12,40 +13,49 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class LowSalesProductComponent implements OnInit {
   Store=null;
-  Header: string[]= ['PRODUCTO','MARCA','HACE 2 MESES','HACE 1 MES','MES ACTUAL','ROTAR'];
+  Header: string[]= ['CO','REFERENCIA','HACE 2 MESES','HACE 1 MES','MES ACTUAL'];
+  header: string[]= ['MARCA','REFERENCIA','HACE 2 MESES','HACE 1 MES','MES ACTUAL'];
   Co=null;
-  Source=null;
+  Source;
+  DataSource;
   hidden=false;
   Marca=null;
-  constructor(private HttpBD: HttBDService,private Data: DataService) { }
+  Brand='';
+  IdCO='';
+  disableSelect = new FormControl(false);
+  disable = new FormControl(false);
+  constructor(private HttpBD: HttBDService,private Data: DataService) { 
+  }
 
   ngOnInit() {
     this.Co=this.Data.Get_usr();
     this.HttpBD.Cod_Store().subscribe(result => {
       this.Store=result;
     });
+    
+    this.HttpBD.LowSales().subscribe(result =>{
+      this.Source= new MatTableDataSource(Object.values(result));
+      document.getElementById('Download').style.display="inline";
+      document.getElementById('Marca').style.display="inline";
+      document.getElementById('Filtering').style.display="inline";
+      document.getElementById('Table').style.display="table"; 
+      this.Source.filterPredicate = (data, filter) => {
+        const dataStr = data[0];
+        return dataStr.indexOf(filter) != -1; 
+      }
+    });
 
-    if(this.Co.trim()!="001"){
-      this.HttpBD.LowSales(this.Co).subscribe(result =>{
-        this.Source=null;
-        this.Source= new MatTableDataSource(Object.values(result));
-        document.getElementById('Download').style.display='inline'; 
-      })
-    }
-    else{
-      document.getElementById('Filtering').style.display='inline';
-    }
 
-  }
-
-  loading(value){
-    console.log(value.target.value.trim());
-    this.HttpBD.LowSales(value.target.value.trim()).subscribe(result =>{
-      this.Source=null;
-      console.log(result);
-      this.Source= new MatTableDataSource(Object.values(result)); 
-      document.getElementById('Download').style.display='inline'; 
-    })
+    this.HttpBD.ProducBrand().subscribe(result =>{
+      this.DataSource= new MatTableDataSource(Object.values(result));
+      document.getElementById('Abstract').style.display="table"; 
+      this.DataSource.filterPredicate = (data, filter) => {
+        const dataStr = data[0];
+        return dataStr.indexOf(filter) != -1; 
+      }
+    });
+    
+    
   }
 
   exportAsExcel(){
@@ -55,11 +65,35 @@ export class LowSalesProductComponent implements OnInit {
     XLSX.writeFile(wb, 'SheetJS.xlsx');
   }
 
-  applyFilter(FilterValue){
-    this.HttpBD.LowSales(FilterValue.target.value.toString().trim()).subscribe(result =>{
-      this.Source=null;
-      this.Source= new MatTableDataSource(Object.values(result)); 
-      document.getElementById('Download').style.display='inline'; 
-    })
+  applyFilter(){
+    this.Source.filter=this.IdCO.toString().trim();   
+  }
+
+  Filter(){
+    this.DataSource.filter=this.Brand.toString().trim();   
+  }
+
+  Disable(){
+    
+    if(!this.disableSelect.value){
+      this.disable.disable();
+      document.getElementById('Abstract').style.display="none"; 
+      document.getElementById('Table').style.display="table"; 
+    }
+    else{
+      this.disable.enable();
+    }
+  }
+
+  Disabled(){
+    
+    if(!this.disable.value){
+      this.disableSelect.disable();
+      document.getElementById('Abstract').style.display="table"; 
+      document.getElementById('Table').style.display="none";  
+    }
+    else{
+      this.disableSelect.enable();
+    }
   }
 }

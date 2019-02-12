@@ -25,6 +25,7 @@ export class BudgetDetailComponent implements OnInit {
   ngOnInit() {
     this.month=this.Data.Get_month();
     this.Co=this.Data.Get_Co();
+
     this.HttpBD.BudgetSale(this.Co,this.month).subscribe(result =>{
       this.Source= new MatTableDataSource(Object.values(result));
     })

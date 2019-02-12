@@ -1,18 +1,36 @@
 table {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 90px;
+    display: none;
   }
 
 #Filtering{
+  float:left;
   display: none;
 }
 
 button{
   margin-left: 30px;
-  display: none;
 }
 
 #Marca{
-  margin-left: 30px;
-  display: inline;
+  margin-left: 80px;
+  float:left;
+  display: none;
+}
+
+#store{
+  margin-top: 30px;
+}
+
+#brand{
+  margin-top: 30px;
+}
+
+.mat-checkbox{
+  display: block;
+}
+
+#Download{
+  display: none;
 }

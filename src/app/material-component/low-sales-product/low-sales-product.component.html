@@ -2,10 +2,12 @@
   <mat-card-content>
     <mat-card-title>Productos De Baja Rotacion</mat-card-title>
     <mat-card-subtitle>Se presentara las ventas detallada de productos en 3 periodos de tiempo</mat-card-subtitle>
+    
 
     <div id="Filtering">
+      <mat-checkbox  [formControl]="disableSelect" (click)="Disable()">Filtrar por tienda</mat-checkbox>
       Tienda:
-      <select id="store" (change)="loading($event)">
+      <select id="store" [disabled]="!disableSelect.value"  (change)="applyFilter()" [(ngModel)]="IdCO">
         <option value=" "> </option>
         <ng-container *ngFor="let tiendas of Store">
           <option  value={{tiendas}} *ngIf="tiendas!='001       '">{{tiendas}}</option>
@@ -14,8 +16,9 @@
     </div>
     
     <div id="Marca">
+      <mat-checkbox [formControl]="disable" (click)="Disabled()" >Filtrar por marca</mat-checkbox>
       Marca:
-      <select (change)="applyFilter($event)"> 
+      <select id="brand" [disabled]="!disable.value" (change)="Filter()" [(ngModel)]="Brand"> 
         <option value=" "> </option>
         <option value="EA7"> EA7 </option>
         <option value="LACO"> LACO </option>
@@ -25,41 +28,65 @@
     
     <button mat-raised-button color="primary" (click)="exportAsExcel()" id="Download" >Exportar a Excel</button>
 
-    <table mat-table [dataSource]="Source" class="mat-elevation-z8" id="Table">
+    <table mat-table [dataSource]="DataSource" class="mat-elevation-z8" id="Abstract">
 
-      <ng-container matColumnDef="PRODUCTO">
-        <th mat-header-cell *matHeaderCellDef> Referencia </th>
+      <ng-container matColumnDef="MARCA">
+        <th mat-header-cell *matHeaderCellDef> MARCA </th>
         <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="MARCA">
-        <th mat-header-cell *matHeaderCellDef> Marca </th>
+      <ng-container matColumnDef="REFERENCIA">
+        <th mat-header-cell *matHeaderCellDef> REFERENCIA </th>
+        <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="HACE 2 MESES">
+        <th mat-header-cell *matHeaderCellDef> HACE 2 MESES </th>
+        <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="HACE 1 MES">
+        <th mat-header-cell *matHeaderCellDef> HACE 1 MES</th>
+        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="MES ACTUAL">
+        <th mat-header-cell *matHeaderCellDef> MES ACTUAL </th>
+        <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="header"></tr>
+      <tr mat-row *matRowDef="let row; columns: header;"></tr>
+    </table>
+
+    <table mat-table [dataSource]="Source" class="mat-elevation-z8" id="Table">
+
+
+      <ng-container matColumnDef="CO">
+        <th mat-header-cell *matHeaderCellDef> CO </th>
+        <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="REFERENCIA">
+        <th mat-header-cell *matHeaderCellDef> REFERENCIA </th>
         <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="HACE 2 MESES">
         <th mat-header-cell *matHeaderCellDef="let element"> HACE 2 MESES </th>
-        <td mat-cell *matCellDef="let element"> {{element[7]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="HACE 1 MES">
         <th mat-header-cell *matHeaderCellDef> HACE 1 MESES </th>
-        <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="MES ACTUAL">
         <th mat-header-cell *matHeaderCellDef> MES ACTUAL </th>
-        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="ROTAR">
-        <th mat-header-cell *matHeaderCellDef> ROTAR </th>
-        <td mat-cell *matCellDef="let element" > 
-          <ng-container *ngIf="element[7]==element[5] && element[7]==element[3]">
-            BAJA ROTACION
-          </ng-container>
-        </td>
-      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="Header"></tr>
       <tr mat-row *matRowDef="let row; columns: Header;"></tr>

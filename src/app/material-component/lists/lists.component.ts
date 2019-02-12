@@ -21,7 +21,7 @@ export interface Budget{
 })
 
 export class ListsComponent {
-  displayedColumns: string[] = ['CO','Meta', 'DS','Fecha','Semana'];
+  displayedColumns: string[] = ['CO','Venta', 'Presupuesto','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte','P. prom','UPF','T. prom'];
   Source=null;
   Store=null;
   id=null;
@@ -34,19 +34,26 @@ export class ListsComponent {
   ngOnInit(){
     this.id=this.Data.Get_usr().toString().trim(); 
     this.HttpBD.BudgetStore().subscribe(result =>{
+      this.isNull=false;
+      this.Source= new MatTableDataSource(Object.values(result) );
+      this.Source.filterPredicate = (data, filter) => {
+        const dataStr = data[0];
+        const dataSrc = data[3];
+        return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
+      } 
       console.log(result);
     }) 
-    this.HttpBD.Budget(this.id).subscribe(result =>{
-      if(result!=null){
-        this.isNull=false;
-        this.Source= new MatTableDataSource(Object.values(result) );
-        this.Source.filterPredicate = (data, filter) => {
-          const dataStr = data[0];
-          const dataSrc = data[3];
-          return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
-        } 
-      }
-    })
+    // this.HttpBD.Budget(this.id).subscribe(result =>{
+    //   if(result!=null){
+    //     this.isNull=false;
+    //     this.Source= new MatTableDataSource(Object.values(result) );
+        // this.Source.filterPredicate = (data, filter) => {
+        //   const dataStr = data[0];
+        //   const dataSrc = data[3];
+        //   return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
+    //    } 
+    //   }
+    // })
 
     this.HttpBD.Cod_Store().subscribe(result => {
       this.Store=result;
