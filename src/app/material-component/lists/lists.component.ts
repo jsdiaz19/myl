@@ -38,22 +38,13 @@ export class ListsComponent {
       this.Source= new MatTableDataSource(Object.values(result) );
       this.Source.filterPredicate = (data, filter) => {
         const dataStr = data[0];
-        const dataSrc = data[3];
-        return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
+        const dataSrc = data[4];
+        console.log(dataSrc.substring(4,6));
+        return dataStr.indexOf(filter[0]) != -1 && dataSrc.substring(4,6).indexOf(filter[1])!= -1 ; 
       } 
-      console.log(result);
+     
     }) 
-    // this.HttpBD.Budget(this.id).subscribe(result =>{
-    //   if(result!=null){
-    //     this.isNull=false;
-    //     this.Source= new MatTableDataSource(Object.values(result) );
-        // this.Source.filterPredicate = (data, filter) => {
-        //   const dataStr = data[0];
-        //   const dataSrc = data[3];
-        //   return dataStr.indexOf(filter[0]) != -1 && dataSrc.date.substring(5,7).indexOf(filter[1])!= -1 ; 
-    //    } 
-    //   }
-    // })
+
 
     this.HttpBD.Cod_Store().subscribe(result => {
       this.Store=result;
@@ -88,5 +79,15 @@ export class ListsComponent {
       alert('Co y periodo incorrecto, intentalo de nuevo');
     }
     
+  }
+
+  Parse(value){
+    if(parseInt(value)>90){
+      return 1;
+    }
+    else if(parseInt(value)>80){
+      return 2;
+    }
+    return 3;
   }
 }

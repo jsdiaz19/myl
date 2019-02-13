@@ -38,10 +38,8 @@ export class UploadCsvComponent{
           }
           result.push(obj); 
         }
-        result.pop();
         var date = new Date();
         var month = date.getMonth()+1;
-        
         this.HttBD.UpdateBudget({mes: month, Budget: JSON.stringify(result)}).subscribe(result => {
           console.log(result);
           if(result=="Correct"){
