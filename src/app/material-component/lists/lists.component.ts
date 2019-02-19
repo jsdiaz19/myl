@@ -39,21 +39,24 @@ export class ListsComponent {
       this.Source.filterPredicate = (data, filter) => {
         const dataStr = data[0];
         const dataSrc = data[4];
-        console.log(dataSrc.substring(4,6));
         return dataStr.indexOf(filter[0]) != -1 && dataSrc.substring(4,6).indexOf(filter[1])!= -1 ; 
-      } 
-     
+      }
+      this.applyFilter(); 
     }) 
 
 
-    this.HttpBD.Cod_Store().subscribe(result => {
+    this.HttpBD.Store('All').subscribe(result => {
       this.Store=result;
     })
-    
+    if(this.id!='001'){
+      document.getElementById('update').style.display="none";
+      this.CoFilter.setValue(this.id);
+      
+    } 
   } 
 
   applyFilter(){
-    this.Source.filter=[this.CoFilter.value.toString().trim(),this.DateFilter.value.toString().trim()];
+    this.Source.filter=[this.CoFilter.value.toString().trim().split('-')[0].replace(/ /g, ""),this.DateFilter.value.toString().trim()];
   }
 
   upload(){
@@ -82,10 +85,10 @@ export class ListsComponent {
   }
 
   Parse(value){
-    if(parseInt(value)>90){
+    if(parseFloat(value)>90){
       return 1;
     }
-    else if(parseInt(value)>80){
+    else if(parseFloat(value)>80){
       return 2;
     }
     return 3;

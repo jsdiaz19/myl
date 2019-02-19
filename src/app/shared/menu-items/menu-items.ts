@@ -13,7 +13,9 @@ const MENUITEMS = [
   { state: 'starter', name: 'Crear Despacho', type: 'link', icon: 'av_timer' },
   { state: 'lists', type: 'link', name: 'Presupuesto', icon: 'view_list' },
   { state: 'product', type: 'link', name: 'Baja rotacion', icon: 'trending_down' },
+  { state: 'report', type: 'link', name: 'Cierre diario', icon: 'view_headline' },
   { state: 'menu', type: 'link', name: 'About', icon: 'view_headline' },
+  
   
 ];
 

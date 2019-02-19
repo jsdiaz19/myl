@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     SpinnerComponent,
     AppSidebarComponent,
     LoginComponent,
+
   ],
   imports: [
     BrowserModule,

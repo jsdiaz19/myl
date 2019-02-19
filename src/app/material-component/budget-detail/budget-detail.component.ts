@@ -41,10 +41,10 @@ export class BudgetDetailComponent implements OnInit {
   }
 
   Parse(value){
-    if(parseInt(value)>90){
+    if(parseFloat(value)>90){
       return 1;
     }
-    else if(parseInt(value)>80){
+    else if(parseFloat(value)>80){
       return 2;
     }
     return 3;

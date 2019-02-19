@@ -102,11 +102,13 @@ export class CreateDespachoComponent implements OnInit {
 
   onKey(event: any) { 
     var temp=event.target.value;
-    if (!parseInt(event.target.value[event.target.value.length-1],10)){
-      temp=event.target.value.slice(0,-1);
-      event.target.value=temp;
+    if (!parseInt(temp)){
+      event.target.value=null;
     }
-    this.CountProduct= parseInt(temp,10);
+    else{
+      this.CountProduct= parseInt(temp,10);
+    }
+    
     
   }
   Reference(value){

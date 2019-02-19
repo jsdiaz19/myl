@@ -8,6 +8,7 @@ import { DescriptionDespachoComponent } from './description-despacho/description
 import { UploadCsvComponent} from './upload-csv/upload-csv.component';
 import {BudgetDetailComponent} from './budget-detail/budget-detail.component';
 import {LowSalesProductComponent} from './low-sales-product/low-sales-product.component';
+import {ReportStoreComponent} from './report-store/report-store.component';
 export const MaterialRoutes: Routes = [
   {
     path: 'view',
@@ -32,6 +33,11 @@ export const MaterialRoutes: Routes = [
   {
     path: 'check/:id/:num',
     component: CheckDespachoComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'report',
+    component: ReportStoreComponent,
     canActivate: [AuthGuardService]
   },
   {

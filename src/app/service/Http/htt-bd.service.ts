@@ -63,7 +63,7 @@ export class HttBDService {
 
   Send_email(store,Numproduct,ref,guide,company){
     return this.http.post('/php/Send.php',{ store: store,Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result => {
-      console.log('email send');
+      console.log(result);
     });
   }
 

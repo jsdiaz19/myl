@@ -11,7 +11,7 @@
           <option *ngFor="let tiendas of Store" value={{tiendas}}>{{tiendas}}</option>
         </select> 
       </ng-container>  
-      <ng-container *ngIf="id=='001'">
+      <ng-container >
         Periodo:
       <select [formControl]="DateFilter" (change)="applyFilter()">
         <option value=" "> None</option>
@@ -29,7 +29,7 @@
         <option value="12"> Diciembre</option>
       </select> 
     </ng-container>   
-      <button mat-button type="file" (click)="upload()">Actualizar meta</button>   
+      <button mat-button type="file" (click)="upload()" id="update">Actualizar meta</button>   
       <button mat-button (click)="Detail()">Ver en detalle</button>   
     </div>
 
