@@ -130,5 +130,13 @@ export class HttBDService {
   ProducBrand(){
     return this.http.get('/php/Brand.php');
   }
+
+  ReportStore(co,tipo,price,Fact,date){
+    return this.http.post('/php/ReportStore.php',{co: co, tipo: tipo, fact: Fact,date:date, price: JSON.stringify(price)});
+  }
+
+  LastDate(co){
+    return this.http.post('/php/LastDate.php',{co: co});
+  }
 }
 

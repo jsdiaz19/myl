@@ -102,11 +102,12 @@ export class CreateDespachoComponent implements OnInit {
 
   onKey(event: any) { 
     var temp=event.target.value;
-    if (!parseInt(temp)){
+    if (!Number(temp)){
+      alert('El campo es numerico');
       event.target.value=null;
     }
     else{
-      this.CountProduct= parseInt(temp,10);
+      this.CountProduct= Number(temp);
     }
     
     

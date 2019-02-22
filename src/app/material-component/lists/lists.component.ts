@@ -38,8 +38,8 @@ export class ListsComponent {
       this.Source= new MatTableDataSource(Object.values(result) );
       this.Source.filterPredicate = (data, filter) => {
         const dataStr = data[0];
-        const dataSrc = data[4];
-        return dataStr.indexOf(filter[0]) != -1 && dataSrc.substring(4,6).indexOf(filter[1])!= -1 ; 
+        const dataSrc = data[4].date;
+        return dataStr.indexOf(filter[0]) != -1 && dataSrc.substring(5,7).indexOf(filter[1])!= -1 ; 
       }
       this.applyFilter(); 
     }) 
@@ -74,7 +74,7 @@ export class ListsComponent {
 
   Detail(){
     if(this.CoFilter.value!='' && this.DateFilter.value!=''){
-      this.Data.Set_Co(this.CoFilter.value);
+      this.Data.Set_Co(this.CoFilter.value.toString().trim().split('-')[0].replace(/ /g, ""));
       this.Data.Set_month(this.DateFilter.value);
       this.router.navigate(['/detail']);
     }

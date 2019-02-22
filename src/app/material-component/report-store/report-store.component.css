@@ -9,7 +9,8 @@
 }
 
 #payment{
-    display:flex;
+  white-space:nowrap;
+  margin-top: 20px;
 }
 
 table {
@@ -21,3 +22,7 @@ table {
   margin-top: 30px;
 }
 
+.mat-form-field{
+  margin-top: 30px;
+  white-space:nowrap;
+}

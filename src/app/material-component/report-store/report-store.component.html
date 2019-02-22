@@ -3,24 +3,57 @@
     <mat-card-title>Formulario de cierre de caja</mat-card-title>
     <mat-card-subtitle>Presente los datos detallados del dia de hoy</mat-card-subtitle>
     <div class="card-container">
-        <form [formGroup]="Form" class="example-container" >
-            <div>
-              <label>
-                Venta total:
-              </label>
-              <mat-radio-group formControlName="type">
-                <mat-radio-button value="Online">Online</mat-radio-button>
-                <mat-radio-button value="Contingencia">Contingencia</mat-radio-button>
-                <mat-radio-button value="Manual">Manual</mat-radio-button>
-              </mat-radio-group>
-            </div>
+      <form [formGroup]="Form" class="example-container" >
+          
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Fecha de registro" class="example-right-align" formControlName="date" type="date" [errorStateMatcher]="matcher" [min]="dateMin" [max]="dateMax">
+          <mat-error *ngIf="Form.controls['fact'].hasError('required')">
+            La fecha de registro es <strong>requirido</strong>
+          </mat-error>
+        </mat-form-field> 
+
+        <div id="payment">     
+          <label style="margin-right:30px">Tipo de caja:</label> 
+          <mat-radio-group id="type" formControlName="type" >
+            <mat-radio-button value=1 [disabled]="button[0]">Online</mat-radio-button>
+            <mat-radio-button value=2 [disabled]="button[1]">Contingencia</mat-radio-button>
+            <mat-radio-button value=3 [disabled]="button[2]"> Manual</mat-radio-button>
+          </mat-radio-group>
+        </div>  
       
-            <h4>Total de venta:</h4>
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Total de venta" class="example-right-align" type="number" formControlName="sale" (keyup)="onKey($event)">
-              <span matPrefix>$  &nbsp;</span>
-            </mat-form-field>            
-          </form>
+
+        <mat-form-field >
+          
+          <input matInput placeholder="Total de venta"  class="example-right-align" formControlName="sale" type="number" [errorStateMatcher]="matcher">
+          <span matPrefix>$  &nbsp;</span>
+
+          <mat-error *ngIf="Form.controls['sale'].hasError('required')">
+            El total de venta es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+        </mat-form-field>  
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Factura inicial" class="example-right-align" formControlName="factIn" type="number" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="Form.controls['factIn'].hasError('required')">
+            El numero de factura inicial es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+          <mat-error *ngIf="Form.controls['factIn'].hasError('min')">
+              El numero de factura inicial debe ser <strong>mayor a 1</strong>
+            </mat-error>
+        </mat-form-field>  
+
+          
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Factura final" class="example-right-align" formControlName="fact" type="number" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="Form.controls['fact'].hasError('required')">
+            El numero de factura final es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+          <mat-error *ngIf="Form.controls['fact'].hasError('min')">
+              El numero de factura final debe ser <strong>mayor a 1</strong>
+            </mat-error>
+        </mat-form-field> 
+
+      </form>
     </div>
 
     <h4>Distribucion de venta:</h4>
@@ -34,7 +67,7 @@
         <ng-container matColumnDef="CANTIDAD">
             <th mat-header-cell *matHeaderCellDef> CANTIDAD </th>
             <td mat-cell *matCellDef="let element">  
-                <input matInput placeholder="$ 0.000" (blur)="getCost($event)">
+                <input matInput placeholder="$ 0.000" value="0" [disabled]="Form.invalid" (blur)="getCost($event)">
             </td>
             <td mat-footer-cell *matFooterCellDef> $ {{cost}}</td>
         </ng-container>

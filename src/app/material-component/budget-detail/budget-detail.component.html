@@ -10,15 +10,15 @@
       </ng-container>
     
   
-      <ng-container matColumnDef="Venta">
-        <th mat-header-cell *matHeaderCellDef> Venta </th>
-        <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
-      </ng-container>
-    
-  
       <ng-container matColumnDef="Presupuesto">
         <th mat-header-cell *matHeaderCellDef> Presupuesto </th>
         <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
+      </ng-container>
+
+      
+      <ng-container matColumnDef="Venta">
+        <th mat-header-cell *matHeaderCellDef> Venta </th>
+        <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
       </ng-container>
   
       <ng-container matColumnDef="Cumplimiento">
@@ -105,16 +105,6 @@
       </ng-container>
     
   
-      <ng-container matColumnDef="Cantidad">
-        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-        <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Venta">
-        <th mat-header-cell *matHeaderCellDef> Venta </th>
-        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="Semana">
         <th mat-header-cell *matHeaderCellDef> Semana </th>
         <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
@@ -123,6 +113,16 @@
       <ng-container matColumnDef="Meta">
         <th mat-header-cell *matHeaderCellDef> Meta </th>
         <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cantidad">
+        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Venta">
+        <th mat-header-cell *matHeaderCellDef> Venta </th>
+        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Cumplimiento">
