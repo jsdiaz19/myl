@@ -6,7 +6,8 @@ import { DataService} from '../../service/Data/data.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
-import { text } from '@angular/core/src/render3';
+import {MatDialog} from '@angular/material';
+import {DialogAnomalyComponent} from '../dialog-anomaly/dialog-anomaly.component'
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -40,6 +41,8 @@ export class ReportStoreComponent implements OnInit {
   miMapa = new Map();
   date;
   dateMin;
+  DisableAnomaly='true';
+  flagAnomaly=0;
   dateMax= new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0];
   ctrlFact=[];
   Form = new FormGroup({
@@ -48,17 +51,20 @@ export class ReportStoreComponent implements OnInit {
     factIn: new FormControl('',[Validators.required,Validators.min(1)]),
     fact: new FormControl('',[Validators.required,Validators.min(1)]),
     date: new FormControl('',Validators.required),
+    anomaly: new FormControl(''),
   });
   
 
-  constructor(private HttpBD: HttBDService, private Data: DataService) { }
+  constructor(private HttpBD: HttBDService, private Data: DataService,public dialog: MatDialog) { }
 
   ngOnInit() {
     this.Source= new MatTableDataSource(this.initial);
+    this.Form.controls['anomaly'].disable();
     this.HttpBD.LastDate(this.Data.Get_Co()).subscribe(result =>{
       if (result!=null){
         this.dateMin=result;
         this.dateMin=this.dateMin.date.toString().substr(0,10)
+        console.log(this.dateMin);
       }
       else{
         this.dateMin= new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
@@ -119,31 +125,38 @@ export class ReportStoreComponent implements OnInit {
     }
     else{
       if(this.Form.controls['date'].value!=null){this.date=this.Form.controls['date'].value;}
+      this.flagAnomaly+=1;
       this.Form.controls['date'].disable();
       var temp=this.Form.controls['type'].value;
       var Fact= this.Form.controls['fact'].value;
+      var Init= this.Form.controls['factIn'].value;
+      var anomaly= null;
       var price=[];
+          
       for(var i=7; i<document.getElementsByTagName('input').length;i++){
         price.push(document.getElementsByTagName('input')[i].value);
         this.miMapa.set(this.initial[i-7].tipo,this.miMapa.get(this.initial[i-7].tipo)+Number(document.getElementsByTagName('input')[i].value));
         if(i!=7){
           this.miMapa.set('total',this.miMapa.get('total')+Number(document.getElementsByTagName('input')[i].value));
         }
-        
       }
-      var co=this.Data.Get_Co();  
+      var co=this.Data.Get_Co(); 
+      if(this.flagAnomaly==3){anomaly= this.Form.controls['anomaly'].value;}
       this.ctrlFact.push([this.typeBox[Number(this.Form.controls['type'].value)-1],this.Form.controls['factIn'].value,this.Form.controls['fact'].value])
-      this.HttpBD.ReportStore(co,temp,price,Fact,this.date).subscribe(result =>{
+      this.HttpBD.ReportStore(co,temp,price,Fact,this.date,Init,Number(temp)-1,anomaly).subscribe(result =>{
+        if(this.flagAnomaly==2){anomaly= this.Form.controls['anomaly'].enable();}
         this.button[Number(temp)-1]='true';
         this.generate();
         this.cost=0;
         this.reset();
         if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-          var content={table: {headerRows: 1, widths: ['*', '*','*','*','*', '*','*','*','*', '*','*','*'], body: this.content}};
-          pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
+        
+          this.HttpBD.Search('016').subscribe(result=>{
+            var content={table: {headerRows: 1, widths: ['*', '*','*','*','*', '*','*','*','*', '*','*','*'], body: this.content}};
+            pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
               content:[
                 {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-                {text: 'CO:'+this.Data.Get_Co().toString(), style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
+                {text: 'CO:'+this.Data.Get_Co().toString()+' - '+ result.toString(), style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
                 {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
                 {text: '\n\n'},
                 content,
@@ -169,21 +182,24 @@ export class ReportStoreComponent implements OnInit {
                   
                 }},
                 {text: '\n\n'},
-                {text: 'TOTAL EFECTIVO : $ '+this.miMapa.get('Efectivo'),bold: true,fontSize: 18},
-                {text: 'TOTAL TARJETAS : $ '+ this.miMapa.get('total'),bold: true,fontSize: 18},
-                {text: 'TOTAL DE VENTA : $ '+ (Number(this.miMapa.get('Efectivo'))+Number(this.miMapa.get('total'))).toString(),bold: true,fontSize: 18}
+                {text: 'TOTAL EFECTIVO : $ '+this.miMapa.get('Efectivo')+'\n\n',bold: true,fontSize: 18},
+                {text: 'TOTAL TARJETAS : $ '+ this.miMapa.get('total')+'\n\n',bold: true,fontSize: 18},
+                {text: 'TOTAL DE VENTA : $ '+ (Number(this.miMapa.get('Efectivo'))+Number(this.miMapa.get('total'))).toString()+'\n\n',bold: true,fontSize: 18},
+                {text: 'COMENTARIOS\n\n',bold: true,fontSize: 18},
+                {text: anomaly, fontSize: 18}
               ]
-              }).download('reporte.pdf');
+              }).open();
+              location.reload();
+          });
+          
         }
         else{
           this.Form.reset();
         }
-        
-      })
-      
-      
-    }
+    })
+
   }
+}
 
   generate(){
     this.content.push([
@@ -215,8 +231,6 @@ export class ReportStoreComponent implements OnInit {
         [{text: '$ '+this.miMapa.get(this.initial[9].tipo),alignment: 'right',bold: true}],
         [{text: '$ '+this.miMapa.get(this.initial[10].tipo),alignment: 'right',bold: true}],
       ]);
-    }
-
-    
+    }    
   }
 }

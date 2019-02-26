@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Descripcion de la venta</mat-card-title>
+    <mat-card-subtitle>Presente los comentarios o anomalias presentado en la venta</mat-card-subtitle>
+    <form [formGroup]="Form">
+      <mat-form-field>
+          <textarea matInput placeholder="Descripcion de la venta" maxlength="50"  formControlName="desc"></textarea>
+          
+      </mat-form-field>
+      
+      <button mat-button type="submit"(click)="close()">Guardar </button>
+    </form>
+    
+  </mat-card-content>
+</mat-card>

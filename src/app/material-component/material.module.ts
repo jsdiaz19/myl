@@ -22,6 +22,7 @@ import { UploadCsvComponent } from './upload-csv/upload-csv.component';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { LowSalesProductComponent } from './low-sales-product/low-sales-product.component';
 import { ReportStoreComponent } from './report-store/report-store.component';
+import { DialogAnomalyComponent } from './dialog-anomaly/dialog-anomaly.component';
 
 
 @NgModule({
@@ -47,8 +48,12 @@ import { ReportStoreComponent } from './report-store/report-store.component';
     BudgetDetailComponent,
     LowSalesProductComponent,
     ReportStoreComponent,
+    DialogAnomalyComponent,
     
   ],
+  entryComponents: [
+    DialogAnomalyComponent,
+  ]
  
 })
 export class MaterialComponentsModule {}

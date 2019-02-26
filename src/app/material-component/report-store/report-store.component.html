@@ -53,6 +53,10 @@
             </mat-error>
         </mat-form-field> 
 
+        <mat-form-field>
+          <textarea matInput placeholder="Descripcion de anomalia u observacion" maxlength="50" formControlName="anomaly"></textarea>    
+      </mat-form-field>
+
       </form>
     </div>
 
@@ -76,6 +80,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
       </table> 
+
+    
 
       <button mat-button (click)="Save()">Guardar </button>
   </mat-card-content>

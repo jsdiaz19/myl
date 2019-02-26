@@ -28,7 +28,6 @@ export class ViewdespachosComponent implements OnInit{
   constructor(private HttpBD: HttBDService, private Data: DataService) { }
   ngOnInit(){
     this.idStore=this.Data.Get_usr();
-    console.log(this.idStore);
     this.HttpBD.Get_Despacho(this.idStore).subscribe(result =>{
       if(result!=null){
         this.Source= new MatTableDataSource(Object.values(result));

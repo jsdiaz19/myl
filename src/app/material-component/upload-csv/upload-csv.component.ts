@@ -14,7 +14,6 @@ export class UploadCsvComponent{
 
   Month(MonthValue){
     this.month=MonthValue.target.value;
-    console.log(this.month);
   }
 
   UploadCsv(files: FileList){
