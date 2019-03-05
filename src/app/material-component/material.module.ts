@@ -23,6 +23,10 @@ import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { LowSalesProductComponent } from './low-sales-product/low-sales-product.component';
 import { ReportStoreComponent } from './report-store/report-store.component';
 import { DialogAnomalyComponent } from './dialog-anomaly/dialog-anomaly.component';
+import { BudgetGoalComponent } from './budget-goal/budget-goal.component';
+import { CostEffectivenessComponent } from './cost-effectiveness/cost-effectiveness.component';
+import { BalanceComponent } from './balance/balance.component';
+import { ViewReportComponent } from './view-report/view-report.component';
 
 
 @NgModule({
@@ -49,6 +53,10 @@ import { DialogAnomalyComponent } from './dialog-anomaly/dialog-anomaly.componen
     LowSalesProductComponent,
     ReportStoreComponent,
     DialogAnomalyComponent,
+    BudgetGoalComponent,
+    CostEffectivenessComponent,
+    BalanceComponent,
+    ViewReportComponent,
     
   ],
   entryComponents: [

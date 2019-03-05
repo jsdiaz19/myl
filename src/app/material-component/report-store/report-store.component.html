@@ -82,7 +82,10 @@
       </table> 
 
     
-
-      <button mat-button (click)="Save()">Guardar </button>
+      <div id="Controls">
+        <button mat-raised-button color="primary" (click)="Save()">Guardar </button>
+        <button mat-raised-button color="primary" id="button" (click)="exportAsExcel()">Finalizar</button>
+      </div>
+      
   </mat-card-content>
 </mat-card>

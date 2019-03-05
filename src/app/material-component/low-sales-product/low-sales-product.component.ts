@@ -36,7 +36,7 @@ export class LowSalesProductComponent implements OnInit {
     this.HttpBD.LowSales().subscribe(result =>{
       this.Source= new MatTableDataSource(Object.values(result));
       
-      document.getElementById('Table').style.display="table"; 
+
       this.Source.filterPredicate = (data, filter) => {
         const dataStr = data[0];
         return dataStr.indexOf(filter) != -1; 
@@ -47,22 +47,17 @@ export class LowSalesProductComponent implements OnInit {
       }
     });
 
-    if(this.Co.toString().trim()=='001'){
-      this.HttpBD.ProducBrand().subscribe(result =>{
-        this.DataSource= new MatTableDataSource(Object.values(result));
-        document.getElementById('Download').style.display="inline";
-        document.getElementById('Marca').style.display="inline";
-        document.getElementById('Filtering').style.display="inline";
-        document.getElementById('Abstract').style.display="table"; 
-        this.DataSource.filterPredicate = (data, filter) => {
-          const dataStr = data[0];
-          return dataStr.indexOf(filter) != -1; 
-        }
-      });
-    }
-    else{
-      document.getElementById('Download').style.display="inline";
-    }
+    
+    this.HttpBD.ProducBrand().subscribe(result =>{
+      this.DataSource= new MatTableDataSource(Object.values(result));
+
+      this.DataSource.filterPredicate = (data, filter) => {
+        const dataStr = data[0];
+        return dataStr.indexOf(filter) != -1; 
+      }
+    });
+    
+
     
   }
 

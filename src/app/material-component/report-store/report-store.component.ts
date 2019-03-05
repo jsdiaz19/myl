@@ -31,7 +31,7 @@ export interface Payment {
 })
 export class ReportStoreComponent implements OnInit {
   Source=null;
-  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo:'OTROS MP', id:'10'}];
+  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo: 'Unico.com', id:'12'},{tipo:'OTROS MP', id:'10'}];
   displayedColumns: string[]=['PAGO', 'CANTIDAD'];
   cost=0;
   button=['false','false','false'];
@@ -64,7 +64,6 @@ export class ReportStoreComponent implements OnInit {
       if (result!=null){
         this.dateMin=result;
         this.dateMin=this.dateMin.date.toString().substr(0,10)
-        console.log(this.dateMin);
       }
       else{
         this.dateMin= new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
@@ -83,6 +82,7 @@ export class ReportStoreComponent implements OnInit {
     {text:this.initial[9].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
     {text:this.initial[10].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'}] );
     this.miMapa.set('Efectivo',0);
+    this.miMapa.set('Unico.com',0);
     this.miMapa.set('Visa',0);
     this.miMapa.set('Master',0);
     this.miMapa.set('Myl beneficios',0);

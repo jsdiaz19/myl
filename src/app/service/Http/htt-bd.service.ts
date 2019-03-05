@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import {DataService} from '../Data/data.service'
 import { Router } from '@angular/router'
 import { compileBaseDefFromMetadata } from '@angular/compiler';
+import { yearsPerPage } from '@angular/material/datepicker/typings/multi-year-view';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,7 @@ export class HttBDService {
   url='http://localhost/php/'
   idUsr=null;
   nom=null;
+  cargo=null;
   constructor(private http: HttpClient, private Data: DataService, private router: Router) {}
   
   SearchUser(user){
@@ -20,7 +22,15 @@ export class HttBDService {
         this.Data.Set_usr(this.idUsr);
         this.nom=result[1];
         localStorage.setItem('id',this.idUsr);
-        this.router.navigate(['/starter']);
+        this.cargo=result[2];
+        localStorage.setItem('cargo',this.cargo);
+        this.Data.Set_Cargo(this.cargo);
+        if(this.cargo=='Contable'){
+          this.router.navigate(['/lists']);
+        }
+        else{
+          this.router.navigate(['/starter']);
+        }
       }
     });
   }
@@ -166,9 +176,7 @@ UpdateBudget(budget){
     return this.http.post('/php/SearchId.php',{op: 'store', name: nom})
   }
   
-  Budget(store){
-    return this.http.post('/php/Get-budget.php',{id: store});
-  }
+  
 
 ///////////////////////////////// report store //////////////////////////////////////////////////////////
 
@@ -181,5 +189,50 @@ UpdateBudget(budget){
   }
 
   ///////////////////////////////// report store /////////////////////////////////////////////////////////////////////////
+
+  ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
+
+  Budget(year){
+    return this.http.post('/php/goal-budget/Get-budget.php',{year:year});
+  }
+
+  BudgetMonth(year){
+    return this.http.post('/php/goal-budget/BudgetMonth.php',{year:year});
+  } 
+
+  BudgetWeek(year,month){
+    return this.http.post('/php/goal-budget/BudgetWeek.php',{year:year, month: month});
+  }
+
+ ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
+
+   ///////////////////////////////// cost-effectiveness /////////////////////////////////////////////////////////////////////////
+
+  Cost(current,before){
+    return this.http.post('/php/Cost-effectiveness/cost-effectiveness.php',{current:current, before:before});
+  }
+
+   ///////////////////////////////// cost-effectiveness /////////////////////////////////////////////////////////////////////////
+
+   
+   ///////////////////////////////// Balance  /////////////////////////////////////////////////////////////////////////
+
+   View_report(){
+     return this.http.get('/php/balance/View_report.php');
+   }
+
+   Main_box(co,date){
+    return this.http.post('/php/balance/Main_box.php',{co:co,date:date});
+  }
+
+  Contigencebox(co,date){
+    return this.http.post('/php/balance/Contigencebox.php',{co:co,date:date});
+  }
+  Manuallybox(co,date){
+    return this.http.post('/php/balance/Manuallybox.php',{co:co,date:date});
+  }
+  Abstract(co,date){
+    return this.http.post('/php/balance/abstract.php',{co:co,date:date});
+  }
 }
 

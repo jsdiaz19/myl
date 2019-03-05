@@ -9,6 +9,10 @@ import { UploadCsvComponent} from './upload-csv/upload-csv.component';
 import {BudgetDetailComponent} from './budget-detail/budget-detail.component';
 import {LowSalesProductComponent} from './low-sales-product/low-sales-product.component';
 import {ReportStoreComponent} from './report-store/report-store.component';
+import {BudgetGoalComponent} from './budget-goal/budget-goal.component';
+import {CostEffectivenessComponent} from './cost-effectiveness/cost-effectiveness.component';
+import {BalanceComponent} from './balance/balance.component';
+import {ViewReportComponent} from './view-report/view-report.component';
 export const MaterialRoutes: Routes = [
   {
     path: 'view',
@@ -53,6 +57,26 @@ export const MaterialRoutes: Routes = [
   {
     path: 'product',
     component: LowSalesProductComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'goal',
+    component: BudgetGoalComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'cost',
+    component: CostEffectivenessComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin',
+    component: BalanceComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'reportStore/:co/:date',
+    component: ViewReportComponent,
     canActivate: [AuthGuardService]
   }
 ];

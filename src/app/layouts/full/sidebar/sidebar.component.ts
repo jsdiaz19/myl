@@ -11,6 +11,8 @@ import {
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItems } from '../../../shared/menu-items/menu-items';
 import { HttBDService} from '../../../service/Http/htt-bd.service'
+import {DataService} from '../../../service/Data/data.service';
+
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-sidebar',
@@ -22,17 +24,21 @@ export class AppSidebarComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
   nom=null;
+  cargo=null;
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     private HttpBD: HttBDService,
     media: MediaMatcher,
     public menuItems: MenuItems,
-    private router: Router
+    private router: Router,
+    private Data: DataService
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.nom=this.HttpBD.nom;
+    this.cargo=this.Data.Get_Cargo();
+
   }
   
   Close_session(){
@@ -42,5 +48,12 @@ export class AppSidebarComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  enable(enable){
+    if(enable.indexOf(this.cargo)!=-1){
+      return true;
+    }
+    return false;
   }
 }

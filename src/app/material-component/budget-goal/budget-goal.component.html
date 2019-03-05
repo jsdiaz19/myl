@@ -1,0 +1,229 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Detalle de presupuesto por cargo</mat-card-title>
+    <mat-card-subtitle>Balance diario</mat-card-subtitle>
+
+    <mat-tab-group>
+      <mat-tab label="Presupuesto mensual"> 
+
+        <div id="Filtring">
+          <ng-container *ngIf="id=='001'">
+              CO:
+            <select  [formControl]="Co" (change)="Filter()">
+              <option value=" ">None </option>
+              <option *ngFor="let tiendas of Store" value={{tiendas}}>{{tiendas}}</option>
+            </select> 
+          </ng-container>  
+          
+          <ng-container >
+            Periodo:
+          <select [formControl]="Date" (change)="Filter()">
+            <option value=" "> None</option>
+            <option value="Enero"> Enero </option>
+            <option value="Febrero"> Febrero</option>
+            <option value="Marzo"> Marzo </option>
+            <option value="Abril"> Abril</option>
+            <option value="Mayo"> Mayo</option>
+            <option value="Junio"> Junio</option>
+            <option value="Julio"> Julio</option>
+            <option value="Agosto"> Agosto</option>
+            <option value="Septiembre"> Septiembre</option>
+            <option value="Octubre"> Octubre</option>
+            <option value="Noviembre"> Noviembre</option>
+            <option value="Diciembre"> Diciembre</option>
+          </select> 
+        </ng-container>   
+  
+        </div>
+
+        <table mat-table [dataSource]="Data" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="CO">
+            <th mat-header-cell *matHeaderCellDef> C0 </th>
+            <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="MES">
+            <th mat-header-cell *matHeaderCellDef> MES </th>
+            <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="TOTAL">
+            <th mat-header-cell *matHeaderCellDef> PRESUPUESTO </th>
+            <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ADMON">
+            <th mat-header-cell *matHeaderCellDef> ADMON </th>
+            <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="SENIOR">
+            <th mat-header-cell *matHeaderCellDef> SENIOR </th>
+            <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="JUNIOR">
+            <th mat-header-cell *matHeaderCellDef> JUNIOR </th>
+            <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+          <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
+        </table>
+      </mat-tab>
+
+      <mat-tab label="Presupuesto semanal"> 
+      
+        <div id="Search">
+          <ng-container *ngIf="id=='001'">
+              CO:
+            <select  [formControl]="SearchCo" (change)="Search()">
+              <option value=" ">None </option>
+              <option *ngFor="let tiendas of Store" value={{tiendas}}>{{tiendas}}</option>
+            </select> 
+          </ng-container>  
+          
+          <ng-container >
+            Mes:
+          <select [formControl]="week" (change)="Search()">
+            <option value=" "> None</option>
+            <option value="Enero"> Enero </option>
+            <option value="Febrero"> Febrero</option>
+            <option value="Marzo"> Marzo </option>
+            <option value="Abril"> Abril</option>
+            <option value="Mayo"> Mayo</option>
+            <option value="Junio"> Junio</option>
+            <option value="Julio"> Julio</option>
+            <option value="Agosto"> Agosto</option>
+            <option value="Septiembre"> Septiembre</option>
+            <option value="Octubre"> Octubre</option>
+            <option value="Noviembre"> Noviembre</option>
+            <option value="Diciembre"> Diciembre</option>
+          </select> 
+        </ng-container>   
+  
+        </div>
+
+
+          <table mat-table [dataSource]="DataSource" class="mat-elevation-z8">
+
+              <ng-container matColumnDef="CO">
+                <th mat-header-cell *matHeaderCellDef> C0 </th>
+                <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="TOTAL">
+                <th mat-header-cell *matHeaderCellDef> Presupuesto </th>
+                <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="MES">
+                <th mat-header-cell *matHeaderCellDef> MES </th>
+                <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SEMANA">
+                <th mat-header-cell *matHeaderCellDef> SEMANA </th>
+                <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="ADMON">
+                <th mat-header-cell *matHeaderCellDef> ADMON </th>
+                <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="SENIOR">
+                <th mat-header-cell *matHeaderCellDef> SENIOR </th>
+                <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="JUNIOR">
+                <th mat-header-cell *matHeaderCellDef> JUNIOR </th>
+                <td mat-cell *matCellDef="let element"> {{element[6]}} </td>
+              </ng-container>
+    
+              <tr mat-header-row *matHeaderRowDef="Header"></tr>
+              <tr mat-row *matRowDef="let row; columns: Header;"></tr>
+            </table>
+
+      </mat-tab>
+
+      <mat-tab label="Presupuesto diario">  
+        
+        <div id="Filtering">
+          <ng-container *ngIf="id=='001'">
+              CO:
+            <select  [formControl]="CoFilter" (change)="applyFilter()">
+              <option value=" ">None </option>
+              <option *ngFor="let tiendas of Store" value={{tiendas}}>{{tiendas}}</option>
+            </select> 
+          </ng-container>  
+
+          <ng-container >
+            Periodo:
+          <select [formControl]="DateFilter" (change)="applyFilter()">
+            <option value=" "> None</option>
+            <option value="01"> Enero </option>
+            <option value="02"> Febrero</option>
+            <option value="03"> Marzo </option>
+            <option value="04"> Abril</option>
+            <option value="05"> Mayo</option>
+            <option value="06"> Junio</option>
+            <option value="07"> Julio</option>
+            <option value="08"> Agosto</option>
+            <option value="09"> Septiembre</option>
+            <option value="10"> Octubre</option>
+            <option value="11"> Noviembre</option>
+            <option value="12"> Diciembre</option>
+          </select> 
+        </ng-container>   
+ 
+        </div>
+
+        <table mat-table [dataSource]="Source" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="CO">
+            <th mat-header-cell *matHeaderCellDef> C0 </th>
+            <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="META">
+            <th mat-header-cell *matHeaderCellDef> META </th>
+            <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="DIA">
+            <th mat-header-cell *matHeaderCellDef> DIA </th>
+            <td mat-cell *matCellDef="let element"> {{NameDay(element[3]) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="FECHA">
+            <th mat-header-cell *matHeaderCellDef> FECHA </th>
+            <td mat-cell *matCellDef="let element"> {{element[3].date.substr(0,10)}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ADMON">
+            <th mat-header-cell *matHeaderCellDef> ADMON </th>
+            <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="SENIOR">
+            <th mat-header-cell *matHeaderCellDef> SENIOR </th>
+            <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="JUNIOR">
+            <th mat-header-cell *matHeaderCellDef> JUNIOR </th>
+            <td mat-cell *matCellDef="let element"> {{element[6]}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-tab>
+      
+    
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

@@ -1,12 +1,11 @@
 table {
     width: 100%;
     margin-top: 90px;
-    display: none;
   }
 
 #Filtering{
   float:left;
-  display: none;
+
 }
 
 button{
@@ -14,9 +13,8 @@ button{
 }
 
 #Marca{
-  margin-left: 80px;
   float:left;
-  display: none;
+
 }
 
 #store{
@@ -31,6 +29,3 @@ button{
   display: block;
 }
 
-#Download{
-  display: none;
-}
