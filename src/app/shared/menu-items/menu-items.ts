@@ -15,7 +15,7 @@ const MENUITEMS = [
   { state: 'goal', type: 'link', name: 'Meta presupuesto', icon: 'assignment_ind',enable: ['Administrador tienda','Administrador'] },
   { state: 'cost', type: 'link', name: 'Rentabilidad', icon: 'trending_up',enable: ['Administrador tienda','Administrador'] },
   { state: 'product', type: 'link', name: 'Baja rotacion', icon: 'trending_down',enable: ['Administrador tienda','Administrador'] },
-  { state: 'report', type: 'link', name: 'Cierre diario', icon: 'view_headline',enable: ['Administrador tienda'] },  
+  { state: 'report', type: 'link', name: 'Cierre diario', icon: 'view_headline',enable: ['Administrador tienda','Administrador'] },  
   { state: 'admin', type: 'link', name: 'Balance', icon: 'trending_up',enable: ['Administrador','Contable'] },
   
   

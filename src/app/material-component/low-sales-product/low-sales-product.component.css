@@ -1,15 +1,20 @@
 table {
     width: 100%;
-    margin-top: 90px;
+    margin-top: 30px;
   }
 
 #Filtering{
   float:left;
+  display: none;
+}
 
+#Download{
+  display: none;
 }
 
 button{
   margin-left: 30px;
+  margin-top: 30PX;
 }
 
 #Marca{

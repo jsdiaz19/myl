@@ -150,8 +150,8 @@ BudgetSeller(co,month){
 
 ////////////////////////////////  low product sales  //////////////////////////////////////////////////////////////////////////
 
-LowSales(){
-  return this.http.get('/php/low-sales/LowSales.php');
+LowSales(co){
+  return this.http.post('/php/low-sales/LowSales.php',{co: co});
 }
 
 ProducBrand(){

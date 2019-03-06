@@ -18,7 +18,7 @@ export class CostEffectivenessComponent implements OnInit {
   month= new FormControl('');
   year= new FormControl('');
   CurrentYear= new Date().getFullYear();
-  Co="all";
+  Co='0';
   constructor(private HttpBD: HttBDService, private Data: DataService) { }
 
   ngOnInit() {
@@ -26,13 +26,17 @@ export class CostEffectivenessComponent implements OnInit {
     this.HttpBD.Cost(this.CurrentYear,this.CurrentYear-1).subscribe(result =>{
       this.Source= new MatTableDataSource(Object.values(result));
       this.Source.filterPredicate = (data, filter) => {
-        const dataStr = data[1];
+        const dataStr = data[1].toString();
         const dataCo=data[0];
-        return dataCo==filter[0] && dataStr.substr(0,4).indexOf(filter[1]) !=-1 && dataStr.substr(4,dataStr.length).indexOf(filter[2]) != -1 ; 
+        if(this.Data.Get_Cargo()!="Administrador"){
+          return dataCo==filter[0] && dataStr.indexOf(filter[1])!=-1 && dataStr.substr(-2).indexOf(filter[2])!=-1; 
+        }
+        else{
+          return dataStr.indexOf(filter[1])!=-1 && dataStr.substr(-2).indexOf(filter[2])!=-1;
+        }
       }
-      console.log(this.Data.Get_Cargo());
+      
       if(this.Data.Get_Cargo()!="Administrador"){
-        console.log('entro');
         this.Co=this.Data.Get_usr();
         this.applyFilter();
       }

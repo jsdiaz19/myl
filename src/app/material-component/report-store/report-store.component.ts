@@ -31,7 +31,7 @@ export interface Payment {
 })
 export class ReportStoreComponent implements OnInit {
   Source=null;
-  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo: 'Unico.com', id:'12'},{tipo:'OTROS MP', id:'10'}];
+  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo: 'UNICO.COM', id:'12'},{tipo:'OTROS MP', id:'10'}];
   displayedColumns: string[]=['PAGO', 'CANTIDAD'];
   cost=0;
   button=['false','false','false'];
@@ -140,7 +140,7 @@ export class ReportStoreComponent implements OnInit {
           this.miMapa.set('total',this.miMapa.get('total')+Number(document.getElementsByTagName('input')[i].value));
         }
       }
-      var co=this.Data.Get_Co(); 
+      var co=this.Data.Get_usr(); 
       if(this.flagAnomaly==3){anomaly= this.Form.controls['anomaly'].value;}
       this.ctrlFact.push([this.typeBox[Number(this.Form.controls['type'].value)-1],this.Form.controls['factIn'].value,this.Form.controls['fact'].value])
       this.HttpBD.ReportStore(co,temp,price,Fact,this.date,Init,Number(temp)-1,anomaly).subscribe(result =>{
@@ -148,15 +148,15 @@ export class ReportStoreComponent implements OnInit {
         this.button[Number(temp)-1]='true';
         this.generate();
         this.cost=0;
-        this.reset();
+        this.reset(); 
         if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-        
-          this.HttpBD.Search('016').subscribe(result=>{
+          this.HttpBD.Search(this.Data.Get_usr()).subscribe(result=>{
+          
             var content={table: {headerRows: 1, widths: ['*', '*','*','*','*', '*','*','*','*', '*','*','*'], body: this.content}};
             pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
               content:[
                 {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-                {text: 'CO:'+this.Data.Get_Co().toString()+' - '+ result.toString(), style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
+                {text: 'CO:'+this.Data.Get_usr().toString()+' - '+ result.toString(), style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
                 {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
                 {text: '\n\n'},
                 content,

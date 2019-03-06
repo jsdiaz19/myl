@@ -15,7 +15,7 @@
         <div id="payment">     
           <label style="margin-right:30px">Tipo de caja:</label> 
           <mat-radio-group id="type" formControlName="type" >
-            <mat-radio-button value=1 [disabled]="button[0]">Online</mat-radio-button>
+            <mat-radio-button value=1 [disabled]="button[0]">Principal</mat-radio-button>
             <mat-radio-button value=2 [disabled]="button[1]">Contingencia</mat-radio-button>
             <mat-radio-button value=3 [disabled]="button[2]"> Manual</mat-radio-button>
           </mat-radio-group>
@@ -82,10 +82,9 @@
       </table> 
 
     
-      <div id="Controls">
-        <button mat-raised-button color="primary" (click)="Save()">Guardar </button>
-        <button mat-raised-button color="primary" id="button" (click)="exportAsExcel()">Finalizar</button>
-      </div>
+      
+      <button mat-raised-button color="primary" (click)="Save()">Guardar </button>
+        
       
   </mat-card-content>
 </mat-card>

@@ -7,19 +7,26 @@
 
     <mat-tab-group>
       <mat-tab label="Baja rotacion por tienda">
+        <div id="loading">
+          <img src="../../../assets/images/loading2.gif" width="60px">
+        </div>
 
         <div id="Filtering">
           Tienda:
-            <select id="store" (change)="applyFilter()" [(ngModel)]="IdCO" [disabled]="IdCO!='001'">
+            <select id="store" (change)="applyFilter()" [(ngModel)]="IdCO" >
                 <option value=" "> </option>
             <ng-container *ngFor="let tiendas of Store">
               <option  value={{tiendas}} *ngIf="tiendas!='001       '">{{tiendas}}</option>
             </ng-container> 
           </select>
-          <button mat-raised-button color="primary" (click)="exportAsExcel()" id="Download" >Exportar a Excel</button>
+        </div>
+        <button mat-raised-button color="primary" (click)="exportAsExcel()" id="Download" >Exportar a Excel</button>
+        
+        <div id="info" style="display:none; margin-top:30px">
+          No hay referencia en baja rotacion
         </div>
 
-        <table mat-table [dataSource]="Source" class="mat-elevation-z8" id="Table">
+        <table mat-table [dataSource]="Source" class="mat-elevation-z8" id="Table" style="display: none;">
 
           <ng-container matColumnDef="CO">
             <th mat-header-cell *matHeaderCellDef> CO </th>
@@ -63,8 +70,10 @@
             <option value="NEW"> NEW </option>
           </select> 
         </div>
-
-        <table mat-table [dataSource]="DataSource" class="mat-elevation-z8" id="Abstract">
+        <div id="spinner">
+          <img src="../../../assets/images/loading2.gif" width="60px">
+        </div>
+        <table mat-table [dataSource]="DataSource" class="mat-elevation-z8" id="Abs" style="display:table">
   
           <ng-container matColumnDef="MARCA">
             <th mat-header-cell *matHeaderCellDef> MARCA </th>
