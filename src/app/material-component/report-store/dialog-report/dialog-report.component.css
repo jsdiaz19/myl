@@ -1,0 +1,14 @@
+body{
+  margin-left:30px;
+}
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+  height: 150px;
+  margin-left: 30px;
+}
+  
+.example-radio-button {
+  margin-top: 20px;
+}

@@ -54,7 +54,7 @@
         </mat-form-field> 
 
         <mat-form-field>
-          <textarea matInput placeholder="Descripcion de anomalia u observacion" maxlength="50" formControlName="anomaly"></textarea>    
+          <textarea matInput placeholder="Descripcion de anomalia u observacion"  maxlength="50" formControlName="anomaly"></textarea>    
       </mat-form-field>
 
       </form>
@@ -71,9 +71,9 @@
         <ng-container matColumnDef="CANTIDAD">
             <th mat-header-cell *matHeaderCellDef> CANTIDAD </th>
             <td mat-cell *matCellDef="let element">  
-                <input matInput placeholder="$ 0.000" value="0" [disabled]="Form.invalid" (blur)="getCost($event)">
+              <input matInput value="0" [disabled]="Form.invalid" (blur)="getCost($event,element.tipo)">
             </td>
-            <td mat-footer-cell *matFooterCellDef> $ {{cost}}</td>
+            <td mat-footer-cell *matFooterCellDef> $ {{this.miMapa.get('total') }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -83,7 +83,7 @@
 
     
       
-      <button mat-raised-button color="primary" (click)="Save()">Guardar </button>
+      <button mat-raised-button color="primary" (click)="Save()" style="margin-top:30px">Guardar </button>
         
       
   </mat-card-content>

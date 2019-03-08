@@ -27,7 +27,7 @@ import { BudgetGoalComponent } from './budget-goal/budget-goal.component';
 import { CostEffectivenessComponent } from './cost-effectiveness/cost-effectiveness.component';
 import { BalanceComponent } from './balance/balance.component';
 import { ViewReportComponent } from './view-report/view-report.component';
-
+import {DialogReportComponent} from './report-store/dialog-report/dialog-report.component';
 
 @NgModule({
   imports: [
@@ -57,10 +57,11 @@ import { ViewReportComponent } from './view-report/view-report.component';
     CostEffectivenessComponent,
     BalanceComponent,
     ViewReportComponent,
-    
+    DialogReportComponent
   ],
   entryComponents: [
     DialogAnomalyComponent,
+    DialogReportComponent,
   ]
  
 })

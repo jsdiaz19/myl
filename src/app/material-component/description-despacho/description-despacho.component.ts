@@ -14,7 +14,6 @@ export class DescriptionDespachoComponent implements OnInit {
 
   ngOnInit() {
     this.inv=this.data.inv;
-    console.log(this.data.ref);
   }
 
   Get(event: any){
