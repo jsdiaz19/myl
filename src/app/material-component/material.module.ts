@@ -28,6 +28,8 @@ import { CostEffectivenessComponent } from './cost-effectiveness/cost-effectiven
 import { BalanceComponent } from './balance/balance.component';
 import { ViewReportComponent } from './view-report/view-report.component';
 import {DialogReportComponent} from './report-store/dialog-report/dialog-report.component';
+import { SchedulesComponent } from './report-store/schedules/schedules.component';
+import { NewUserComponent } from './report-store/schedules/new-user/new-user.component';
 
 @NgModule({
   imports: [
@@ -57,11 +59,14 @@ import {DialogReportComponent} from './report-store/dialog-report/dialog-report.
     CostEffectivenessComponent,
     BalanceComponent,
     ViewReportComponent,
-    DialogReportComponent
+    DialogReportComponent,
+    SchedulesComponent,
+    NewUserComponent
   ],
   entryComponents: [
     DialogAnomalyComponent,
     DialogReportComponent,
+    NewUserComponent
   ]
  
 })

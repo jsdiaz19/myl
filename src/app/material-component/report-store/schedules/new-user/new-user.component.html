@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Registro de vendedor</mat-card-title>
+    <mat-card-subtitle>Presente la informacion necesaria para el registro de un nuevo vendedor</mat-card-subtitle>
+  </mat-card-content>
+  <img src="assets/images/user.jpg" width="30%">
+  
+  <form id="horizontal" [formGroup]="Form">
+      <mat-form-field>
+        <input matInput placeholder="Nombre" type="text" formControlName="nom" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="Form.controls['nom'].hasError('required')">
+          El nombre del vendedor es <strong>requirido</strong>
+        </mat-error>
+      </mat-form-field>
+ 
+      <mat-form-field>
+        <input matInput placeholder="Numero de documento" type="number" class="form-control" formControlName="cc" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="Form.controls['cc'].hasError('required')">
+          El documento de identidad del vendedor es <strong>requirido</strong>
+        </mat-error>
+      </mat-form-field>
+ 
+      <mat-form-field>
+        <input matInput placeholder="Codigo de vendedor" type="text" class="form-control" formControlName="idVend" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="Form.controls['idVend'].hasError('required')">
+          El codigo del vendedor es <strong>requirido</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="Validate()" style="margin-top:30px">Crear vendedor</button>
+ 
+    </form>
+</mat-card>

@@ -21,19 +21,32 @@
         <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
       </ng-container>
   
-      <ng-container matColumnDef="Cumplimiento">
-        <th mat-header-cell *matHeaderCellDef> Cumplimiento </th>
-        <td mat-cell *matCellDef="let element"> 
-          <ng-container *ngIf="Parse(element[3])==2">
-            <p style="color: #fcc107 "><b>{{element[3]}}</b></p>
-          </ng-container>
-
-          <ng-container *ngIf="Parse(element[3])==1">
+      <ng-container matColumnDef="Deuda">
+        <th mat-header-cell *matHeaderCellDef> Deuda </th>
+        <td mat-cell *matCellDef="let element">  
+          <ng-container *ngIf="element[3]>0; else danger">
             <p style="color:green"><b>{{element[3]}}</b></p>
           </ng-container>
           
-          <ng-container *ngIf="Parse(element[3])==3">
+          <ng-template #danger>
             <p style="color:#FF0000"><b>{{element[3]}}</b></p>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cumplimiento">
+        <th mat-header-cell *matHeaderCellDef> Cumplimiento </th>
+        <td mat-cell *matCellDef="let element"> 
+          <ng-container *ngIf="Parse(element[4])==2">
+            <p style="color: #fcc107 "><b>{{element[4]}}</b></p>
+          </ng-container>
+
+          <ng-container *ngIf="Parse(element[4])==1">
+            <p style="color:green"><b>{{element[4]}}</b></p>
+          </ng-container>
+          
+          <ng-container *ngIf="Parse(element[4])==3">
+            <p style="color:#FF0000"><b>{{element[4]}}</b></p>
           </ng-container>
 
         </td>
@@ -41,44 +54,44 @@
 
       <ng-container matColumnDef="Fecha corte">
         <th mat-header-cell *matHeaderCellDef> Fecha corte </th>
-        <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Presupuesto corte">
         <th mat-header-cell *matHeaderCellDef> Presupuesto corte </th>
-        <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[6]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Cumplimiento corte">
         <th mat-header-cell *matHeaderCellDef> Cumplimiento corte </th>
         <td mat-cell *matCellDef="let element">
-          <ng-container *ngIf="Parse(element[6])==2">
-            <p style="color: #fcc107 "><b>{{element[6]}}</b></p>
+          <ng-container *ngIf="Parse(element[7])==2">
+            <p style="color: #fcc107 "><b>{{element[7]}}</b></p>
           </ng-container>
 
-          <ng-container *ngIf="Parse(element[6])==1">
-            <p style="color:green"><b>{{element[6]}}</b></p>
+          <ng-container *ngIf="Parse(element[7])==1">
+            <p style="color:green"><b>{{element[7]}}</b></p>
           </ng-container>
           
-          <ng-container *ngIf="Parse(element[6])==3">
-            <p style="color:#FF0000"><b>{{element[6]}}</b></p>
+          <ng-container *ngIf="Parse(element[7])==3">
+            <p style="color:#FF0000"><b>{{element[7]}}</b></p>
           </ng-container>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="P. prom">
         <th mat-header-cell *matHeaderCellDef> P. prom </th>
-        <td mat-cell *matCellDef="let element"> {{element[7]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[8]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="UPF">
         <th mat-header-cell *matHeaderCellDef> UPF </th>
-        <td mat-cell *matCellDef="let element"> {{element[8]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[9]}} </td>
       </ng-container>
 
       <ng-container matColumnDef="T. prom">
         <th mat-header-cell *matHeaderCellDef> T. prom </th>
-        <td mat-cell *matCellDef="let element"> {{element[9]}} </td>
+        <td mat-cell *matCellDef="let element"> {{element[10]}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -115,16 +128,29 @@
         <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="Venta">
+          <th mat-header-cell *matHeaderCellDef> Venta </th>
+          <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Deuda">
+          <th mat-header-cell *matHeaderCellDef> Deuda </th>
+          <td mat-cell *matCellDef="let element"> 
+            <ng-container *ngIf="element[10]>0; else danger">
+              <p style="color:green"><b>{{element[10]}}</b></p>
+            </ng-container>
+            
+            <ng-template #danger>
+              <p style="color:#FF0000"><b>{{element[10]}}</b></p>
+            </ng-template>
+          </td>
+        </ng-container>
+  
       <ng-container matColumnDef="Cantidad">
         <th mat-header-cell *matHeaderCellDef> Cantidad </th>
         <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
       </ng-container>
-
-      <ng-container matColumnDef="Venta">
-        <th mat-header-cell *matHeaderCellDef> Venta </th>
-        <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
-      </ng-container>
-
+      
       <ng-container matColumnDef="Cumplimiento">
         <th mat-header-cell *matHeaderCellDef> Cumplimiento </th>
         <td mat-cell *matCellDef="let element">

@@ -3,7 +3,7 @@
     <mat-card-title>Detalle de cierre</mat-card-title>
         
     <mat-tab-group>
-      <mat-tab label="CAJA PRINCIPAL">
+      <mat-tab label="CAJA PRINCIPAL" *ngIf="this.Source!=null">
           <table mat-table [dataSource]="Source" class="mat-elevation-z8">
 
               <ng-container matColumnDef="CO">
@@ -30,7 +30,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
       </mat-tab>
-      <mat-tab label="CAJA CONTINGENCIA">
+      <mat-tab label="CAJA CONTINGENCIA" *ngIf="this.Data!=null">
           <table mat-table [dataSource]="Data" class="mat-elevation-z8">
 
               <ng-container matColumnDef="CO">
@@ -57,7 +57,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
       </mat-tab>
-      <mat-tab label="CAJA MANUAL">
+      <mat-tab label="CAJA MANUAL" *ngIf="this.DataSource!=null">
           <table mat-table [dataSource]="DataSource" class="mat-elevation-z8">
 
               <ng-container matColumnDef="CO">
@@ -84,6 +84,13 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
       </mat-tab>  
+
+      <mat-tab label="ANOMALIAS" *ngIf="this.anomally!=null">
+      
+        <p>{{this.anomally}}</p>
+
+      </mat-tab>
+
       <mat-tab label="CONSOLIDADO">
           <div id="Download">
             <button mat-raised-button color="primary" (click)="exportAsExcel()"  >Exportar a Excel</button>

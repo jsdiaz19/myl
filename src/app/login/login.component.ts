@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttBDService} from '../service/Http/htt-bd.service'
-import { FormGroup, FormControl, Validators, FormBuilder }  from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormGroupDirective,FormBuilder,NgForm }  from '@angular/forms';
 import { Router } from '@angular/router'
 import { DataService} from '../service/Data/data.service'
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -12,17 +20,18 @@ import { DataService} from '../service/Data/data.service'
 export class LoginComponent implements OnInit {
 
   usuario= null;
-
+  matcher = new MyErrorStateMatcher();
   usr={
     usuario: null,
     password: null
   }
-  log: FormGroup;
+
+  log = new FormGroup({
+    user: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.required),
+  });
   constructor(private HttpBD: HttBDService,private formBuilder: FormBuilder, private router: Router, private Data: DataService) {
-    this.log=this.formBuilder.group({
-      user: ['',Validators.required],
-      password: ['',Validators.required],
-    }); 
+    
    }
 
   ngOnInit() {

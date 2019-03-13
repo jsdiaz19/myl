@@ -1,0 +1,111 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Registro de horario</mat-card-title>
+    <mat-card-subtitle>Presente los horarios detallados del dia de hoy</mat-card-subtitle>
+    <div id="cont">
+      <table mat-table [dataSource]="Source" id="table" >           
+        <ng-container matColumnDef="SIGLA">
+          <th mat-header-cell *matHeaderCellDef> SIGLA </th>
+          <td mat-cell *matCellDef="let element">{{element.sigla}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="DESCRIPCION">
+            <th mat-header-cell *matHeaderCellDef> DESCRIPCION </th>
+            <td mat-cell *matCellDef="let element"> {{element.desc}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+      </table> 
+
+      <div id="panel">
+        <button mat-button (click)="add()" style="display:block">
+          <mat-icon >add_circle</mat-icon>
+          Agregar
+        </button>
+
+        <button mat-button (click)="deleted()" style="margin-top:30px;">
+          <mat-icon >delete</mat-icon>
+          Eliminar
+        </button>
+
+        <button mat-button (click)="NewUser()" style="margin-top:30px;display: block">
+            <mat-icon >perm_identity</mat-icon>
+            Crear Vendedor
+          </button>
+
+        <button (click)="save()" mat-button style="margin-top:30px;display: block">
+          <mat-icon >save</mat-icon>
+          Guardar
+        </button>
+      </div>
+      
+
+
+      <table mat-table [dataSource]="DataSource" id="tab" >
+        <ng-container matColumnDef=" ">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element"> 
+            <ng-container *ngIf="element.nombre!=''"> 
+              <mat-checkbox (change)="change($event,element.index)"></mat-checkbox> 
+            </ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NOMBRE">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.nombre==''"> 
+              <mat-select placeholder="Nombre" [(value)]="nom">
+                <mat-option *ngFor="let temp of vend" [value]="temp">
+                  {{temp[0]}}
+                </mat-option> 
+              </mat-select>
+            </ng-container>
+            <ng-container *ngIf="element.nombre!=''">{{element.nombre}}</ng-container>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CARGO">
+            <th mat-header-cell *matHeaderCellDef> CARGO </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.nombre==''"> 
+                <mat-select placeholder="Cargo" [(value)]="occupation">
+                  <mat-option value=1,Administrador> Administrador </mat-option>
+                  <mat-option value=5,Senior> Senior </mat-option>
+                  <mat-option value=6,Junior> Junior </mat-option>
+                </mat-select>
+              </ng-container>
+
+              <ng-container *ngIf="element.nombre!=''">{{element.cargo[1]}}</ng-container>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="HORARIO">
+          <th mat-header-cell *matHeaderCellDef> HORARIO </th>
+          <td mat-cell *matCellDef="let element">
+            <ng-container *ngIf="element.nombre==''"> 
+              <mat-select placeholder="Horario" [(value)]="scheduler">
+                <mat-option value="ACS"> ACS </mat-option>
+                <mat-option value="ACF"> ACF </mat-option>
+                <mat-option value="MCS"> MCS </mat-option>
+                <mat-option value="A6"> A6 </mat-option>
+                <mat-option value="A3"> A3 </mat-option>
+                <mat-option value="TCS"> TCS </mat-option>
+                <mat-option value="MCF"> MCF </mat-option>
+                <mat-option value="D"> D </mat-option>
+              </mat-select>
+            </ng-container>
+
+            <ng-container *ngIf="element.nombre!=''">{{element.horario}}</ng-container>
+          </td>
+      </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="Header"></tr>
+        <tr mat-row *matRowDef="let row; columns: Header;" ></tr>
+
+      </table>
+  </div>
+
+  </mat-card-content>
+</mat-card>

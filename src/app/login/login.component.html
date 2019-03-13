@@ -11,11 +11,17 @@
     <div id="container" class="container">
         <form [formGroup]="log" (ngSubmit)="SearchUser()">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Usuario" formControlName="user">
+            <input matInput placeholder="Usuario" formControlName="user" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="log.controls['user'].hasError('required')">
+              El Usuario es <strong>requirido</strong>
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Contraseña" type="password" formControlName="password">
+            <input matInput placeholder="Contraseña" type="password" formControlName="password" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="log.controls['password'].hasError('required')">
+              La contraseña es <strong>requirido</strong>
+            </mat-error>
           </mat-form-field>
 
           <button type="submit" >Login</button>

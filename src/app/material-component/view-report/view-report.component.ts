@@ -18,7 +18,7 @@ export class ViewReportComponent implements OnInit {
   Data=null;
   DataSource=null;
   table=null;
-
+  anomally=null;
   constructor(private _route: ActivatedRoute,private HttpBD: HttBDService) { 
     this.co=this._route.snapshot.paramMap.get('co');
     this.date=this._route.snapshot.paramMap.get('date');
@@ -27,13 +27,17 @@ export class ViewReportComponent implements OnInit {
     });
 
     this.HttpBD.Contigencebox(this.co,this.date).subscribe(result=>{
-      this.Data= new MatTableDataSource(Object.values(result));
+      if(result!=null){this.Data= new MatTableDataSource(Object.values(result));}
     })
     this.HttpBD.Manuallybox(this.co,this.date).subscribe(result=>{
-      this.DataSource= new MatTableDataSource(Object.values(result));
+      if(result!=null){this.DataSource= new MatTableDataSource(Object.values(result))};
     });
     this.HttpBD.Abstract(this.co,this.date).subscribe(result=>{
-      this.table= new MatTableDataSource(Object.values(result));
+      if(result!=null){this.table= new MatTableDataSource(Object.values(result));}
+    })
+    this.HttpBD.Anomally_view(this.co,this.date).subscribe(result=>{
+      if(result!==null){this.anomally=result;}
+      
     })
   }
 

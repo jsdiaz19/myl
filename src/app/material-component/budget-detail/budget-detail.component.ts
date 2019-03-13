@@ -16,8 +16,8 @@ export class BudgetDetailComponent implements OnInit {
   DataSource=null;
   InfoSource=null;
   DataSeller=null;
-  displayedColumns: string[] = ['Co','Presupuesto','Venta','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte', 'P. prom','UPF','T. prom'];
-  Columns: string[] = ['Co','Lapso','Semana','Meta','Cantidad','Venta','Cumplimiento','P. prom','UPF','T. prom'];
+  displayedColumns: string[] = ['Co','Presupuesto','Venta','Deuda','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte', 'P. prom','UPF','T. prom'];
+  Columns: string[] = ['Co','Lapso','Semana','Meta','Venta','Deuda','Cantidad','Cumplimiento','P. prom','UPF','T. prom'];
   Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta'];
   displayedHeader: string[] = ['Co','Vendedor','Cantidad','Venta','Distribucion de venta','P. prom','UPF','T. prom']; 
   constructor(private Data: DataService,private HttpBD: HttBDService) { }

@@ -8,6 +8,8 @@ import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts.js';
 import {MatDialog,MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
 import {DialogReportComponent} from './dialog-report/dialog-report.component';
+import {Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import { element } from '@angular/core/src/render3';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -46,7 +48,7 @@ export class ReportStoreComponent implements OnInit {
   dateMin;
   DisableAnomaly='true';
   flagAnomaly=0;
-  dateMax= new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0];
+  dateMax=new Date().toISOString().split('T')[0];
   ctrlFact=[];
   opt=null;
   Form = new FormGroup({
@@ -59,7 +61,7 @@ export class ReportStoreComponent implements OnInit {
   });
   
 
-  constructor(private HttpBD: HttBDService, private Data: DataService,public dialog: MatDialog) { }
+  constructor(private HttpBD: HttBDService, private Data: DataService,public dialog: MatDialog,private _router: Router,private _Activatedroute:ActivatedRoute) { }
 
   ngOnInit() {
     this.Source= new MatTableDataSource(this.initial);
@@ -76,28 +78,16 @@ export class ReportStoreComponent implements OnInit {
     this.miMapa.set('totalUnico',0);
     this.ctrlFact.push([{text: 'CAJA',style: 'header'},{text: 'FACTURA INICIAL',style: 'header'},{text: 'FACTURA FINAL',style: 'header'}]);
     this.content.push(arr);
-    this.HttpBD.LastDate(this.Data.Get_Co()).subscribe(result =>{
+    this.HttpBD.LastDate(this.Data.Get_usr()).subscribe(result =>{
       if (result!=null){
         this.dateMin=result;
-        this.dateMin=this.dateMin.date.toString().substr(0,10)
+        this.dateMin=this.dateMin.date.toString().substr(0,10);
+        console.log(this.dateMax);
       }
       else{
         this.dateMin= new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
       }
     })
-    // this.content.push([{text: 'CAJA',bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text: this.initial[0].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[1].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[2].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[3].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[4].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[5].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[6].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[7].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[8].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[9].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'},
-    // {text:this.initial[10].tipo,bold: true, fontSize: 12, color:'black',alignment: 'center'}] );
-
   }
 
   getCost(event,tipo){
@@ -161,43 +151,6 @@ export class ReportStoreComponent implements OnInit {
         this.button[this.opt.pop()]='false';
         this.BuildPdf();
       }
-      // var price=[];
-      // this.miMapa.forEach((valor,key)=>{price.push(valor);});
-      // this.HttpBD.ReportStore(this.Data.Get_usr(),this.Form.controls['type'].value,price,this.Form.controls['fact'].value,this.date,this.Form.controls['factIn'].value,Number(this.Form.controls['type'].value)-1,null)
-      //   .subscribe(result =>{
-      //     this.generate();
-      //     console.log(JSON.stringify(['true','true','true']),JSON.stringify(this.button) );
-      //     if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-            
-      //       this.HttpBD.Search(this.Data.Get_usr()).subscribe(result =>{
-      //         var content={table: {headerRows: 1,width: ['*','*','*','*','*','*','*','*','*','*','*','*','*',], body: this.content } };
-      //         pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
-      //           content:[
-      //           {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-      //           {text: 'CO:'+this.Data.Get_usr().toString()+' - '+result, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-      //           {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-      //           {text: '\n\n'},
-      //           content,
-      //           {text: '\n\n'},
-      //           {table: {headerRows: 1, body: 
-      //             this.ctrlFact                    
-      //           }},
-      //           {text: '\n\n'},
-      //           {text: 'Total de venta: $'+this.miMapa.get('totalVenta')},
-      //           {text: '\n\n'},
-      //           {text: 'Total de efectivo: $'+this.miMapa.get('Efect_total')},
-      //           {text: '\n\n'},
-      //           {text: 'Total de tarjetas: $'+this.miMapa.get('Tar_total')},
-      //           {text: '\n\n'},
-      //           {text: 'Total de Unico.com: $'+this.miMapa.get('totalUnico')}
-      //         ]}).open();
-      //       });            
-      //     }
-      //     else{
-      //       this.reset(); 
-      //     }
-      //   })
-      
     }
     
   }
@@ -205,12 +158,10 @@ export class ReportStoreComponent implements OnInit {
   BuildPdf(){
     var price=[];
     this.miMapa.forEach((valor,key)=>{price.push(valor);});
-    this.HttpBD.ReportStore(this.Data.Get_usr(),this.Form.controls['type'].value,price,this.Form.controls['fact'].value,this.date,this.Form.controls['factIn'].value,Number(this.Form.controls['type'].value)-1,null)
-      .subscribe(result =>{
+    this.HttpBD.ReportStore(this.Data.Get_usr(),this.Form.controls['type'].value,price,this.Form.controls['fact'].value,this.date,this.Form.controls['factIn'].value,Number(this.Form.controls['type'].value)-1,this.miMapa.get('anomaly'))
+    .subscribe(result =>{
         this.generate();
-        console.log(JSON.stringify(['true','true','true']),JSON.stringify(this.button) );
         if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-          
           this.HttpBD.Search(this.Data.Get_usr()).subscribe(result =>{
             var content={table: {headerRows: 1,width: ['*','*','*','*','*','*','*','*','*','*','*','*','*',], body: this.content } };
             pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
@@ -235,7 +186,7 @@ export class ReportStoreComponent implements OnInit {
               {text: '\n\n'},
               {text: 'COMENTARIOS: '+this.miMapa.get('anomaly'),fontSize: 18}
             ]}).open();
-            location.reload();
+            this._router.navigate(['schedules',this.date]);
           });            
         }
         else{
@@ -244,83 +195,6 @@ export class ReportStoreComponent implements OnInit {
       })
   }
     
-  //   else{
-  //     if(this.Form.controls['date'].value!=null){this.date=this.Form.controls['date'].value;}
-  //     this.flagAnomaly+=1;
-  //     this.Form.controls['date'].disable();
-  //     var temp=this.Form.controls['type'].value;
-  //     var Fact= this.Form.controls['fact'].value;
-  //     var Init= this.Form.controls['factIn'].value;
-  //     var anomaly= null;
-  //     var price=[];
-          
-  //     for(var i=7; i<document.getElementsByTagName('input').length;i++){
-  //       price.push(document.getElementsByTagName('input')[i].value);
-  //       this.miMapa.set(this.initial[i-7].tipo,this.miMapa.get(this.initial[i-7].tipo)+Number(document.getElementsByTagName('input')[i].value));
-  //       if(i!=7){
-  //         this.miMapa.set('total',this.miMapa.get('total')+Number(document.getElementsByTagName('input')[i].value));
-  //       }
-  //     }
-  //     var co=this.Data.Get_usr(); 
-  //     if(this.flagAnomaly==3){anomaly= this.Form.controls['anomaly'].value;}
-  //     this.ctrlFact.push([this.typeBox[Number(this.Form.controls['type'].value)-1],this.Form.controls['factIn'].value,this.Form.controls['fact'].value])
-  //     this.HttpBD.ReportStore(co,temp,price,Fact,this.date,Init,Number(temp)-1,anomaly).subscribe(result =>{
-  //       if(this.flagAnomaly==2){anomaly= this.Form.controls['anomaly'].enable();}
-  //       this.button[Number(temp)-1]='true';
-  //       this.generate();
-  //       this.cost=0;
-  //       this.reset(); 
-  //       if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-  //         this.HttpBD.Search(this.Data.Get_usr()).subscribe(result=>{
-          
-  //           var content={table: {headerRows: 1, widths: ['*', '*','*','*','*', '*','*','*','*', '*','*','*'], body: this.content}};
-  //           pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
-  //             content:[
-  //               {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-  //               {text: 'CO:'+this.Data.Get_usr().toString()+' - '+ result.toString(), style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-  //               {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-  //               {text: '\n\n'},
-  //               content,
-  //               {text: '\n\n'},
-  //               {table: {headerRows: 1, body: 
-  //                 [
-  //                   [{text: 'CAJA',style: 'header'},
-  //                   {text: 'FACTURA INICIAL',style: 'header'},
-  //                   {text: 'FACTURA FINAL',style: 'header'}],
-                    
-  //                   [{text: this.ctrlFact[0][0]},
-  //                   {text: this.ctrlFact[0][1]},
-  //                   {text: this.ctrlFact[0][2]}],
-
-  //                   [{text: this.ctrlFact[1][0]},
-  //                   {text: this.ctrlFact[1][1]},
-  //                   {text: this.ctrlFact[1][2]}],
-
-  //                   [{text: this.ctrlFact[2][0]},
-  //                   {text: this.ctrlFact[2][1]},
-  //                   {text: this.ctrlFact[2][2]}],
-  //                 ],
-                  
-  //               }},
-  //               {text: '\n\n'},
-  //               {text: 'TOTAL EFECTIVO : $ '+this.miMapa.get('Efectivo')+'\n\n',bold: true,fontSize: 18},
-  //               {text: 'TOTAL TARJETAS : $ '+ this.miMapa.get('total')+'\n\n',bold: true,fontSize: 18},
-  //               {text: 'TOTAL DE VENTA : $ '+ (Number(this.miMapa.get('Efectivo'))+Number(this.miMapa.get('total'))).toString()+'\n\n',bold: true,fontSize: 18},
-  //               {text: 'COMENTARIOS\n\n',bold: true,fontSize: 18},
-  //               {text: anomaly, fontSize: 18}
-  //             ]
-  //             }).open();
-  //             location.reload();
-  //         });
-          
-  //       }
-  //       else{
-  //         this.Form.reset();
-  //       }
-  //   })
-
-  // }
-//}
 
   generate(){
     var arr=[];
@@ -328,37 +202,6 @@ export class ReportStoreComponent implements OnInit {
     this.initial.forEach( (element) =>{
       arr.push([{text: '$ '+new Intl.NumberFormat().format(this.miMapa.get(element.tipo)),alignment: 'right',fontSize: 16}]);
     });
-    this.content.push(arr);
-
-    // this.content.push([
-    //   [{text: this.typeBox[Number(this.Form.controls['type'].value)-1] +'\n',alignment: 'right'}],
-    //   [{text: '$ '+document.getElementsByTagName('Table')[0].getElementsByTagName('input')[0].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[1].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[2].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[3].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[4].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[5].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[6].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[7].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[8].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[9].value+'\n',alignment: 'right'}],
-    //   [{text: '$ '+ document.getElementsByTagName('Table')[0].getElementsByTagName('input')[10].value+'\n',alignment: 'right'}],
-    // ]);
-    // if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-    //   this.content.push([
-    //     [{text: "TOTAL "}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[0].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[1].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[2].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[3].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[4].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[5].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[6].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[7].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[8].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[9].tipo),alignment: 'right',bold: true}],
-    //     [{text: '$ '+this.miMapa.get(this.initial[10].tipo),alignment: 'right',bold: true}],
-    //   ]);
-    // }    
+    this.content.push(arr); 
   }
 }

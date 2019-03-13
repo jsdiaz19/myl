@@ -188,6 +188,17 @@ UpdateBudget(budget){
     return this.http.post('/php/report-store/LastDate.php',{co: co});
   }
 
+  List_vend(){
+    return this.http.get('/php/report-store/scheduler/Vend.php');
+  }
+
+  Scheduler(co,date,arr){
+    return this.http.post('/php/report-store/scheduler/scheduler.php',{co:co,date:date,arr:arr})
+  }
+
+  New_User(cod,cc,nom){
+    return this.http.post('/php/report-store/scheduler/New_User/new_user.php',{id:cc,cod:cod,nom:nom})
+  }
   ///////////////////////////////// report store /////////////////////////////////////////////////////////////////////////
 
   ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
@@ -233,6 +244,10 @@ UpdateBudget(budget){
   }
   Abstract(co,date){
     return this.http.post('/php/balance/abstract.php',{co:co,date:date});
+  }
+
+  Anomally_view(co,date){
+    return this.http.post('/php/balance/Anomally.php',{co:co,date:date});
   }
 }
 

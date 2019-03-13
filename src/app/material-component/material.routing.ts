@@ -13,6 +13,7 @@ import {BudgetGoalComponent} from './budget-goal/budget-goal.component';
 import {CostEffectivenessComponent} from './cost-effectiveness/cost-effectiveness.component';
 import {BalanceComponent} from './balance/balance.component';
 import {ViewReportComponent} from './view-report/view-report.component';
+import {SchedulesComponent} from './report-store/schedules/schedules.component';
 export const MaterialRoutes: Routes = [
   {
     path: 'view',
@@ -77,6 +78,11 @@ export const MaterialRoutes: Routes = [
   {
     path: 'reportStore/:co/:date',
     component: ViewReportComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'schedules/:date',
+    component: SchedulesComponent,
     canActivate: [AuthGuardService]
   }
 ];
