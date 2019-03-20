@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Registro de horarios</mat-card-title>
+    <mat-card-subtitle>Se presentara los horario realizados por cada vendedor</mat-card-subtitle>
+
+    <div>
+      <ng-container >
+        Periodo:
+      <select [formControl]="Date">
+        <option value=" "> None</option>
+        <option value="01"> Enero </option>
+        <option value="02"> Febrero</option>
+        <option value="03"> Marzo </option>
+        <option value="04"> Abril</option>
+        <option value="05"> Mayo</option>
+        <option value="06"> Junio</option>
+        <option value="07"> Julio</option>
+        <option value="08"> Agosto</option>
+        <option value="09"> Septiembre</option>
+        <option value="10"> Octubre</option>
+        <option value="11"> Noviembre</option>
+        <option value="12"> Diciembre</option>
+      </select> 
+    </ng-container> 
+    <button mat-raised-button color="primary" (click)="Find()" style="margin-left:30px">Buscar </button>
+    </div>
+
+    <table mat-table [dataSource]="Source" class="mat-elevation-z8" >         
+      <!-- <ng-container matColumnDef="CO">
+        <th mat-header-cell *matHeaderCellDef> CO </th>
+        <td mat-cell *matCellDef="let element">{{element.co}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="CEDULA">
+        <th mat-header-cell *matHeaderCellDef> CEDULA </th>
+        <td mat-cell *matCellDef="let element">{{element.VEND_CC}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NOMBRE">
+        <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+        <td mat-cell *matCellDef="let element">{{element.VEND_CC_DESC}} </td>
+      </ng-container> -->
+
+      <ng-container *ngFor="let column of displayedColumns;" matColumnDef="{{column}}">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th> 
+        <td mat-cell *matCellDef="let element">{{element[column]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    </table> 
+  </mat-card-content>
+</mat-card>

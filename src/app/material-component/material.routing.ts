@@ -14,6 +14,7 @@ import {CostEffectivenessComponent} from './cost-effectiveness/cost-effectivenes
 import {BalanceComponent} from './balance/balance.component';
 import {ViewReportComponent} from './view-report/view-report.component';
 import {SchedulesComponent} from './report-store/schedules/schedules.component';
+import {RosterComponent} from './roster/roster.component';
 export const MaterialRoutes: Routes = [
   {
     path: 'view',
@@ -84,5 +85,10 @@ export const MaterialRoutes: Routes = [
     path: 'schedules/:date',
     component: SchedulesComponent,
     canActivate: [AuthGuardService]
-  }
+  },
+  {
+    path: 'control',
+    component: RosterComponent,
+    canActivate: [AuthGuardService]
+  },
 ];

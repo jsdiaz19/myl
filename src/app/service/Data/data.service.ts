@@ -8,6 +8,7 @@ export class DataService {
   month=null;
   co=null;
   cargo=null;
+  nom=null;
   constructor() { }
   
   Set_usr(id){
@@ -44,4 +45,15 @@ export class DataService {
   Get_Cargo(){
     return localStorage.getItem('cargo');
   }
+  
+  SetNom(nom){
+    localStorage.setItem('nom',nom);
+    this.nom=nom;
+  }
+
+  GetNom(){
+    return localStorage.getItem('nom');
+  }
 }
+
+

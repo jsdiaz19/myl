@@ -82,7 +82,6 @@ export class ReportStoreComponent implements OnInit {
       if (result!=null){
         this.dateMin=result;
         this.dateMin=this.dateMin.date.toString().substr(0,10);
-        console.log(this.dateMax);
       }
       else{
         this.dateMin= new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
@@ -91,9 +90,14 @@ export class ReportStoreComponent implements OnInit {
   }
 
   getCost(event,tipo){
-    this.miMapa.set(tipo,this.miMapa.get(tipo)+parseInt(event.target.value));
-    this.miMapa.set('total',this.miMapa.get('total')+parseInt(event.target.value));
-    
+    this.miMapa.set(tipo,parseInt(event.target.value));
+    var sum=0;
+    this.miMapa.forEach((value,key)=>{
+      if(key!='total' && key!='anomaly' && key!='Efect_total' && key!='Tar_total' && key!='totalVenta' && key!='totalUnico'){
+        sum+=value;
+      }
+    });
+    this.miMapa.set('total',sum); 
   }
 
   reset(){
@@ -109,10 +113,11 @@ export class ReportStoreComponent implements OnInit {
     }
   }
 
-  Save(){
+  Save(){  
     if (parseInt(this.Form.controls['sale'].value)!=this.miMapa.get('total')){
       alert("El valor total de venta no correspone con la distribucion de venta");
       this.Form.reset();
+      
     }
     else if(this.Form.invalid || Number(this.Form.controls['factIn'].value)>Number(this.Form.controls['fact'].value)){
       alert("Por favor digite todos los campos");
@@ -160,6 +165,7 @@ export class ReportStoreComponent implements OnInit {
     this.miMapa.forEach((valor,key)=>{price.push(valor);});
     this.HttpBD.ReportStore(this.Data.Get_usr(),this.Form.controls['type'].value,price,this.Form.controls['fact'].value,this.date,this.Form.controls['factIn'].value,Number(this.Form.controls['type'].value)-1,this.miMapa.get('anomaly'))
     .subscribe(result =>{
+      if(result=='Correct'){
         this.generate();
         if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
           this.HttpBD.Search(this.Data.Get_usr()).subscribe(result =>{
@@ -190,9 +196,14 @@ export class ReportStoreComponent implements OnInit {
           });            
         }
         else{
-          this.reset(); 
+          this.reset();
+          
         }
-      })
+      }
+      else{
+        alert('No se pudo guardar la informacion, por favor verifica los datos');
+      }    
+    })
   }
     
 

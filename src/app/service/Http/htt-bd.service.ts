@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import {DataService} from '../Data/data.service'
 import { Router } from '@angular/router'
+import { UserIdleService } from 'angular-user-idle';
 import { compileBaseDefFromMetadata } from '@angular/compiler';
 import { yearsPerPage } from '@angular/material/datepicker/typings/multi-year-view';
 @Injectable({
@@ -10,17 +11,31 @@ import { yearsPerPage } from '@angular/material/datepicker/typings/multi-year-vi
 export class HttBDService {
   url='http://localhost/php/'
   idUsr=null;
-  nom=null;
   cargo=null;
-  constructor(private http: HttpClient, private Data: DataService, private router: Router) {}
+  constructor(private http: HttpClient, private Data: DataService, private router: Router,private userIdle: UserIdleService) {
+  }
   
   SearchUser(user){
     return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password }).subscribe(result => {
       if (result!="Incorrect"){
+        this.userIdle.startWatching();
+        this.userIdle.onTimerStart().subscribe(count=>{});
+        this.userIdle.onTimeout().subscribe(() => {
+          if(window.confirm('Tiempo de inactividad superado')){
+            this.userIdle.stopWatching();
+            this.userIdle.resetTimer();
+            location.href="http://192.168.0.99/dist";
+          }
+          else{
+            this.userIdle.stopWatching();
+            this.userIdle.resetTimer();
+            location.href="http://192.168.0.99/dist";
+          }
+        });
         localStorage.setItem('auth','true');
         this.idUsr=result[0];
         this.Data.Set_usr(this.idUsr);
-        this.nom=result[1];
+        this.Data.SetNom(result[1]);
         localStorage.setItem('id',this.idUsr);
         this.cargo=result[2];
         localStorage.setItem('cargo',this.cargo);
@@ -248,6 +263,20 @@ UpdateBudget(budget){
 
   Anomally_view(co,date){
     return this.http.post('/php/balance/Anomally.php',{co:co,date:date});
+  }
+
+  DeleteReport(co,fecha){
+    return this.http.post('/php/balance/Delete_report.php',{co:co,fecha:fecha});
+  }
+
+  ///////////////////////////////// Roster  /////////////////////////////////////////////////////////////////////////  
+
+  DateAvaliable(month){
+    return this.http.post('/php/Roster/date_avaliable.php',{month:month});
+  }
+
+  ReportSchedules(){
+    return this.http.get('/php/Roster/schedules.php');
   }
 }
 

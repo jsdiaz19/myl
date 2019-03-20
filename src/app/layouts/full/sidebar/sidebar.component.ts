@@ -25,6 +25,7 @@ export class AppSidebarComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
   nom=null;
   cargo=null;
+  color=['#1A9D85','#C88317','#2F80B8','#2AAA63','#C6A314','#9F342B','#814E9A','#577679'];
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     private HttpBD: HttBDService,
@@ -36,7 +37,7 @@ export class AppSidebarComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.nom=this.HttpBD.nom;
+    this.nom=this.Data.GetNom();
     this.cargo=this.Data.Get_Cargo();
 
   }

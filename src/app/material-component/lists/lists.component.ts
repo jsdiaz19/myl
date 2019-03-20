@@ -21,7 +21,7 @@ export interface Budget{
 })
 
 export class ListsComponent {
-  displayedColumns: string[] = ['CO','Venta', 'Presupuesto','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte','P. prom','UPF','T. prom'];
+  displayedColumns: string[] = ['CO','Venta', 'Presupuesto','Deuda','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte','P. prom','UPF','T. prom'];
   Source=null;
   Store=null;
   id=null;
@@ -49,10 +49,11 @@ export class ListsComponent {
       this.Store=result;
     })
     if(this.id!='001'){
-      document.getElementById('update').style.display="none";
       this.CoFilter.setValue(this.id);
-      
     } 
+    if(this.Data.Get_Cargo().trim()!='Administrador'){
+      document.getElementById('update').style.display="none";
+    }
   } 
 
   applyFilter(){

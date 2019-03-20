@@ -2,15 +2,17 @@
 <!-- ============================================================== -->
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
-<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5"> <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"> </button>
+{{nom}}
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5" style="margin-left:10px"> <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"></button>
+
 <mat-menu #profile="matMenu" class="mymegamenu">
     <button mat-menu-item>
-        <mat-icon>settings</mat-icon> Settings </button>
+        <mat-icon>settings</mat-icon> Configuracion </button>
     <button mat-menu-item>
-        <mat-icon>account_box</mat-icon> Profile </button>
+        <mat-icon>account_box</mat-icon> Perfil </button>
     <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon> Disable notifications </button>
-    <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon> Sign Out </button>
+        <mat-icon>notifications_off</mat-icon> Desabilitar Notificaciones </button>
+    <button mat-menu-item (click)="Close_session()">
+        <mat-icon>exit_to_app</mat-icon> Cerrar Sesion </button>
 </mat-menu>
 

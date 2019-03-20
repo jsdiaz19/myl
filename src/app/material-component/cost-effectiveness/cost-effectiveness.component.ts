@@ -36,7 +36,7 @@ export class CostEffectivenessComponent implements OnInit {
         }
       }
       
-      if(this.Data.Get_Cargo()!="Administrador"){
+      if(this.Data.Get_usr()!="001"){
         this.Co=this.Data.Get_usr();
         this.applyFilter();
       }

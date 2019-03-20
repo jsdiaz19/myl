@@ -57,6 +57,19 @@
           </td>
         </ng-container>
 
+        <ng-container matColumnDef="Deuda" >
+          <th mat-header-cell *matHeaderCellDef > Deuda </th>
+          <td mat-cell *matCellDef="let element" > 
+            <ng-container *ngIf="element[10]>0; else danger">
+              <p style="color:green"><b>{{element[10]}}</b></p>
+            </ng-container>
+            
+            <ng-template #danger>
+              <p style="color:#FF0000"><b>{{element[10]}}</b></p>
+            </ng-template>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="Cumplimiento" >
           <th mat-header-cell *matHeaderCellDef > Cumplimiento </th>
           <td mat-cell *matCellDef="let element" > 

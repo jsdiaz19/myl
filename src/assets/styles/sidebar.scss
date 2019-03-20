@@ -16,6 +16,7 @@ mat-sidenav {
 }
 #snav{
     box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    background-color: #1A2227;
     .mat-list-item {
         height: auto;
         &:hover{
@@ -39,9 +40,10 @@ mat-sidenav {
             margin-bottom: 10px;
             align-items: center;
             display: flex;
-            font-size: 15px;
+            font-size: 16px;
             white-space: nowrap;
             color:$sidebar-text;
+            font-family: sans-serif;
             mat-icon:not(.dd-icon){
                 margin-right: 8px;
             }
