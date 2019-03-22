@@ -36,13 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    var popUp= window.open('https://www.google.com');
-    if(popUp==null || typeof(popUp)=='undefined'){
-      alert('Por favor deshabilita el bloqueador de ventanas emergentes y vuelve a refrescar el navegador');
-    }
-    else {  
-      popUp.close();
-    }
   }
 
   SearchUser(){

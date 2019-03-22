@@ -214,6 +214,10 @@ UpdateBudget(budget){
   New_User(cod,cc,nom){
     return this.http.post('/php/report-store/scheduler/New_User/new_user.php',{id:cc,cod:cod,nom:nom})
   }
+
+  View_scheduler(){
+    return this.http.get('/php/report-store/scheduler/View_scheduler.php');
+  }
   ///////////////////////////////// report store /////////////////////////////////////////////////////////////////////////
 
   ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////

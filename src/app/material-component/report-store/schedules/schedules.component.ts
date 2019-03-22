@@ -45,10 +45,17 @@ export class SchedulesComponent implements OnInit {
   delete=[false];
   vend=null;
 
+  siglas=[];
   constructor(private HttpBD: HttBDService,private DataBD: DataService,private _route: ActivatedRoute,public dialog: MatDialog,private _router: Router) { }
 
   ngOnInit() {
-    this.Source=this.initial;
+    this.HttpBD.View_scheduler().subscribe(result=>{
+      this.Source= new MatTableDataSource(Object.values(result));
+      Object.values(result).forEach((element)=>{
+        this.siglas.push(element.sigla);
+      })
+
+    })
     this.DataSource=this.Data;
     this.HttpBD.List_vend().subscribe(result=>{
       this.vend=result;

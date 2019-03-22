@@ -168,32 +168,35 @@ export class ReportStoreComponent implements OnInit {
       if(result=='Correct'){
         this.generate();
         if(JSON.stringify(this.button) ===JSON.stringify(['true','true','true'])){
-          this.HttpBD.Search(this.Data.Get_usr()).subscribe(result =>{
-            var content={table: {headerRows: 1,width: ['*','*','*','*','*','*','*','*','*','*','*','*','*',], body: this.content } };
-            pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
-              content:[
-              {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-              {text: 'CO:'+this.Data.Get_usr().toString()+' - '+result, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-              {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
-              {text: '\n\n'},
-              content,
-              {text: '\n\n'},
-              {table: {headerRows: 1, body: 
-                this.ctrlFact                    
-              }},
-              {text: '\n\n'},
-              {text: 'TOTAL DE VENTA: $'+new Intl.NumberFormat().format(this.miMapa.get('totalVenta')),fontSize: 18},
-              {text: '\n\n'},
-              {text: 'TOTAL DE EFECTIVO: $'+new Intl.NumberFormat().format(this.miMapa.get('Efect_total')),fontSize: 18},
-              {text: '\n\n'},
-              {text: 'TOTAL DE TARJETAS: $'+new Intl.NumberFormat().format(this.miMapa.get('Tar_total')),fontSize: 18},
-              {text: '\n\n'},
-              {text: 'TOTAL DE UNICO.COM: $'+new Intl.NumberFormat().format(this.miMapa.get('totalUnico')),fontSize: 18},
-              {text: '\n\n'},
-              {text: 'COMENTARIOS: '+this.miMapa.get('anomaly'),fontSize: 18}
-            ]}).open();
-            this._router.navigate(['schedules',this.date]);
-          });            
+          var message= confirm("RECUERDA DILIGENCIAR EL REGISTRO DE HORARIOS DEL DIA");
+          if(message==true || message==false){
+            this.HttpBD.Search(this.Data.Get_usr()).subscribe(result =>{
+              var content={table: {headerRows: 1,width: ['*','*','*','*','*','*','*','*','*','*','*','*','*',], body: this.content } };
+              pdfMake.createPdf({pageOrientation: 'Landscape',pageSize: 'TABLOID',extend: 'pdfHtml5',
+                content:[
+                {text: 'INFORME DE VENTA', style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
+                {text: 'CO:'+this.Data.Get_usr().toString()+' - '+result, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
+                {text: 'FECHA:'+this.date, style: 'header',bold: true, fontSize: 20, color:'gray',alignment: 'center'},
+                {text: '\n\n'},
+                content,
+                {text: '\n\n'},
+                {table: {headerRows: 1, body: 
+                  this.ctrlFact                    
+                }},
+                {text: '\n\n'},
+                {text: 'TOTAL DE VENTA: $'+new Intl.NumberFormat().format(this.miMapa.get('totalVenta')),fontSize: 18},
+                {text: '\n\n'},
+                {text: 'TOTAL DE EFECTIVO: $'+new Intl.NumberFormat().format(this.miMapa.get('Efect_total')),fontSize: 18},
+                {text: '\n\n'},
+                {text: 'TOTAL DE TARJETAS: $'+new Intl.NumberFormat().format(this.miMapa.get('Tar_total')),fontSize: 18},
+                {text: '\n\n'},
+                {text: 'TOTAL DE UNICO.COM: $'+new Intl.NumberFormat().format(this.miMapa.get('totalUnico')),fontSize: 18},
+                {text: '\n\n'},
+                {text: 'COMENTARIOS: '+this.miMapa.get('anomaly'),fontSize: 18}
+              ]}).download();
+              this._router.navigate(['schedules',this.date]);
+            }); 
+          }           
         }
         else{
           this.reset();
