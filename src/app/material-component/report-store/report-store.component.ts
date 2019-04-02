@@ -40,7 +40,7 @@ export class ReportStoreComponent implements OnInit {
   
   cost=0;
   button=['false','true','true'];
-  typeBox=['ONLINE','CONTINGENCIA','MANUAL'];
+  typeBox=['PRINCIPAL','CONTINGENCIA','MANUAL'];
   content=[];
   matcher = new MyErrorStateMatcher();
   miMapa = new Map();
@@ -48,7 +48,7 @@ export class ReportStoreComponent implements OnInit {
   dateMin;
   DisableAnomaly='true';
   flagAnomaly=0;
-  dateMax=new Date().toISOString().split('T')[0];
+  dateMax=new Date();
   ctrlFact=[];
   opt=null;
   Form = new FormGroup({
@@ -81,7 +81,7 @@ export class ReportStoreComponent implements OnInit {
     this.HttpBD.LastDate(this.Data.Get_usr()).subscribe(result =>{
       if (result!=null){
         this.dateMin=result;
-        this.dateMin=this.dateMin.date.toString().substr(0,10);
+        this.dateMin= new Date(this.dateMin.date);
       }
       else{
         this.dateMin= new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
@@ -89,6 +89,16 @@ export class ReportStoreComponent implements OnInit {
     })
   }
 
+  isDate(){
+    var date=this.Form.controls['date'].value.toString();
+    var dateTemp= new Date(date);
+    var min= new Date(this.dateMin.getFullYear(),this.dateMin.getDay()-1,this.dateMin.getMonth()+1);
+    if(date.split("/").length!=3 || isNaN(Date.parse(date)) || dateTemp.getTime()>this.dateMax.getTime() && dateTemp.getTime()<min.getTime()){
+      alert("La fecha es invalida");
+      this.Form.controls['date'].reset();
+    }
+    
+  }
   getCost(event,tipo){
     this.miMapa.set(tipo,parseInt(event.target.value));
     var sum=0;

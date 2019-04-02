@@ -16,10 +16,10 @@ export class BudgetDetailComponent implements OnInit {
   DataSource=null;
   InfoSource=null;
   DataSeller=null;
-  displayedColumns: string[] = ['Co','Presupuesto','Venta','Deuda','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte', 'P. prom','UPF','T. prom'];
+  displayedColumns: string[] = ['Co','Presupuesto','Venta','Deuda','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte','Incentivos', 'P. prom','UPF','T. prom'];
   Columns: string[] = ['Co','Lapso','Semana','Meta','Venta','Deuda','Cantidad','Cumplimiento','P. prom','UPF','T. prom'];
-  Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta'];
-  displayedHeader: string[] = ['Co','Vendedor','Cantidad','Venta','Distribucion de venta','P. prom','UPF','T. prom']; 
+  Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta','Cumplimiento'];
+  displayedHeader: string[] = ['Co','Vendedor','Cantidad','Venta','Distribucion de venta','Cumplimiento','P. prom','UPF','T. prom']; 
   constructor(private Data: DataService,private HttpBD: HttBDService) { }
 
   ngOnInit() {
@@ -36,6 +36,7 @@ export class BudgetDetailComponent implements OnInit {
       this.InfoSource= new MatTableDataSource(Object.values(result));
     })
     this.HttpBD.BudgetSeller(this.Co,this.month).subscribe(result =>{
+      console.log(result);
       this.DataSeller= new MatTableDataSource(Object.values(result)); 
     })
   }
@@ -50,4 +51,13 @@ export class BudgetDetailComponent implements OnInit {
     return 3;
   }
 
+  Apply(value){
+    console.log(parseFloat(value));
+    if(parseFloat(value)>80){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  }
 }

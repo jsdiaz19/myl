@@ -3,6 +3,7 @@
     <mat-card-title>Detalle de presupuesto por cargo</mat-card-title>
     <mat-card-subtitle>Balance diario</mat-card-subtitle>
 
+    
     <mat-tab-group>
       <mat-tab label="Presupuesto mensual"> 
 
@@ -43,7 +44,7 @@
             <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="MES">
+          <ng-container matColumnDef="MES" >
             <th mat-header-cell *matHeaderCellDef> MES </th>
             <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
           </ng-container>
@@ -58,7 +59,7 @@
             <td mat-cell *matCellDef="let element"> {{element[3]}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="SENIOR">
+          <ng-container matColumnDef="SENIOR" >
             <th mat-header-cell *matHeaderCellDef> SENIOR </th>
             <td mat-cell *matCellDef="let element"> {{element[4]}} </td>
           </ng-container>
@@ -68,7 +69,7 @@
             <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="Columns"></tr>
+          <tr mat-header-row *matHeaderRowDef="Columns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: Columns;"></tr>
         </table>
       </mat-tab>
@@ -143,7 +144,7 @@
                 <td mat-cell *matCellDef="let element"> {{element[6]}} </td>
               </ng-container>
     
-              <tr mat-header-row *matHeaderRowDef="Header"></tr>
+              <tr mat-header-row *matHeaderRowDef="Header; sticky: true"></tr>
               <tr mat-row *matRowDef="let row; columns: Header;"></tr>
             </table>
 

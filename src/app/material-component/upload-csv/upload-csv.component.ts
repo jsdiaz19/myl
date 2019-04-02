@@ -28,8 +28,7 @@ export class UploadCsvComponent{
         var result = [];
         lines[0]=lines[0].slice(0,-1)
         var headers = lines[0].split(";");
-        
-        for (var i = 1; i < lines.length-1; i++) {
+        for (var i = 1; i < lines.length; i++) {
           var obj = {};
           var currentline = lines[i].slice(0,-1).split(";");
           for (var j = 0; j < headers.length; j++) {
@@ -37,7 +36,8 @@ export class UploadCsvComponent{
           }
           result.push(obj); 
         }
-        var date = new Date();
+        console.log(result);
+       var date = new Date();
         var month = date.getMonth()+1;
         this.HttBD.UpdateBudget({mes: month, Budget: JSON.stringify(result)}).subscribe(result => {
           console.log(result);

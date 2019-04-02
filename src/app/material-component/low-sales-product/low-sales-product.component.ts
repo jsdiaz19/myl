@@ -63,11 +63,13 @@ export class LowSalesProductComponent implements OnInit {
     
     this.HttpBD.ProducBrand().subscribe(result =>{
       this.DataSource= new MatTableDataSource(Object.values(result));
+      document.getElementById('spinner').style.display="none";
+      document.getElementById('Abs').style.display="table";      
       this.DataSource.filterPredicate = (data, filter) => {
         const dataStr = data[0];
         return dataStr.indexOf(filter)!=-1; 
       }
-      document.getElementById('spinner').style.display="none";
+      
     });
     
 

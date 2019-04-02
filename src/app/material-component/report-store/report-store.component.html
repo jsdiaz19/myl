@@ -4,9 +4,10 @@
     <mat-card-subtitle>Presente los datos detallados del dia de hoy</mat-card-subtitle>
     <div class="card-container">
       <form [formGroup]="Form" class="example-container" >
-          
+          <label style="margin-right:30px">Fecha de registro:</label> 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Fecha de registro" class="example-right-align" formControlName="date" type="date" [errorStateMatcher]="matcher" [min]="dateMin" [max]="dateMax">
+          
+          <input matInput placeholder="Dia/Mes/Año" class="example-right-align" formControlName="date" [errorStateMatcher]="matcher" (blur)="isDate()">
           <mat-error *ngIf="Form.controls['fact'].hasError('required')">
             La fecha de registro es <strong>requirido</strong>
           </mat-error>

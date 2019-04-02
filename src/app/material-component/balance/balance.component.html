@@ -1,6 +1,7 @@
 <mat-card>
   <mat-card-content>
     <mat-card-title>Detalle de cierre de tienda</mat-card-title>
+    
     <table mat-table [dataSource]="Source" class="mat-elevation-z8">
 
       <ng-container matColumnDef="CO">
@@ -26,7 +27,7 @@
             <button mat-button (click)="Delete(element[0],element[1].date.substr(0,10))">Eliminar</button>
         </td>
       </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
