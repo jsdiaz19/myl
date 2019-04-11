@@ -35,6 +35,7 @@ export class ListsComponent {
     this.id=this.Data.Get_usr().toString().trim(); 
     this.HttpBD.BudgetStore().subscribe(result =>{
       this.isNull=false;
+      console.log(result);
       this.Source= new MatTableDataSource(Object.values(result) );
       this.Source.filterPredicate = (data, filter) => {
         const dataStr = data[0];

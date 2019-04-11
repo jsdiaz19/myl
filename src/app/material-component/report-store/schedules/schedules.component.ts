@@ -16,7 +16,7 @@ export interface schedules {
 export interface person{
   index: number;
   nombre: string;
-  cargo: string[];
+  cargo: string;
   horario: string;
   id?: string;
   del?: boolean;
@@ -36,7 +36,7 @@ export class SchedulesComponent implements OnInit {
 
   DataSource=null;
   Header: string[]=[' ','NOMBRE','CARGO','HORARIO'];
-  Data: person[]=[{index: 0,nombre: '',cargo: ['',''],horario:'',del: false}]
+  Data: person[]=[{index: 0,nombre: '',cargo: '',horario:'',del: false}]
 
   nom='';
   occupation='';
@@ -68,7 +68,7 @@ export class SchedulesComponent implements OnInit {
       var d=this.scheduler;
       var n=this.nom;
       this.delete.push(false);
-      this.Data.push({index: this.Data.length ,nombre: n[0],cargo: t.split(","), horario:d, id: n[1]});
+      this.Data.push({index: this.Data.length ,nombre: n[0].trim(),cargo: t, horario:d, id: n[1]});
       this.DataSource=new MatTableDataSource(this.Data);
       this.occupation='';
       this.scheduler='';

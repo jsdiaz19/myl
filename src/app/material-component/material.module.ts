@@ -31,6 +31,7 @@ import {DialogReportComponent} from './report-store/dialog-report/dialog-report.
 import { SchedulesComponent } from './report-store/schedules/schedules.component';
 import { NewUserComponent } from './report-store/schedules/new-user/new-user.component';
 import { RosterComponent } from './roster/roster.component';
+import { PositionComponent } from './position/position.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { RosterComponent } from './roster/roster.component';
     DialogReportComponent,
     SchedulesComponent,
     NewUserComponent,
-    RosterComponent
+    RosterComponent,
+    PositionComponent
   ],
   entryComponents: [
     DialogAnomalyComponent,

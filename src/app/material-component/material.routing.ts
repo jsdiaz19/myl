@@ -15,6 +15,8 @@ import {BalanceComponent} from './balance/balance.component';
 import {ViewReportComponent} from './view-report/view-report.component';
 import {SchedulesComponent} from './report-store/schedules/schedules.component';
 import {RosterComponent} from './roster/roster.component';
+import {PositionComponent} from './position/position.component';
+
 export const MaterialRoutes: Routes = [
   {
     path: 'view',
@@ -89,6 +91,11 @@ export const MaterialRoutes: Routes = [
   {
     path: 'control',
     component: RosterComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'position',
+    component: PositionComponent,
     canActivate: [AuthGuardService]
   },
 ];

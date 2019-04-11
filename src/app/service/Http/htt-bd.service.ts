@@ -282,5 +282,24 @@ UpdateBudget(budget){
   ReportSchedules(){
     return this.http.get('/php/Roster/schedules.php');
   }
+
+    ///////////////////////////////// Position  /////////////////////////////////////////////////////////////////////////  
+
+  Position(co,semana){
+    return this.http.post('/php/position/position.php',{co:co, semana: semana});
+  }
+
+  UpdatePosition(seller){
+    return this.http.post('/php/position/Updateposition.php',{seller: JSON.stringify(seller) });
+  }
+
+  view_week(month){
+    return this.http.post('/php/position/view_week.php',{month: month });
+  }
+
+  UpdateWeek(co,semana,vend){
+    console.log(co,semana);
+    return this.http.post('/php/position/week/UpdateWeek.php',{co: co, week: semana, position: JSON.stringify(vend)});
+  }
 }
 

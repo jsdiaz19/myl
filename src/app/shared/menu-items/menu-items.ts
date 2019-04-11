@@ -19,6 +19,7 @@ const MENUITEMS = [
   { state: 'report', type: 'link', name: 'Cierre Diario', icon: 'view_headline',enable: ['Administrador tienda','Administrador'],index:7 },  
   { state: 'admin', type: 'link', name: 'Balance', icon: 'trending_up',enable: ['Administrador','Contable'],index:8 },
   { state: 'control', type: 'link', name: 'Nomina', icon: 'account_balance_wallet',enable: ['Recursos humanos'],index:8 },
+  { state: 'position', type: 'link', name: 'Cargos', icon: 'perm_identity',enable: ['Administrador'],index:8 },
   
 ];
 
