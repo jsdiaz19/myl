@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
-
+import { ToastrModule } from 'ngx-toastr';
 import { UserIdleModule } from 'angular-user-idle';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FullComponent } from './layouts/full/full.component';
@@ -16,8 +16,9 @@ import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatTableModule} from '@angular/material';
-import { LoginComponent } from './login/login.component';
+
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -29,8 +30,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AppHeaderComponent,
     SpinnerComponent,
     AppSidebarComponent,
-    LoginComponent,
-
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HttpClientModule,
     SharedModule,
     MatTableModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(AppRoutes),
     UserIdleModule.forRoot({idle: 3600, timeout: 300, ping: 120})
   ],

@@ -1,0 +1,37 @@
+
+table {
+  width: 40%;
+  margin-top: 30px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+#close_box{
+  position: static;
+  display: none;
+  left: 840px;
+  top: 280px;
+}
+
+#delete{
+  position: static;
+  display: none;
+  left: 840px;
+  top: 340px;
+}
+
+#finish{
+  position: static;
+  display: none;
+  left: 840px;
+  top: 220px;
+}
+
+

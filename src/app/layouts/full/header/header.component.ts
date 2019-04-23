@@ -10,7 +10,7 @@ export class AppHeaderComponent {
   nom=null;
   constructor(private router: Router, private Data: DataService){this.nom=this.Data.GetNom().trim()}
   Close_session(){
-    localStorage.removeItem('auth');
+    this.Data.Close_sesison();
     this.router.navigate(['/login']);
   }
 }

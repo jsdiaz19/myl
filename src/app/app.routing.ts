@@ -4,7 +4,7 @@ import {AuthGuardService} from './service/AuthGuard/auth-guard.service';
 
 import { FullComponent } from './layouts/full/full.component';
 
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './components/login/login.component';
 
 export const AppRoutes: Routes = [
   {
@@ -29,11 +29,11 @@ export const AppRoutes: Routes = [
       {
         path: '',
         loadChildren:
-          './material-component/material.module#MaterialComponentsModule'
+          './components/material.module#MaterialComponentsModule'
       },
       {
         path: 'starter',
-        loadChildren: './create-despachos/create-despachos.module#StarterModule',
+        loadChildren: './components/create-despachos/create-despachos.module#StarterModule',
         canActivate: [AuthGuardService]
       }
     ]

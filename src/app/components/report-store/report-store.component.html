@@ -1,0 +1,90 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Formulario de cierre de caja</mat-card-title>
+    <mat-card-subtitle>Presente los datos detallados del dia de hoy</mat-card-subtitle>
+    <div class="card-container">
+      <form [formGroup]="Form" class="example-container" >
+          <label style="margin-right:30px">Fecha de registro:</label> 
+        <mat-form-field class="example-full-width">
+          
+          <input matInput placeholder="Dia/Mes/Año" class="example-right-align" formControlName="date" (blur)="isDate()" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="Form.controls['fact'].hasError('required')">
+            La fecha de registro es <strong>requirido</strong>
+          </mat-error>
+        </mat-form-field>
+        <div id="payment">     
+          <label style="margin-right:30px">Tipo de caja:</label> 
+          <mat-radio-group id="type" formControlName="type" >
+            <mat-radio-button value=1 [disabled]="button[0]">Principal</mat-radio-button>
+            <mat-radio-button value=2 [disabled]="button[1]">Contingencia</mat-radio-button>
+            <mat-radio-button value=3 [disabled]="button[2]"> Manual</mat-radio-button>
+          </mat-radio-group>
+        </div>  
+      
+
+        <mat-form-field >
+          
+          <input matInput placeholder="Total de venta"  class="example-right-align" formControlName="sale" type="number" [errorStateMatcher]="matcher">
+          <span matPrefix>$  &nbsp;</span>
+
+          <mat-error *ngIf="Form.controls['sale'].hasError('required')">
+            El total de venta es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+        </mat-form-field>  
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Factura inicial" class="example-right-align" formControlName="factIn" type="number" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="Form.controls['factIn'].hasError('required')">
+            El numero de factura inicial es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+          <mat-error *ngIf="Form.controls['factIn'].hasError('min')">
+              El numero de factura inicial debe ser <strong>mayor a 1 y al numero de factura inicial</strong>
+            </mat-error>
+        </mat-form-field>  
+
+          
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Factura final" class="example-right-align" formControlName="fact" type="number" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="Form.controls['fact'].hasError('required')">
+            El numero de factura final es <strong>requirido y de tipo numerico</strong>
+          </mat-error>
+          <mat-error *ngIf="Form.controls['fact'].hasError('min')">
+              El numero de factura final debe ser <strong>mayor a 1</strong>
+            </mat-error>
+        </mat-form-field> 
+
+        <mat-form-field>
+          <textarea matInput placeholder="Descripcion de anomalia u observacion"  maxlength="50" formControlName="anomaly"></textarea>    
+      </mat-form-field>
+
+      </form>
+    </div>
+
+    <h4>Distribucion de venta:</h4>
+    <table mat-table [dataSource]="Source" class="mat-elevation-z8" >         
+        <ng-container matColumnDef="PAGO">>
+          <th mat-header-cell *matHeaderCellDef> PAGO </th>
+          <td mat-cell *matCellDef="let element">{{element.tipo}} </td>
+          <td mat-footer-cell *matFooterCellDef> <strong>TOTAL</strong> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CANTIDAD">
+            <th mat-header-cell *matHeaderCellDef> CANTIDAD </th>
+            <td mat-cell *matCellDef="let element">  
+              <input matInput value="0" [disabled]="Form.invalid" (blur)="getCost($event,element.tipo)">
+            </td>
+            <td mat-footer-cell *matFooterCellDef> $ {{this.miMapa.get('total') }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table> 
+
+    
+      
+      <button mat-raised-button color="primary" (click)="Save()" style="margin-top:30px">Guardar </button>
+        
+      
+  </mat-card-content>
+</mat-card>

@@ -15,115 +15,116 @@ export class HttBDService {
   constructor(private http: HttpClient, private Data: DataService, private router: Router,private userIdle: UserIdleService) {
   }
   
-  SearchUser(user){
-    return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password }).subscribe(result => {
-      if (result!="Incorrect"){
-        this.userIdle.startWatching();
-        this.userIdle.onTimerStart().subscribe(count=>{});
-        this.userIdle.onTimeout().subscribe(() => {
-          if(window.confirm('Tiempo de inactividad superado')){
-            this.userIdle.stopWatching();
-            this.userIdle.resetTimer();
-            location.href="http://192.168.0.99/dist";
-          }
-          else{
-            this.userIdle.stopWatching();
-            this.userIdle.resetTimer();
-            location.href="http://192.168.0.99/dist";
-          }
-        });
-        localStorage.setItem('auth','true');
-        this.idUsr=result[0];
-        this.Data.Set_usr(this.idUsr);
-        this.Data.SetNom(result[1]);
-        localStorage.setItem('id',this.idUsr);
-        this.cargo=result[2];
-        localStorage.setItem('cargo',this.cargo);
-        this.Data.Set_Cargo(this.cargo);
-        if(this.cargo=='Contable'){
-          this.router.navigate(['/lists']);
-        }
-        else{
-          this.router.navigate(['/starter']);
-        }
-      }
-    });
-  }
+  // SearchUser(user){
+  //   return this.http.post('/php/conexion.php',{ op: 'usuario', nom: user.usuario, password: user.password }).subscribe(result => {
+  //     if (result!="Incorrect"){
+  //       this.userIdle.startWatching();
+  //       this.userIdle.onTimerStart().subscribe(count=>{});
+  //       this.userIdle.onTimeout().subscribe(() => {
+  //         if(window.confirm('Tiempo de inactividad superado')){
+  //           this.userIdle.stopWatching();
+  //           this.userIdle.resetTimer();
+  //           location.href="http://192.168.0.99/dist";
+  //         }
+  //         else{                                                      ASEGURARSE EL FUNCIONAMIENTO DE LA ARQUITECTURA Y ELMINAR
+  //           this.userIdle.stopWatching();
+  //           this.userIdle.resetTimer();
+  //           location.href="http://192.168.0.99/dist";
+  //         }
+  //       });
+  //       localStorage.setItem('auth','true');
+  //       this.idUsr=result[0];
+  //       this.Data.Set_usr(this.idUsr);
+  //       this.Data.SetNom(result[1]);
+  //       localStorage.setItem('id',this.idUsr);
+  //       this.cargo=result[2];
+  //       localStorage.setItem('cargo',this.cargo);
+  //       this.Data.Set_Cargo(this.cargo);
+  //       if(this.cargo=='Contable'){
+  //         this.router.navigate(['/lists']);
+  //       }
+  //       else{
+  //         this.router.navigate(['/starter']);
+  //       }
+  //     }
+  //   });
+  // }
 
   ////////////////////////////////////////// page create-despacho ///////////////////////////////////////////////////////////////////
 
-  Store(id){
-    return this.http.post('/php/starter/Listar_tiendas.php',{id: id});
-  }
+  // Store(id){
+  //   return this.http.post('/php/starter/Listar_tiendas.php',{id: id});
+  // }
 
-  Changeid(){
-    return this.http.get('/php/starter/Ref_despacho.php');
-  }
+  // Changeid(){
+  //   return this.http.get('/php/starter/Ref_despacho.php');
+  // }
 
-  Get_reference(cod){
-    return this.http.post('/php/starter/Get_reference.php',{cod: cod})
-  }
+  // Get_reference(cod){
+  //   return this.http.post('/php/starter/Get_reference.php',{cod: cod})//cambiar 
+  // }
 
-  Save_box(id,num,product){
-    return this.http.post('/php/starter/Save_box.php',{id: id, box: num, content: JSON.stringify(product)}).subscribe(result => {
-      console.log('Box save');
-    })
-  }
+  // Save_box(id,num,product){
+  //   return this.http.post('/php/starter/Save_box.php',{id: id, box: num, content: JSON.stringify(product)}).subscribe(result => {
+  //     console.log('Box save');
+  //   })
+  // }
 
-  Send_email(store,Numproduct,ref,guide,company){
-    return this.http.post('/php/starter/Send.php',{ store: store,Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result => {
-      console.log(result);
-    });
-  }
+  // Send_email(store,Numproduct,ref,guide,company){
+  //   console.log(store.trim(),Numproduct,ref,guide,company);
+  //   return this.http.post('/php/starter/Send.php',{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result => {
+  //     console.log(result);
+  //   });
+  // }
   
-  Save(id,store){
-    return this.http.post('/php/starter/register.php',{id: id, store: store}).subscribe(result =>{
-      console.log(result);
-    })
-  }
+  // Save(id,store){
+  //   return this.http.post('/php/starter/register.php',{id: id, store: store}).subscribe(result =>{
+  //     console.log(result);
+  //   })
+  // }
   
 //////////////////////////////// page create-despacho ///////////////////////////////////////////////////////////////////
 
 ////////////////////////////////  page dialog //////////////////////////////////////////////////////////////////////////
 
 
-Get_transport(){
-  return this.http.get('/php/starter/dialog/Get_transport.php');
-}
+// Get_transport(){
+//   return this.http.get('/php/starter/dialog/Get_transport.php');
+// }
 
-Update_state(id, state,company,guide){
-  return this.http.post('/php/starter/dialog/Update.php',{id: id,state: state, company: company, guide: guide}).subscribe(result =>{
-    console.log(result);
-  })
-}
+// Update_state(id, state,company,guide){
+//   return this.http.post('/php/starter/dialog/Update.php',{id: id,state: state, company: company, guide: guide}).subscribe(result =>{
+//     console.log(result);
+//   })
+// }
 
 ////////////////////////////////  page dialog //////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////////  view despacho //////////////////////////////////////////////////////////////////////////
 
-Cod_Store(){
-  return this.http.get('/php/View-despacho/Cod_Store.php');
-}
+// Cod_Store(){
+//   return this.http.get('/php/View-despacho/Cod_Store.php');
+// }
 
-Get_Despacho(store){
-  return this.http.post('/php/View-despacho/Get_despacho.php',{store:store});
-}
+// Get_Despacho(store){
+//   return this.http.post('/php/View-despacho/Get_despacho.php',{store:store});
+// }
 
 ////////////////////////////////  view despacho //////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////////  check despacho //////////////////////////////////////////////////////////////////////////
 
-UnidadBox(ref,caja){
-  return this.http.post('/php/check-despacho/UnidadCaja.php',{ref: ref, caja: caja});
-}
+// UnidadBox(ref,caja){
+//   return this.http.post('/php/check-despacho/UnidadCaja.php',{ref: ref, caja: caja});
+// }
 
-UpdateBox(ref){
-  return this.http.post('/php/check-despacho/UpdateBox.php',{ref: ref}).subscribe(result =>{
-    console.log(result);
-  });
-}
+// UpdateBox(ref){
+//   return this.http.post('/php/check-despacho/UpdateBox.php',{ref: ref}).subscribe(result =>{
+//     console.log(result);
+//   });
+// }
 
 ////////////////////////////////  check despacho //////////////////////////////////////////////////////////////////////////
 
@@ -165,13 +166,13 @@ BudgetSeller(co,month){
 
 ////////////////////////////////  low product sales  //////////////////////////////////////////////////////////////////////////
 
-LowSales(co){
-  return this.http.post('/php/low-sales/LowSales.php',{co: co});
-}
+// LowSales(co){
+//   return this.http.post('/php/low-sales/LowSales.php',{co: co});
+// }
 
-ProducBrand(){
-  return this.http.get('/php/low-sales/Brand.php');
-}
+// ProducBrand(){
+//   return this.http.get('/php/low-sales/Brand.php');
+// }
 
 ////////////////////////////////  low product sales  //////////////////////////////////////////////////////////////////////////
 
@@ -199,8 +200,8 @@ UpdateBudget(budget){
     return this.http.post('/php/report-store/ReportStore.php',{co: co, tipo: tipo, fact: Fact,date:date, price: JSON.stringify(price), init: init,state:state, anomaly:Anomaly });
   }
 
-  LastDate(co){
-    return this.http.post('/php/report-store/LastDate.php',{co: co});
+  LastDate(co,date){
+    return this.http.post('/php/report-store/LastDate.php',{co: co, date:date});
   }
 
   List_vend(){
@@ -222,17 +223,17 @@ UpdateBudget(budget){
 
   ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
 
-  Budget(year){
-    return this.http.post('/php/goal-budget/Get-budget.php',{year:year});
-  }
+  // Budget(year){
+  //   return this.http.post('/php/goal-budget/Get-budget.php',{year:year});
+  // }
 
-  BudgetMonth(year){
-    return this.http.post('/php/goal-budget/BudgetMonth.php',{year:year});
-  } 
+  // BudgetMonth(year){
+  //   return this.http.post('/php/goal-budget/BudgetMonth.php',{year:year});
+  // } 
 
-  BudgetWeek(year,month){
-    return this.http.post('/php/goal-budget/BudgetWeek.php',{year:year, month: month});
-  }
+  // BudgetWeek(year,month){
+  //   return this.http.post('/php/goal-budget/BudgetWeek.php',{year:year, month: month});
+  // }
 
  ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
 
@@ -247,31 +248,31 @@ UpdateBudget(budget){
    
    ///////////////////////////////// Balance  /////////////////////////////////////////////////////////////////////////
 
-   View_report(){
-     return this.http.get('/php/balance/View_report.php');
-   }
+  //  View_report(){
+  //    return this.http.get('/php/balance/View_report.php');
+  //  }
 
-   Main_box(co,date){
-    return this.http.post('/php/balance/Main_box.php',{co:co,date:date});
-  }
+  //  Main_box(co,date){
+  //   return this.http.post('/php/balance/Main_box.php',{co:co,date:date});
+  // }
 
-  Contigencebox(co,date){
-    return this.http.post('/php/balance/Contigencebox.php',{co:co,date:date});
-  }
-  Manuallybox(co,date){
-    return this.http.post('/php/balance/Manuallybox.php',{co:co,date:date});
-  }
-  Abstract(co,date){
-    return this.http.post('/php/balance/abstract.php',{co:co,date:date});
-  }
+  // Contigencebox(co,date){
+  //   return this.http.post('/php/balance/Contigencebox.php',{co:co,date:date});
+  // }
+  // Manuallybox(co,date){
+  //   return this.http.post('/php/balance/Manuallybox.php',{co:co,date:date});
+  // }
+  // Abstract(co,date){
+  //   return this.http.post('/php/balance/abstract.php',{co:co,date:date});
+  // }
 
-  Anomally_view(co,date){
-    return this.http.post('/php/balance/Anomally.php',{co:co,date:date});
-  }
+  // Anomally_view(co,date){
+  //   return this.http.post('/php/balance/Anomally.php',{co:co,date:date});
+  // }
 
-  DeleteReport(co,fecha){
-    return this.http.post('/php/balance/Delete_report.php',{co:co,fecha:fecha});
-  }
+  // DeleteReport(co,fecha){
+  //   return this.http.post('/php/balance/Delete_report.php',{co:co,fecha:fecha});
+  // }
 
   ///////////////////////////////// Roster  /////////////////////////////////////////////////////////////////////////  
 
