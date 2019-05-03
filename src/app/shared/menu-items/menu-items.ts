@@ -20,6 +20,8 @@ const MENUITEMS = [
   { state: 'admin', type: 'link', name: 'Balance', icon: 'trending_up',enable: ['Administrador','Contable'],index:8 },
   { state: 'control', type: 'link', name: 'Nomina', icon: 'account_balance_wallet',enable: ['Recursos humanos'],index:8 },
   { state: 'position', type: 'link', name: 'Cargos', icon: 'perm_identity',enable: ['Administrador'],index:8 },
+  { state: 'import', type: 'link', name: 'Declaracion', icon: 'book',enable: ['Administrador'],index:8 },
+  { state: 'download', type: 'link', name: 'Declaracion', icon: 'backup',enable: ['Administrador tienda'],index:8 },
   
 ];
 

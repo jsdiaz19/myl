@@ -1,0 +1,12 @@
+.card-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mat-select{
+    width: 400px;
+}
+
+.mat-form-field{
+    margin-top: 30px;
+}

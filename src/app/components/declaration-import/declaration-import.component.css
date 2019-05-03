@@ -1,0 +1,27 @@
+
+.mat-form-field{
+  margin-top: 30px;
+  display: block;
+  width: 40%;
+}
+
+table {
+  width: 60%;
+  margin-top: 30px;
+}
+
+.container{
+  margin-top: 30px;
+  display: flex;
+}
+
+#content{
+  display: none;
+  margin-top: 30px;
+}
+
+#spinner{
+  display: none;
+}
+
+

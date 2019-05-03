@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Descarga de declaraciones</mat-card-title>
+
+    <div class="card-container">
+      <form [formGroup]="form" (ngSubmit)="Download()">
+    
+        <mat-form-field>
+          <mat-select placeholder="Buscar por:" formControlName="type">
+            <mat-option value="Item"> Item </mat-option>
+            <mat-option value="Referencia"> Referencia </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Referencia o item del producto" formControlName="ref">
+        </mat-form-field>
+
+        <button mat-stroked-button type="submit" >Buscar</button>
+      </form>
+      
+    </div>
+
+    <a id="download" style="display: none; margin-top: 30px" download>Descargar</a>
+  </mat-card-content>
+</mat-card>

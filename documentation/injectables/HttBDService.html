@@ -1,0 +1,2258 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>material documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">material documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>HttBDService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/service/Http/htt-bd.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cargo">cargo</a>
+                            </li>
+                            <li>
+                                <a href="#idUsr">idUsr</a>
+                            </li>
+                            <li>
+                                <a href="#url">url</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#Anomaly">Anomaly</a>
+                            </li>
+                            <li>
+                                <a href="#AuthLogin">AuthLogin</a>
+                            </li>
+                            <li>
+                                <a href="#BudgetSale">BudgetSale</a>
+                            </li>
+                            <li>
+                                <a href="#BudgetSale_Week">BudgetSale_Week</a>
+                            </li>
+                            <li>
+                                <a href="#BudgetSeller">BudgetSeller</a>
+                            </li>
+                            <li>
+                                <a href="#BudgetSellerWeek">BudgetSellerWeek</a>
+                            </li>
+                            <li>
+                                <a href="#BudgetStore">BudgetStore</a>
+                            </li>
+                            <li>
+                                <a href="#Cost">Cost</a>
+                            </li>
+                            <li>
+                                <a href="#DateAvaliable">DateAvaliable</a>
+                            </li>
+                            <li>
+                                <a href="#LastDate">LastDate</a>
+                            </li>
+                            <li>
+                                <a href="#List_vend">List_vend</a>
+                            </li>
+                            <li>
+                                <a href="#New_User">New_User</a>
+                            </li>
+                            <li>
+                                <a href="#Position">Position</a>
+                            </li>
+                            <li>
+                                <a href="#ReportSchedules">ReportSchedules</a>
+                            </li>
+                            <li>
+                                <a href="#ReportStore">ReportStore</a>
+                            </li>
+                            <li>
+                                <a href="#Scheduler">Scheduler</a>
+                            </li>
+                            <li>
+                                <a href="#Search">Search</a>
+                            </li>
+                            <li>
+                                <a href="#UpdateBudget">UpdateBudget</a>
+                            </li>
+                            <li>
+                                <a href="#UpdatePosition">UpdatePosition</a>
+                            </li>
+                            <li>
+                                <a href="#UpdateWeek">UpdateWeek</a>
+                            </li>
+                            <li>
+                                <a href="#View_scheduler">View_scheduler</a>
+                            </li>
+                            <li>
+                                <a href="#view_week">view_week</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, Data: <a href="../injectables/DataService.html">DataService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, userIdle: <a href="../interfaces/User.html">UserIdleService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/service/Http/htt-bd.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>Data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataService.html" target="_self" >DataService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userIdle</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/User.html" target="_self" >UserIdleService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Anomaly"></a>
+                    <span class="name">
+                        <b>
+                            Anomaly
+                        </b>
+                        <a href="#Anomaly"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Anomaly(ref, inv, descript)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ref</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>inv</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>descript</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthLogin"></a>
+                    <span class="name">
+                        <b>
+                            AuthLogin
+                        </b>
+                        <a href="#AuthLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>AuthLogin()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BudgetSale"></a>
+                    <span class="name">
+                        <b>
+                            BudgetSale
+                        </b>
+                        <a href="#BudgetSale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BudgetSale(co, month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BudgetSale_Week"></a>
+                    <span class="name">
+                        <b>
+                            BudgetSale_Week
+                        </b>
+                        <a href="#BudgetSale_Week"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BudgetSale_Week(co, month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:153</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BudgetSeller"></a>
+                    <span class="name">
+                        <b>
+                            BudgetSeller
+                        </b>
+                        <a href="#BudgetSeller"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BudgetSeller(co, month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:161</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BudgetSellerWeek"></a>
+                    <span class="name">
+                        <b>
+                            BudgetSellerWeek
+                        </b>
+                        <a href="#BudgetSellerWeek"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BudgetSellerWeek(co, month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:157</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BudgetStore"></a>
+                    <span class="name">
+                        <b>
+                            BudgetStore
+                        </b>
+                        <a href="#BudgetStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>BudgetStore()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:140</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Cost"></a>
+                    <span class="name">
+                        <b>
+                            Cost
+                        </b>
+                        <a href="#Cost"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Cost(current, before)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:242</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>current</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>before</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DateAvaliable"></a>
+                    <span class="name">
+                        <b>
+                            DateAvaliable
+                        </b>
+                        <a href="#DateAvaliable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>DateAvaliable(month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:279</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LastDate"></a>
+                    <span class="name">
+                        <b>
+                            LastDate
+                        </b>
+                        <a href="#LastDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>LastDate(co, date)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:203</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>date</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="List_vend"></a>
+                    <span class="name">
+                        <b>
+                            List_vend
+                        </b>
+                        <a href="#List_vend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>List_vend()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:207</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="New_User"></a>
+                    <span class="name">
+                        <b>
+                            New_User
+                        </b>
+                        <a href="#New_User"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>New_User(cod, cc, nom)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cod</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cc</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>nom</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Position"></a>
+                    <span class="name">
+                        <b>
+                            Position
+                        </b>
+                        <a href="#Position"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Position(co, semana)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:289</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>semana</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReportSchedules"></a>
+                    <span class="name">
+                        <b>
+                            ReportSchedules
+                        </b>
+                        <a href="#ReportSchedules"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ReportSchedules()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ReportStore"></a>
+                    <span class="name">
+                        <b>
+                            ReportStore
+                        </b>
+                        <a href="#ReportStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ReportStore(co, tipo, price, Fact, date, init, state, Anomaly)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>tipo</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>price</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Fact</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>date</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>init</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>state</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Anomaly</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Scheduler"></a>
+                    <span class="name">
+                        <b>
+                            Scheduler
+                        </b>
+                        <a href="#Scheduler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Scheduler(co, date, arr)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:211</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>date</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>arr</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Search"></a>
+                    <span class="name">
+                        <b>
+                            Search
+                        </b>
+                        <a href="#Search"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Search(nom)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:191</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>nom</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UpdateBudget"></a>
+                    <span class="name">
+                        <b>
+                            UpdateBudget
+                        </b>
+                        <a href="#UpdateBudget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>UpdateBudget(budget)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:181</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>budget</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UpdatePosition"></a>
+                    <span class="name">
+                        <b>
+                            UpdatePosition
+                        </b>
+                        <a href="#UpdatePosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>UpdatePosition(seller)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="293"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:293</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>seller</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UpdateWeek"></a>
+                    <span class="name">
+                        <b>
+                            UpdateWeek
+                        </b>
+                        <a href="#UpdateWeek"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>UpdateWeek(co, semana, vend)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="301"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:301</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>co</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>semana</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>vend</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="View_scheduler"></a>
+                    <span class="name">
+                        <b>
+                            View_scheduler
+                        </b>
+                        <a href="#View_scheduler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>View_scheduler()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="219"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:219</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view_week"></a>
+                    <span class="name">
+                        <b>
+                            view_week
+                        </b>
+                        <a href="#view_week"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>view_week(month)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="297"
+                            class="link-to-prism">src/app/service/Http/htt-bd.service.ts:297</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>month</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cargo"></a>
+                        <span class="name">
+                            <b>
+                            cargo</b>
+                            <a href="#cargo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/service/Http/htt-bd.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="idUsr"></a>
+                        <span class="name">
+                            <b>
+                            idUsr</b>
+                            <a href="#idUsr"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>null</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>null</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/service/Http/htt-bd.service.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="url"></a>
+                        <span class="name">
+                            <b>
+                            url</b>
+                            <a href="#url"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;http://localhost/php/&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/service/Http/htt-bd.service.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient} from &#x27;@angular/common/http&#x27;;
+import {DataService} from &#x27;../Data/data.service&#x27;
+import { Router } from &#x27;@angular/router&#x27;
+import { UserIdleService } from &#x27;angular-user-idle&#x27;;
+import { compileBaseDefFromMetadata } from &#x27;@angular/compiler&#x27;;
+import { yearsPerPage } from &#x27;@angular/material/datepicker/typings/multi-year-view&#x27;;
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class HttBDService {
+  url&#x3D;&#x27;http://localhost/php/&#x27;
+  idUsr&#x3D;null;
+  cargo&#x3D;null;
+  constructor(private http: HttpClient, private Data: DataService, private router: Router,private userIdle: UserIdleService) {
+  }
+  
+  // SearchUser(user){
+  //   return this.http.post(&#x27;/php/conexion.php&#x27;,{ op: &#x27;usuario&#x27;, nom: user.usuario, password: user.password }).subscribe(result &#x3D;&gt; {
+  //     if (result!&#x3D;&quot;Incorrect&quot;){
+  //       this.userIdle.startWatching();
+  //       this.userIdle.onTimerStart().subscribe(count&#x3D;&gt;{});
+  //       this.userIdle.onTimeout().subscribe(() &#x3D;&gt; {
+  //         if(window.confirm(&#x27;Tiempo de inactividad superado&#x27;)){
+  //           this.userIdle.stopWatching();
+  //           this.userIdle.resetTimer();
+  //           location.href&#x3D;&quot;http://192.168.0.99/dist&quot;;
+  //         }
+  //         else{                                                      ASEGURARSE EL FUNCIONAMIENTO DE LA ARQUITECTURA Y ELMINAR
+  //           this.userIdle.stopWatching();
+  //           this.userIdle.resetTimer();
+  //           location.href&#x3D;&quot;http://192.168.0.99/dist&quot;;
+  //         }
+  //       });
+  //       localStorage.setItem(&#x27;auth&#x27;,&#x27;true&#x27;);
+  //       this.idUsr&#x3D;result[0];
+  //       this.Data.Set_usr(this.idUsr);
+  //       this.Data.SetNom(result[1]);
+  //       localStorage.setItem(&#x27;id&#x27;,this.idUsr);
+  //       this.cargo&#x3D;result[2];
+  //       localStorage.setItem(&#x27;cargo&#x27;,this.cargo);
+  //       this.Data.Set_Cargo(this.cargo);
+  //       if(this.cargo&#x3D;&#x3D;&#x27;Contable&#x27;){
+  //         this.router.navigate([&#x27;/lists&#x27;]);
+  //       }
+  //       else{
+  //         this.router.navigate([&#x27;/starter&#x27;]);
+  //       }
+  //     }
+  //   });
+  // }
+
+  ////////////////////////////////////////// page create-despacho ///////////////////////////////////////////////////////////////////
+
+  // Store(id){
+  //   return this.http.post(&#x27;/php/starter/Listar_tiendas.php&#x27;,{id: id});
+  // }
+
+  // Changeid(){
+  //   return this.http.get(&#x27;/php/starter/Ref_despacho.php&#x27;);
+  // }
+
+  // Get_reference(cod){
+  //   return this.http.post(&#x27;/php/starter/Get_reference.php&#x27;,{cod: cod})//cambiar 
+  // }
+
+  // Save_box(id,num,product){
+  //   return this.http.post(&#x27;/php/starter/Save_box.php&#x27;,{id: id, box: num, content: JSON.stringify(product)}).subscribe(result &#x3D;&gt; {
+  //     console.log(&#x27;Box save&#x27;);
+  //   })
+  // }
+
+  // Send_email(store,Numproduct,ref,guide,company){
+  //   console.log(store.trim(),Numproduct,ref,guide,company);
+  //   return this.http.post(&#x27;/php/starter/Send.php&#x27;,{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result &#x3D;&gt; {
+  //     console.log(result);
+  //   });
+  // }
+  
+  // Save(id,store){
+  //   return this.http.post(&#x27;/php/starter/register.php&#x27;,{id: id, store: store}).subscribe(result &#x3D;&gt;{
+  //     console.log(result);
+  //   })
+  // }
+  
+//////////////////////////////// page create-despacho ///////////////////////////////////////////////////////////////////
+
+////////////////////////////////  page dialog //////////////////////////////////////////////////////////////////////////
+
+
+// Get_transport(){
+//   return this.http.get(&#x27;/php/starter/dialog/Get_transport.php&#x27;);
+// }
+
+// Update_state(id, state,company,guide){
+//   return this.http.post(&#x27;/php/starter/dialog/Update.php&#x27;,{id: id,state: state, company: company, guide: guide}).subscribe(result &#x3D;&gt;{
+//     console.log(result);
+//   })
+// }
+
+////////////////////////////////  page dialog //////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////  view despacho //////////////////////////////////////////////////////////////////////////
+
+// Cod_Store(){
+//   return this.http.get(&#x27;/php/View-despacho/Cod_Store.php&#x27;);
+// }
+
+// Get_Despacho(store){
+//   return this.http.post(&#x27;/php/View-despacho/Get_despacho.php&#x27;,{store:store});
+// }
+
+////////////////////////////////  view despacho //////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////  check despacho //////////////////////////////////////////////////////////////////////////
+
+// UnidadBox(ref,caja){
+//   return this.http.post(&#x27;/php/check-despacho/UnidadCaja.php&#x27;,{ref: ref, caja: caja});
+// }
+
+// UpdateBox(ref){
+//   return this.http.post(&#x27;/php/check-despacho/UpdateBox.php&#x27;,{ref: ref}).subscribe(result &#x3D;&gt;{
+//     console.log(result);
+//   });
+// }
+
+////////////////////////////////  check despacho //////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////  anomaly despacho //////////////////////////////////////////////////////////////////////////
+
+Anomaly(ref,inv,descript){
+  return this.http.post(&#x27;/php/check-despacho/dialog/Anomaly.php&#x27;,{ref: ref, inv: inv,descript: descript});
+}
+////////////////////////////////  anomaly despacho //////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////  LIST (BUDGET) //////////////////////////////////////////////////////////////////////////
+
+BudgetStore(){
+  return this.http.get(&#x27;/php/budget/BudgetStore.php&#x27;);
+}
+
+////////////////////////////////  LIST (BUDGET) //////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////  budget detail  //////////////////////////////////////////////////////////////////////////
+
+BudgetSale(co,month){
+  return this.http.post(&#x27;/php/budget/budget-detail/BudgetSale.php&#x27;,{co: co, month: month});
+}
+
+BudgetSale_Week(co,month){
+  return this.http.post(&#x27;/php/budget/budget-detail/BudgetSale_Week.php&#x27;,{co: co, month: month});
+}
+
+BudgetSellerWeek(co,month){
+  return this.http.post(&#x27;/php/budget/budget-detail/BudgetSellerWeek.php&#x27;,{co: co, month: month});
+}
+
+BudgetSeller(co,month){
+  return this.http.post(&#x27;/php/budget/budget-detail/BudgetSeller.php&#x27;,{co: co, month: month});
+}
+
+////////////////////////////////  budget detail  //////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////  low product sales  //////////////////////////////////////////////////////////////////////////
+
+// LowSales(co){
+//   return this.http.post(&#x27;/php/low-sales/LowSales.php&#x27;,{co: co});
+// }
+
+// ProducBrand(){
+//   return this.http.get(&#x27;/php/low-sales/Brand.php&#x27;);
+// }
+
+////////////////////////////////  low product sales  //////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////  upload csv  //////////////////////////////////////////////////////////////////////////
+
+UpdateBudget(budget){
+  return this.http.post(&#x27;/php/budget/upload-csv/UpdateBudget.php&#x27;,budget);
+}
+
+////////////////////////////////  upload csv  //////////////////////////////////////////////////////////////////////////
+
+  AuthLogin(){
+    return localStorage.getItem(&#x27;auth&#x27;);
+  }
+
+  Search(nom){
+    return this.http.post(&#x27;/php/SearchId.php&#x27;,{op: &#x27;store&#x27;, name: nom})
+  }
+  
+  
+
+///////////////////////////////// report store //////////////////////////////////////////////////////////
+
+  ReportStore(co,tipo,price,Fact,date,init,state,Anomaly){
+    return this.http.post(&#x27;/php/report-store/ReportStore.php&#x27;,{co: co, tipo: tipo, fact: Fact,date:date, price: JSON.stringify(price), init: init,state:state, anomaly:Anomaly });
+  }
+
+  LastDate(co,date){
+    return this.http.post(&#x27;/php/report-store/LastDate.php&#x27;,{co: co, date:date});
+  }
+
+  List_vend(){
+    return this.http.get(&#x27;/php/report-store/scheduler/Vend.php&#x27;);
+  }
+
+  Scheduler(co,date,arr){
+    return this.http.post(&#x27;/php/report-store/scheduler/scheduler.php&#x27;,{co:co,date:date,arr:arr})
+  }
+
+  New_User(cod,cc,nom){
+    return this.http.post(&#x27;/php/report-store/scheduler/New_User/new_user.php&#x27;,{id:cc,cod:cod,nom:nom})
+  }
+
+  View_scheduler(){
+    return this.http.get(&#x27;/php/report-store/scheduler/View_scheduler.php&#x27;);
+  }
+  ///////////////////////////////// report store /////////////////////////////////////////////////////////////////////////
+
+  ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
+
+  // Budget(year){
+  //   return this.http.post(&#x27;/php/goal-budget/Get-budget.php&#x27;,{year:year});
+  // }
+
+  // BudgetMonth(year){
+  //   return this.http.post(&#x27;/php/goal-budget/BudgetMonth.php&#x27;,{year:year});
+  // } 
+
+  // BudgetWeek(year,month){
+  //   return this.http.post(&#x27;/php/goal-budget/BudgetWeek.php&#x27;,{year:year, month: month});
+  // }
+
+ ///////////////////////////////// goal budget /////////////////////////////////////////////////////////////////////////
+
+   ///////////////////////////////// cost-effectiveness /////////////////////////////////////////////////////////////////////////
+
+  Cost(current,before){
+    return this.http.post(&#x27;/php/Cost-effectiveness/cost-effectiveness.php&#x27;,{current:current, before:before});
+  }
+
+   ///////////////////////////////// cost-effectiveness /////////////////////////////////////////////////////////////////////////
+
+   
+   ///////////////////////////////// Balance  /////////////////////////////////////////////////////////////////////////
+
+  //  View_report(){
+  //    return this.http.get(&#x27;/php/balance/View_report.php&#x27;);
+  //  }
+
+  //  Main_box(co,date){
+  //   return this.http.post(&#x27;/php/balance/Main_box.php&#x27;,{co:co,date:date});
+  // }
+
+  // Contigencebox(co,date){
+  //   return this.http.post(&#x27;/php/balance/Contigencebox.php&#x27;,{co:co,date:date});
+  // }
+  // Manuallybox(co,date){
+  //   return this.http.post(&#x27;/php/balance/Manuallybox.php&#x27;,{co:co,date:date});
+  // }
+  // Abstract(co,date){
+  //   return this.http.post(&#x27;/php/balance/abstract.php&#x27;,{co:co,date:date});
+  // }
+
+  // Anomally_view(co,date){
+  //   return this.http.post(&#x27;/php/balance/Anomally.php&#x27;,{co:co,date:date});
+  // }
+
+  // DeleteReport(co,fecha){
+  //   return this.http.post(&#x27;/php/balance/Delete_report.php&#x27;,{co:co,fecha:fecha});
+  // }
+
+  ///////////////////////////////// Roster  /////////////////////////////////////////////////////////////////////////  
+
+  DateAvaliable(month){
+    return this.http.post(&#x27;/php/Roster/date_avaliable.php&#x27;,{month:month});
+  }
+
+  ReportSchedules(){
+    return this.http.get(&#x27;/php/Roster/schedules.php&#x27;);
+  }
+
+    ///////////////////////////////// Position  /////////////////////////////////////////////////////////////////////////  
+
+  Position(co,semana){
+    return this.http.post(&#x27;/php/position/position.php&#x27;,{co:co, semana: semana});
+  }
+
+  UpdatePosition(seller){
+    return this.http.post(&#x27;/php/position/Updateposition.php&#x27;,{seller: JSON.stringify(seller) });
+  }
+
+  view_week(month){
+    return this.http.post(&#x27;/php/position/view_week.php&#x27;,{month: month });
+  }
+
+  UpdateWeek(co,semana,vend){
+    console.log(co,semana);
+    return this.http.post(&#x27;/php/position/week/UpdateWeek.php&#x27;,{co: co, week: semana, position: JSON.stringify(vend)});
+  }
+}
+
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'HttBDService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

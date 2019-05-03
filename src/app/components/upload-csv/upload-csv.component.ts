@@ -29,14 +29,15 @@ export class UploadCsvComponent{
         lines[0]=lines[0].slice(0,-1)
         var headers = lines[0].split(";");
         for (var i = 1; i < lines.length; i++) {
-          var obj = {};
-          var currentline = lines[i].slice(0,-1).split(";");
-          for (var j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentline[j];
+          if( lines[i]!=""){
+            var obj = {};
+            var currentline = lines[i].slice(0,-1).split(";");
+            for (var j = 0; j < headers.length; j++) {
+              obj[headers[j]] = currentline[j];
+            }
+            result.push(obj);
           }
-          result.push(obj); 
         }
-        console.log(result);
        var date = new Date();
         var month = date.getMonth()+1;
         this.HttBD.UpdateBudget({mes: month, Budget: JSON.stringify(result)}).subscribe(result => {
