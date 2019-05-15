@@ -157,6 +157,7 @@ export class CheckDespachoComponent implements OnInit {
         this.numBox+=1;
         this.miMapa.clear();
         if (this.numBox+1<=this.Box){
+          this.HttpBD.UpdateBox(this.despacho);
           this.HttpBD.UnidadBox(this.despacho,this.numBox+1).subscribe(result => {
             this.refUnd=result;          
           })

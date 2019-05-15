@@ -8,8 +8,8 @@ export class PositionService {
 
   constructor( private http: HttpClient ) { }
 
-  Position(co,mes){
-    return this.http.post('/php/position/position.php',{co:co, mes: mes});
+  Position(co){
+    return this.http.post('/php/position/position.php',{co:co});
   }
 
   SetPosition(month,week,seller,co){

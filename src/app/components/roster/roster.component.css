@@ -1,7 +1,14 @@
 .mat-table {
-  width: 100%;
-  
+  min-width: auto !important;
+  width: 150% !important;
+}
 
+.mat-header-row {
+  width: 100%;
+}
+
+.mat-row {
+  width: 100%;
 }
 
 .mat-select{
@@ -16,5 +23,20 @@
 }
 
 .mat-column{
-  width: 45px;
+  flex: 0 0 25% !important;
+  min-width: 200px !important;
+}
+.mat-column-VEND_CC {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+
+.mat-column-co {
+  flex: 0 0 25% !important;
+  min-width: 104px !important;
+}
+
+.mat-column-VEND_CC_DESC {
+  flex: 0 0 25% !important;
+  min-width: 290px !important;
 }

@@ -12,7 +12,7 @@ import { element } from '@angular/core/src/render3';
   styleUrls: ['./roster.component.css']
 })
 export class RosterComponent implements OnInit {
-  displayedColumns: string[] = ['VEND_CC','VEND_CC_DESC'];
+  displayedColumns: string[] = ['co','VEND_CC','VEND_CC_DESC'];
   Date = new FormControl('');
   co = new FormControl('');
   Source=null;
@@ -29,19 +29,18 @@ export class RosterComponent implements OnInit {
   }
 
   Find(){
-    
     this.HttpBD.DateAvaliable(this.Date.value).subscribe(result=>{
-      console.log(result);
       if(result!=null){
+        this.displayedColumns= ['co','VEND_CC','VEND_CC_DESC']
         this.view=true;
         Object.values(result).forEach((element)=>{
-          this.displayedColumns.push(element.date.substr(0,10));
-          this.HttpBD.ReportSchedules().subscribe(result=>{
-            this.Source= new MatTableDataSource(Object.values(result));
-            this.Source.filterPredicate = (data, filter) => {
-              return '0'+data.co.toString().trim()==filter.trim(); 
-            }
-          })
+          this.displayedColumns.push(element.toString());
+        })
+        this.HttpBD.ReportSchedules(this.Date.value).subscribe(result=>{
+          this.Source= new MatTableDataSource(Object.values(result));
+          this.Source.filterPredicate = (data, filter) => {
+            return '0'+data.co.toString().trim()==filter.trim(); 
+          }
         })
       }
       else{

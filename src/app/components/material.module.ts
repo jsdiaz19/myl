@@ -31,9 +31,9 @@ import {DialogReportComponent} from './report-store/dialog-report/dialog-report.
 import { SchedulesComponent } from './report-store/schedules/schedules.component';
 import { NewUserComponent } from './report-store/schedules/new-user/new-user.component';
 import { RosterComponent } from './roster/roster.component';
-import { PositionComponent } from './position/position.component';
 import { DeclarationImportComponent } from './declaration-import/declaration-import.component';
 import { ViewDeclarationComponent } from './view-declaration/view-declaration.component';
+import { SettlementComponent } from './settlement/settlement.component';
 
 @NgModule({
   imports: [
@@ -67,9 +67,9 @@ import { ViewDeclarationComponent } from './view-declaration/view-declaration.co
     SchedulesComponent,
     NewUserComponent,
     RosterComponent,
-    PositionComponent,
     DeclarationImportComponent,
-    ViewDeclarationComponent
+    ViewDeclarationComponent,
+    SettlementComponent
   ],
   entryComponents: [
     DialogAnomalyComponent,

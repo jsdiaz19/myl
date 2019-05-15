@@ -18,8 +18,8 @@ export class BudgetDetailComponent implements OnInit {
   DataSeller=null;
   displayedColumns: string[] = ['Co','Presupuesto','Venta','Deuda','Cumplimiento','Fecha corte','Presupuesto corte','Cumplimiento corte','Incentivos', 'P. prom','UPF','T. prom'];
   Columns: string[] = ['Co','Lapso','Semana','Meta','Venta','Deuda','Cantidad','Cumplimiento','P. prom','UPF','T. prom'];
-  Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta','Cumplimiento'];
-  displayedHeader: string[] = ['Co','Vendedor','Cantidad','Venta','Distribucion de venta','Cumplimiento','P. prom','UPF','T. prom']; 
+  Header: string[] = ['Co','Semana','Vendedor','Cantidad','Venta'];
+  displayedHeader: string[] = ['Co','Vendedor','Cantidad','Venta','Distribucion de venta','P. prom','UPF','T. prom']; 
   constructor(private Data: DataService,private HttpBD: HttBDService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -50,7 +50,6 @@ export class BudgetDetailComponent implements OnInit {
   }
 
   Apply(value){
-    console.log(parseFloat(value));
     if(parseFloat(value)>80){
       return 0;
     }

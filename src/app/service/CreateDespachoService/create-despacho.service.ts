@@ -19,9 +19,7 @@ export class CreateDespachoService {
   }
 
   SendEmail(store,Numproduct,ref,guide,company){
-    return this.http.post('/php/starter/Send.php',{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result => {
-      console.log(result);
-    });
+    return this.http.post('/php/starter/Send.php',{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company });
   }
 
   Save(id,store){

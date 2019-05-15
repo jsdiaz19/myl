@@ -276,8 +276,9 @@ export class CreateDespachoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result =>{
       this.Guide=result[0];
       this.Company=result[1];
-      this.http.SendEmail(this.store_usr[0],this.Numproduct,this.ref,this.Guide,this.Company);
-      this.Refresh();
+      this.http.SendEmail(this.store_usr[0],this.Numproduct,this.ref,this.Guide,this.Company).subscribe(res=>{
+        this.Refresh();
+      })
     }) 
   }
 

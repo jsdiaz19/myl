@@ -15,9 +15,9 @@ import {BalanceComponent} from './balance/balance.component';
 import {ViewReportComponent} from './view-report/view-report.component';
 import {SchedulesComponent} from './report-store/schedules/schedules.component';
 import {RosterComponent} from './roster/roster.component';
-import {PositionComponent} from './position/position.component';
 import {DeclarationImportComponent} from './declaration-import/declaration-import.component'
 import {ViewDeclarationComponent} from './view-declaration/view-declaration.component';
+import {SettlementComponent} from './settlement/settlement.component';
 
 export const MaterialRoutes: Routes = [
   {
@@ -97,11 +97,7 @@ export const MaterialRoutes: Routes = [
     component: RosterComponent,
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'position',
-    component: PositionComponent,
-    canActivate: [AuthGuardService]
-  },
+
   {
     path: 'import',
     component: DeclarationImportComponent,
@@ -111,6 +107,12 @@ export const MaterialRoutes: Routes = [
   {
     path: 'download',
     component: ViewDeclarationComponent,
+    canActivate: [AuthGuardService]
+  },
+
+  {
+    path: 'settlement',
+    component: SettlementComponent,
     canActivate: [AuthGuardService]
   },
 ];
