@@ -168,7 +168,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>Position(co, mes)</code>
+<code>Position(co)</code>
                 </td>
             </tr>
 
@@ -196,15 +196,6 @@
                             <tbody>
                                 <tr>
                                     <td>co</td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>mes</td>
 
                                     <td>
                                         No
@@ -487,8 +478,8 @@ export class PositionService {
 
   constructor( private http: HttpClient ) { }
 
-  Position(co,mes){
-    return this.http.post(&#x27;/php/position/position.php&#x27;,{co:co, mes: mes});
+  Position(co){
+    return this.http.post(&#x27;/php/position/position.php&#x27;,{co:co});
   }
 
   SetPosition(month,week,seller,co){

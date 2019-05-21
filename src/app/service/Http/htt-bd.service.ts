@@ -129,8 +129,8 @@ UpdateBudget(budget){
     return this.http.post('/php/settlement/settlement.php',{co: co, seller: seller, position: position,month: month});
   }
 
-  weekSettlement(co,seller,position){
-    return this.http.post('/php/settlement/weekSettlement.php',{co: co, seller: seller, position: position});
+  weekSettlement(co,seller,position,month){
+    return this.http.post('/php/settlement/weekSettlement.php',{co: co, seller: seller, position: position, month: month});
   }
 
   Cost(current,before){

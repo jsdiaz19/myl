@@ -241,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app/service/CreateDespachoService/create-despacho.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/service/CreateDespachoService/create-despacho.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -507,9 +507,7 @@ export class CreateDespachoService {
   }
 
   SendEmail(store,Numproduct,ref,guide,company){
-    return this.http.post(&#x27;/php/starter/Send.php&#x27;,{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company }).subscribe(result &#x3D;&gt; {
-      console.log(result);
-    });
+    return this.http.post(&#x27;/php/starter/Send.php&#x27;,{ store: store.trim(),Numproduct: Numproduct,ref: ref,guide:guide,company:company });
   }
 
   Save(id,store){

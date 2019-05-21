@@ -14,7 +14,7 @@ export class SettlementComponent implements OnInit {
   store=null;
   sellerList=null;
   DisplayColumns: String[]= ['CO','VENDEDOR','VENTA','META','INCENTIVOS','CUMPLIMIENTO TIENDA'];
-  Columns: String[]= ['CO','VENDEDOR','SEMANA','VENTA','META','CUMPLIMIENTO','INCENTIVOS'];
+  Columns: String[]= ['CO','VENDEDOR','SEMANA','VENTA','META','CUMPLIMIENTO','CUMPLIMEINTO TIENDA','INCENTIVOS'];
   Source=null;
   DataSource=null;
   hidden: Boolean = false;
@@ -46,8 +46,7 @@ export class SettlementComponent implements OnInit {
       this.Form.disable();
       document.getElementById('submit').style.display="none";
     });
-
-    this.bd.weekSettlement(this.Form.controls['co'].value,this.Form.controls['seller'].value,this.Form.controls['position'].value).subscribe(result=>{
+    this.bd.weekSettlement(this.Form.controls['co'].value,this.Form.controls['seller'].value,this.Form.controls['position'].value,this.Form.controls['month'].value).subscribe(result=>{
       this.DataSource= new MatTableDataSource(Object.values(result));
     })
   }
@@ -73,7 +72,7 @@ export class SettlementComponent implements OnInit {
   }
 
   Apply(value){
-    if(parseFloat(value)>85){
+    if(parseFloat(value)>80){
       return 0;
     }
     else{
@@ -81,8 +80,8 @@ export class SettlementComponent implements OnInit {
     }
   }
 
-  Verify(value){
-    if(parseFloat(value)>80){
+  Verify(value,sales){
+    if(parseFloat(value)>85 && parseFloat(sales)>=80){
       return 0;
     }
     else{

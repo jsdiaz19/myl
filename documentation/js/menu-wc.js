@@ -91,13 +91,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/MaterialComponentsModule.html" data-type="entity-link">MaterialComponentsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-MaterialComponentsModule-f1a432734e96add431d148360ae03b1d"' : 'data-target="#xs-components-links-module-MaterialComponentsModule-f1a432734e96add431d148360ae03b1d"' }>
+                                            'data-target="#components-links-module-MaterialComponentsModule-59a41e25b2d45ac2af1d4e0253d5c412"' : 'data-target="#xs-components-links-module-MaterialComponentsModule-59a41e25b2d45ac2af1d4e0253d5c412"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-MaterialComponentsModule-f1a432734e96add431d148360ae03b1d"' :
-                                            'id="xs-components-links-module-MaterialComponentsModule-f1a432734e96add431d148360ae03b1d"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-MaterialComponentsModule-59a41e25b2d45ac2af1d4e0253d5c412"' :
+                                            'id="xs-components-links-module-MaterialComponentsModule-59a41e25b2d45ac2af1d4e0253d5c412"' }>
                                             <li class="link">
                                                 <a href="components/BalanceComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">BalanceComponent</a>
@@ -155,10 +155,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">NewUserComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/PositionComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">PositionComponent</a>
-                                            </li>
-                                            <li class="link">
                                                 <a href="components/ReportStoreComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">ReportStoreComponent</a>
                                             </li>
@@ -169,6 +165,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/SchedulesComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">SchedulesComponent</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="components/SettlementComponent.html"
+                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SettlementComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/UploadCsvComponent.html"
@@ -384,9 +384,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/Budget.html" data-type="entity-link">Budget</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ChangeSeller.html" data-type="entity-link">ChangeSeller</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/Description.html" data-type="entity-link">Description</a>
                             </li>
                             <li class="link">
@@ -418,9 +415,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/schedules.html" data-type="entity-link">schedules</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SellerWeek.html" data-type="entity-link">SellerWeek</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/User.html" data-type="entity-link">User</a>
