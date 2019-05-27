@@ -35,6 +35,11 @@
             <th mat-header-cell *matHeaderCellDef> REFERENCIA </th>
             <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
           </ng-container>
+
+          <ng-container matColumnDef="ITEM">
+              <th mat-header-cell *matHeaderCellDef> ITEM </th>
+              <td mat-cell *matCellDef="let element"> {{element[5]}} </td>
+            </ng-container>
     
           <ng-container matColumnDef="HACE 2 MESES">
             <th mat-header-cell *matHeaderCellDef="let element"> HACE 2 MESES </th>
@@ -79,13 +84,13 @@
             <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
           </ng-container>
     
-          <ng-container matColumnDef="ITEM">
-            <th mat-header-cell *matHeaderCellDef> ITEM </th>
+          <ng-container matColumnDef="REFERENCIA">
+            <th mat-header-cell *matHeaderCellDef> REFERENCIA</th>
             <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
           </ng-container>
     
-          <ng-container matColumnDef="REFERENCIA">
-            <th mat-header-cell *matHeaderCellDef> REFERENCIA </th>
+          <ng-container matColumnDef="ITEM">
+            <th mat-header-cell *matHeaderCellDef> ITEM </th>
             <td mat-cell *matCellDef="let element"> {{element[2]}} </td>
           </ng-container>
     

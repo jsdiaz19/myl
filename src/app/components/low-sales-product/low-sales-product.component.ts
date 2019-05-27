@@ -14,7 +14,7 @@ import {FormControl} from '@angular/forms';
 })
 export class LowSalesProductComponent implements OnInit {
   Store=null;
-  Header: string[]= ['CO','REFERENCIA','HACE 2 MESES','HACE 1 MES','MES ACTUAL'];
+  Header: string[]= ['CO','REFERENCIA','ITEM','HACE 2 MESES','HACE 1 MES','MES ACTUAL'];
   header: string[]= ['MARCA','REFERENCIA','ITEM','HACE 2 MESES','HACE 1 MES','MES ACTUAL'];
   Co=null;
   Source;

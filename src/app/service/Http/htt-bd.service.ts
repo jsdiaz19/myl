@@ -136,5 +136,9 @@ UpdateBudget(budget){
   Cost(current,before){
     return this.http.post('/php/Cost-effectiveness/cost-effectiveness.php',{current: current, before: before});
   }
+
+  sellerList(co,lapso){
+    return this.http.post('/php/settlement/sellerList.php',{co:co, lapso: lapso});
+  }
 }
 

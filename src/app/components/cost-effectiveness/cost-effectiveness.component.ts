@@ -14,7 +14,7 @@ import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 export class CostEffectivenessComponent implements OnInit {
 
   Source=null;
-  displayedColumns: string[] = ['CO','FECHA','VENTA','DEVOLUCIONES','VENTA NETA','COSTO','RENTABILIDAD','%RENTABILIDAD'];
+  displayedColumns: string[] = ['CO','FECHA','VENTA SIN IVA','DEVOLUCIONES','VENTA NETA','COSTO','RENTABILIDAD','%RENTABILIDAD'];
   month= new FormControl('');
   year= new FormControl('');
   CurrentYear= new Date().getFullYear();

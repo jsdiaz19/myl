@@ -12,8 +12,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialRoutes } from './material.routing';
 import { ViewdespachosComponent } from './view-despachos/view-despachos.component';
-
-import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { MenuComponent } from './menu/menu.component';
 import { CheckDespachoComponent } from './check-despachos/check-despachos.component';
@@ -49,7 +47,6 @@ import { SettlementComponent } from './settlement/settlement.component';
   providers: [],
   declarations: [
     ViewdespachosComponent,
-    GridComponent,
     ListsComponent,
     MenuComponent,
     CheckDespachoComponent,

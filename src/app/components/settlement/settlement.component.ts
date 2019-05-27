@@ -21,6 +21,7 @@ export class SettlementComponent implements OnInit {
   Form = new FormGroup({
     co: new FormControl('',Validators.required),
     position: new FormControl('',Validators.required),
+    year: new FormControl('',[Validators.required,Validators.max(new Date().getFullYear())]),
     month: new FormControl('',Validators.required),
     seller: new FormControl('',Validators.required),
   });
@@ -34,9 +35,17 @@ export class SettlementComponent implements OnInit {
   }
 
   seller(){
-    this.HttpBD.Position(this.Form.controls['co'].value).subscribe(result=>{
+    this.bd.sellerList(this.Form.controls['co'].value,this.Form.controls['year'].value+this.Form.controls['month'].value).subscribe(result=>{
+      console.log(result);
       this.sellerList= result;
     })
+  }
+
+  test(){
+    if (!this.Form.controls['co'].invalid && !this.Form.controls['year'].invalid && !this.Form.controls['month'].invalid){
+      return false;
+    }
+    return true;
   }
 
   Search(){

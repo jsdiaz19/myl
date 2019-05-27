@@ -5,7 +5,7 @@
       <form [formGroup]="Form" class="example-container" (ngSubmit)="Search()">
 
         <mat-form-field >
-          <mat-select placeholder="Centro de operacion" formControlName="co" (selectionChange)="seller()">
+          <mat-select placeholder="Centro de operacion" formControlName="co">
             <mat-option *ngFor="let temp of store" [value]="temp.split('-')[0].trim()"> {{temp}} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -20,7 +20,11 @@
         </mat-form-field>
 
         <mat-form-field >
-          <mat-select placeholder="Mes" formControlName="month">
+          <input matInput placeholder="año" formControlName="year">
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-select placeholder="Mes" formControlName="month" (selectionChange)="seller()">
             <mat-option value="01"> Enero </mat-option>
             <mat-option value="02"> Febrero </mat-option>
             <mat-option value="03"> Marzo </mat-option>
@@ -37,7 +41,7 @@
         </mat-form-field>
 
         <mat-form-field >
-          <mat-select placeholder="Vendedor" formControlName="seller">
+          <mat-select placeholder="Vendedor" formControlName="seller" [disabled]="test()">
               <mat-option *ngFor="let temp of sellerList" [value]="temp[0]"> {{temp[0]}} </mat-option>
           </mat-select>
         </mat-form-field>
@@ -206,4 +210,7 @@
 
     </div>
   </mat-card-content>
+  <div>
+    <p style="color:red"> Estos valores son sujetos a cambios, los valores reales seran proporcionados por cguno</p>
+  </div>
 </mat-card>

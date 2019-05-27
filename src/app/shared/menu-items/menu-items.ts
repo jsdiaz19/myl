@@ -14,7 +14,7 @@ const MENUITEMS = [
   { state: 'starter', name: 'Crear Despacho', type: 'link', icon: 'folder',enable: ['Administrador tienda','Administrador'],index:2 },
   { state: 'lists', type: 'link', name: 'Presupuesto', icon: 'attach_money',enable: ['Administrador tienda','Administrador','Contable','Supervisor','Recursos humanos'],index:3 },
   { state: 'goal', type: 'link', name: 'Meta Presupuesto', icon: 'work',enable: ['Administrador tienda','Administrador','Supervisor','Recursos humanos'],index:4 },
-  { state: 'settlement', type: 'link', name: 'Liquidacion', icon: 'compare_arrows',enable: ['Administrador'],index:4 },
+  { state: 'settlement', type: 'link', name: 'Liquidacion', icon: 'compare_arrows',enable: ['Administrador','Administrador tienda'],index:4 },
   { state: 'cost', type: 'link', name: 'Rentabilidad', icon: 'trending_up',enable: ['Administrador tienda','Administrador','Supervisor','Recursos humanos'],index:5 },
   { state: 'product', type: 'link', name: 'Baja Rotacion', icon: 'trending_down',enable: ['Administrador tienda','Administrador','Supervisor'],index:6 },
   { state: 'report', type: 'link', name: 'Cierre Diario', icon: 'view_headline',enable: ['Administrador tienda','Administrador'],index:7 },  

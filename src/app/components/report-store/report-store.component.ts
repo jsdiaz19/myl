@@ -35,7 +35,7 @@ export interface Payment {
 })
 export class ReportStoreComponent implements OnInit {
   Source=null;
-  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo: 'UNICO.COM', id:'12'},{tipo:'OTROS MP', id:'10'}];
+  initial: Payment[]=[{tipo: 'Efectivo', id:'11'},{tipo: 'Visa', id:'1'},{tipo: 'Master', id:'2'},{tipo: 'Myl beneficios', id:'3'},{tipo: 'Inmediata', id:'4'},{tipo: 'Dinners', id:'5'},{tipo: 'A. express', id:'6'},{tipo: 'Exito', id:'7'},{tipo: 'Bonos / Vip', id:'8'},{tipo: 'CMR / FALABELLA', id:'9'},{tipo: 'UNICO.COM', id:'12'},{tipo:'OTROS MP', id:'10'},{tipo:'MERCADO PAGO', id:'13'}];
   displayedColumns: string[]=['PAGO', 'CANTIDAD'];
   
   cost=0;

@@ -19,7 +19,7 @@ import {MatTableModule} from '@angular/material';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
-
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   
@@ -44,6 +44,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatTableModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(AppRoutes),
+    AvatarModule,
     UserIdleModule.forRoot({idle: 3600, timeout: 300, ping: 120})
   ],
   providers: [

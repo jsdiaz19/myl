@@ -3,7 +3,7 @@
 <!-- Profile - style you can find in header.scss -->
 <!-- ============================================================== -->
 {{nom}}
-<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5" style="margin-left:10px"> <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"></button>
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5" style="margin-left:10px"> <ngx-avatar size="40" name="{{nom}}" bgColor="#525151"></ngx-avatar></button>
 
 <mat-menu #profile="matMenu" class="mymegamenu">
     <button mat-menu-item>

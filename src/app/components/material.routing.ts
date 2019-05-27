@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import {AuthGuardService} from '../service/AuthGuard/auth-guard.service';
 import { ViewdespachosComponent } from './view-despachos/view-despachos.component';
-import { GridComponent } from './grid/grid.component';
 import { ListsComponent } from './lists/lists.component';
 import { CheckDespachoComponent} from './check-despachos/check-despachos.component';
 import { DescriptionDespachoComponent } from './description-despacho/description-despacho.component';
@@ -30,11 +29,6 @@ export const MaterialRoutes: Routes = [
   {
     path: 'Description',
     component: DescriptionDespachoComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'grid',
-    component: GridComponent,
     canActivate: [AuthGuardService]
   },
   {
